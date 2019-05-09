@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.ThridPay</name>
+    </assembly>
+    <members>
+        <member name="M:SanJing.ThridPay.Alipay.PayCallBack(System.Collections.Specialized.NameValueCollection,System.String,System.Action{System.String,System.Double},System.Action{System.Exception})">
+            <summary>
+            支付回调(始终返回成功)
+            </summary>
+            <param name="form">支付宝POST过来的数据</param>
+            <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+            <param name="action">执行操作</param>
+            <param name="exception">异常处理</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Alipay.PayByAPP(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            支付（APP）
+            </summary>
+            <param name="ordernumber">订单编号</param>
+            <param name="amount">订单金额（元）</param>
+            <param name="subject">公司名称</param>
+            <param name="body">项目名称</param>
+            <param name="callbackurl">回调完整地址</param>
+            <param name="appid">APPID</param>
+            <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+            <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Alipay.PayByH5(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            支付(H5)
+            </summary>
+            <param name="ordernumber">订单编号</param>
+            <param name="amount">订单金额（元）</param>
+            <param name="subject">公司名称</param>
+            <param name="body">项目名称</param>
+            <param name="callbackurl">回调完整地址</param>
+            <param name="appid">APPID</param>
+            <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+            <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Alipay.Refund(System.String,System.String,System.Double,System.String,System.String,System.String)">
+            <summary>
+            退款
+            </summary>
+            <param name="ordernumber">退款订单编号</param>
+            <param name="pay_ordernumber">支付订单编号</param>
+            <param name="refund_amount">退款金额（元）</param>
+            <param name="appid">APPID</param>
+            <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+            <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+        </member>
+        <member name="M:SanJing.ThridPay.Alipay.Transfer(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            转账到个人支付宝账户
+            </summary>
+            <param name="ordernumber">订单编号</param>
+            <param name="amount">转账金额（元）</param>
+            <param name="account">支付宝账号</param>
+            <param name="username">用户真实姓名</param>
+            <param name="subject">公司名称</param>
+            <param name="body">项目名称</param>
+            <param name="appid">APPID</param>
+            <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+            <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+        </member>
+        <member name="M:SanJing.ThridPay.Wxpay.PayByAPP(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            统一下单（移动应用版）
+            </summary>
+            <param name="amount">金额</param>
+            <param name="body">描述</param>
+            <param name="orderNumber">商户订单号</param>
+            <param name="callbackUrl">回调地址</param>
+            <param name="appId">APPID</param>
+            <param name="mchId">商户ID</param>
+            <param name="mchKey">商户密钥</param>
+            <param name="ipAddress">服务器（当前）IP地址</param>
+            <returns>移动端调起支付需要的参数</returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Wxpay.PayByWx(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            统一下单（微信内网页和小程序版）
+            </summary>
+            <param name="amount">金额</param>
+            <param name="body">描述</param>
+            <param name="orderNumber">商户订单编号</param>
+            <param name="callbackUrl">回调完整地址</param>
+            <param name="appId">APPID</param>
+            <param name="mchId">商户ID</param>
+            <param name="mchKey">商户密钥</param>
+            <param name="ipAddress">服务器（当前）IP地址</param>
+            <param name="openId">微信用户编号</param>
+            <returns>小程序端调起支付需要的参数</returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Wxpay.PayByQR(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            统一下单（扫一扫）（展示二维码供微信扫码支付）
+            </summary>
+            <param name="amount">金额</param>
+            <param name="body">描述</param>
+            <param name="orderNumber">商户订单编号</param>
+            <param name="callbackUrl">回调完整地址</param>
+            <param name="appId">APPID</param>
+            <param name="mchId">商户ID</param>
+            <param name="mchKey">商户密钥</param>
+            <param name="ipAddress">服务器（当前）IP地址</param>
+            <returns>生成二维码需要的字符串</returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Wxpay.PayCallBack(System.IO.Stream,System.String,System.Action{System.String,System.Double},System.Action{System.Exception})">
+            <summary>
+            统一下单 回调处理
+            </summary>
+            <param name="inputStream">微信发送过来的流</param>
+            <param name="mchKey">商户密钥（验签）</param>
+            <param name="action">回调处理方法，参数为商户订单编号和金额</param>
+            <param name="exception">异常处理</param>
+            <returns>将此结果返回给微信（始终为SUCCESS）</returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Wxpay.Refund(System.String,System.Double,System.String,System.Double,System.String,System.String,System.String,System.String)">
+            <summary>
+            统一退款 （支持开放平台，公众号，小程序订单）
+            </summary>
+            <param name="refundOrderNumber">退款单号</param>
+            <param name="refundAmount">退款金额（元）</param>
+            <param name="orderNumber">付款单号</param>
+            <param name="amount">付款金额</param>
+            <param name="appId">APPID</param>
+            <param name="mchId">商户号</param>
+            <param name="mchKey">商户密钥</param>
+            <param name="certFileNAME">商户密钥完整文件地址</param>
+        </member>
+        <member name="M:SanJing.ThridPay.Wxpay.Transfer(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            企业付款（支持开放平台，公众号，小程序订单）
+            </summary>
+            <param name="orderNumber">付款编号</param>
+            <param name="amount">付款金额（元）</param>
+            <param name="openId">OPENID</param>
+            <param name="desc">描述，用户可见</param>
+            <param name="appId">APPIS</param>
+            <param name="mchId">商户号</param>
+            <param name="mchkey">商户密钥</param>
+            <param name="ipAddress">服务器（当前）IP地址</param>
+            <param name="certFileName">商户密钥文件完整路径</param>
+        </member>
+        <member name="M:SanJing.ThridPay.Wxpay.RedPack(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            企业发红包（仅支持公众号或企业号）
+            </summary>
+            <param name="orderNumber">红包编号</param>
+            <param name="amount">红包金额</param>
+            <param name="openId">OPENID|种子用户，多个红包时，它可以分享给别人领取红包</param>
+            <param name="sendName">商户名称</param>
+            <param name="appId">APPID|企业号corpid即为此appid</param>
+            <param name="mchId">商户号</param>
+            <param name="mchKey">商户密钥</param>
+            <param name="ipAddress">服务器（当前）IP地址</param>
+            <param name="certFileName">商户密钥文件完整路径</param>
+            <param name="wishing">祝福语</param>
+            <param name="actName">活动名称</param>
+            <param name="remark">备注</param>
+            <param name="totalNum">红包个数，默认值：1</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SanJing.ThridPay</id>
+    <version>1.0.0</version>
+    <title>SanJing.ThridPay</title>
+    <authors>37www.com</authors>
+    <owners>37www.com</owners>
+    <projectUrl>http://www.lhstudio.top/article.html?id=20</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SanJing.ThridPay</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>SanJing Pay Alipay Weixin Wechat</tags>
+  </metadata>
+</package>

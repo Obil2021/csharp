@@ -1,0 +1,12 @@
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.ThridPay.dll
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.ThridPay.pdb
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\Alipay.dll
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.csproj.CopyComplete
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.dll
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.pdb
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.WxBase.dll
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.WxBase.xml
+C:\Users\Administrator\source\repos\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.ThridPay.xml
