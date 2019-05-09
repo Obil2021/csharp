@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SanJing.WxBase</id>
+    <version>1.0.0</version>
+    <title>SanJing.WxBase</title>
+    <authors>37www.com</authors>
+    <owners>37www.com</owners>
+    <projectUrl>http://www.lhstudio.top/article.html?id=19</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SanJing.WxBase</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>SanJing Weixin WeChat</tags>
+  </metadata>
+</package>

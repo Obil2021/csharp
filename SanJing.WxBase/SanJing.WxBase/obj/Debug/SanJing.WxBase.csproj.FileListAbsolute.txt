@@ -1,0 +1,9 @@
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\bin\Debug\SanJing.WxBase.dll
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\bin\Debug\SanJing.WxBase.pdb
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.dll
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.pdb
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.csproj.CopyComplete
+C:\Users\Administrator\source\repos\SanJing.WxBase\SanJing.WxBase\bin\Debug\SanJing.WxBase.xml
