@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SanJing.WxHelper</id>
+    <version>1.0.0</version>
+    <title>SanJing.WxHelper</title>
+    <authors>37www.com</authors>
+    <owners>37www.com</owners>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SanJing.WxHelper</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Sanjing Weixin Wechat</tags>
+  </metadata>
+</package>

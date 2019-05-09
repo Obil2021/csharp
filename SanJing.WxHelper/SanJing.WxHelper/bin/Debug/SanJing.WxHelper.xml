@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.WxHelper</name>
+    </assembly>
+    <members>
+        <member name="M:SanJing.WxHelper.WxHelper.CheckToken(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            微信公众号接入时的TOKEN验证
+            </summary>
+            <param name="signature">微信GET过来的签名</param>
+            <param name="timestamp">微信GET过来的时间戳</param>
+            <param name="nonce">微信GET过来的随机数</param>
+            <param name="token">自定义的TOKEN,需要在微信公众号后台填写的值</param>
+            <param name="echostr">微信GET过来的随机字符串</param>
+            <returns>echostr</returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.GetAccessToken(System.String,System.String,System.String)">
+            <summary>
+            获取Access_Token（仅支持公众号）
+            </summary>
+            <param name="appId">APPID</param>
+            <param name="appKey">APPKEY</param>
+            <param name="accessTokenCacheFileName">TOKEN缓存文件完整路劲（全局）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.GetJsConfigCode(System.String,System.String[],System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            JSConfig代码（仅支持公众号）
+            </summary>
+            <param name="url">页面完整地址（含参数）</param>
+            <param name="jsApiList">需要使用的JS接口列表</param>
+            <param name="debug">开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</param>
+            <param name="appId">APPID</param>
+            <param name="accessToken">Access_Token</param>
+            <param name="jsapiTicketCacheFileName">TICKET缓存文件完整路劲（全局）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.GetJsConfigCode(System.String,System.String[],System.Boolean,System.String,System.String,System.String,System.String)">
+            <summary>
+             JSConfig代码（仅支持公众号）
+            </summary>
+            <param name="url">页面完整地址（含参数）</param>
+            <param name="jsApiList">需要使用的JS接口列表</param>
+            <param name="debug">开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</param>
+            <param name="appId">APPID</param>
+            <param name="appkey">APPKEY</param>
+            <param name="accessTokenCacheFileName">TOKEN缓存文件完整路劲（全局）</param>
+            <param name="jsapiTicketCacheFileName">TICKET缓存文件完整路劲（全局）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.SendTempMsg(System.String,System.String,System.String,System.String,SanJing.WxHelper.WxTempMsg[])">
+            <summary>
+            发送模板消息（仅支持公众号）
+            </summary>
+            <param name="templateId">模板消息ID</param>
+            <param name="openId">目标用户OPENID</param>
+            <param name="url">消息跳转的完整链接地址</param>
+            <param name="accessToken">ACCESS_TOKEN</param>
+            <param name="templateMessages">模板消息参数</param>
+            <returns>含有msgid</returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.GetLoginUrl(System.String,System.String,System.String,System.String)">
+            <summary>
+            微信公众号登录授权地址
+            </summary>
+            <param name="appId">APPID</param>
+            <param name="redirectUrl">回调地址（服务端接收CODE）</param>
+            <param name="scope">snsapi_base、snsapi_userinfo</param>
+            <param name="state">回调时原样返回</param>
+            <returns>微信公众号登录授权地址</returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.LoginByAPPOrWxH5OrH5(System.String,System.String,System.String)">
+            <summary>
+            微信公众号或移动APP或H5网页（扫码）登录（获取openid）
+            </summary>
+            <param name="appId">APPID</param>
+            <param name="appKey">APPKEY</param>
+            <param name="code">服务端或移动应用或H5页面JS获取的CODE</param>
+            <returns>openid和unionid（Moble登录且已获得userinfo授权【手机端完成】时则有）</returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.LoginByAPPOrWxH5WithUserInfo(System.String,System.String,System.String)">
+            <summary>
+            微信公众号或移动APP登录，含基本资料（获取openid）
+            </summary>
+            <param name="appId">APPID</param>
+            <param name="appKey">APPKE</param>
+            <param name="code">移动应用或服务端获取的CODE</param>
+            <returns>openid和unionid(关联开放平台则有)和nickname、sex、headimgurl</returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.LoginByWxAPP(System.String,System.String,System.String)">
+            <summary>
+            微信小程序登录（获取openid）
+            </summary>
+            <param name="appId">APPID</param>
+            <param name="appKey">APPKEY</param>
+            <param name="code">小程序获取的CODE</param>
+            <returns>openid和unionid(关联开放平台则有)</returns>
+        </member>
+        <member name="T:SanJing.WxHelper.WxTempMsg">
+            <summary>
+            模板消息参数模型
+            </summary>
+        </member>
+        <member name="M:SanJing.WxHelper.WxTempMsg.#ctor">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="P:SanJing.WxHelper.WxTempMsg.Name">
+            <summary>
+            参数名称
+            </summary>
+        </member>
+        <member name="P:SanJing.WxHelper.WxTempMsg.Value">
+            <summary>
+            参数值
+            </summary>
+        </member>
+        <member name="P:SanJing.WxHelper.WxTempMsg.Color">
+            <summary>
+            显示颜色（默认值：#000000）
+            </summary>
+        </member>
+    </members>
+</doc>
