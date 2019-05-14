@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SanJing.Tcp</id>
+    <version>1.0.0</version>
+    <title>SanJing.Tcp</title>
+    <authors>37www.com</authors>
+    <owners>37www.com</owners>
+    <projectUrl>http://www.lhstudio.top/article.html?id=23</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SanJing.Tcp</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>SanJing Tcp IP Socket</tags>
+  </metadata>
+</package>
