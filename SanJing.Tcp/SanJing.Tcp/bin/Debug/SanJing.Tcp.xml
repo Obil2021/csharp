@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.Tcp</name>
+    </assembly>
+    <members>
+        <member name="T:SanJing.Tcp.TcpClienter">
+            <summary>
+            TCP客户端
+            </summary>
+        </member>
+        <member name="M:SanJing.Tcp.TcpClienter.#ctor(System.String,System.Int32)">
+            <summary>
+            初始化（UTF-8通信）
+            </summary>
+            <param name="host">IP地址</param>
+            <param name="port">端口</param>
+        </member>
+        <member name="M:SanJing.Tcp.TcpClienter.#ctor(System.String,System.Int32,System.Text.Encoding)">
+            <summary>
+            初始化
+            </summary>
+            <param name="host">IP地址</param>
+            <param name="port">端口</param>
+            <param name="encoding">通信编码</param>
+        </member>
+        <member name="P:SanJing.Tcp.TcpClienter.Encoding">
+            <summary>
+            通信编码
+            </summary>
+        </member>
+        <member name="P:SanJing.Tcp.TcpClienter.UnderlyingSocket">
+            <summary>
+            Socket
+            </summary>
+        </member>
+        <member name="M:SanJing.Tcp.TcpClienter.Send(System.String)">
+            <summary>
+            发送字符串
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:SanJing.Tcp.TcpClienter.Receive(System.Int32)">
+            <summary>
+            接受全部字符串
+            </summary>
+            <param name="bufferSize">缓存（大小决可定速度）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Tcp.TcpClienter.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:SanJing.Tcp.TcpConnected">
+            <summary>
+            TCP连接
+            </summary>
+        </member>
+        <member name="P:SanJing.Tcp.TcpConnected.UnderlyingSocket">
+            <summary>
+            Socket
+            </summary>
+        </member>
+        <member name="M:SanJing.Tcp.TcpConnected.Send(System.String)">
+            <summary>
+            发送字符串
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:SanJing.Tcp.TcpConnected.Receive(System.Int32)">
+            <summary>
+            接受全部字符串
+            </summary>
+            <param name="bufferSize">缓存（大小决可定速度）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Tcp.TcpConnected.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:SanJing.Tcp.TcpServer">
+            <summary>
+            TCP服务端
+            </summary>
+        </member>
+        <member name="M:SanJing.Tcp.TcpServer.#ctor(System.String,System.Int32,System.Text.Encoding,System.Int32)">
+            <summary>
+            初始化
+            </summary>
+            <param name="host">IP地址</param>
+            <param name="port">端口</param>
+            <param name="encoding">通信编码</param>
+            <param name="backlog"></param>
+        </member>
+        <member name="P:SanJing.Tcp.TcpServer.ContinueService">
+            <summary>
+            继续服务
+            </summary>
+        </member>
+        <member name="P:SanJing.Tcp.TcpServer.UnderlyingSocket">
+            <summary>
+            Socket
+            </summary>
+        </member>
+        <member name="M:SanJing.Tcp.TcpServer.Accept">
+            <summary>
+            获取客户端请求（阻塞）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Tcp.TcpServer.ShutdownServer">
+            <summary>
+            关闭服务器
+            </summary>
+        </member>
+        <member name="M:SanJing.Tcp.TcpServer.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+    </members>
+</doc>
