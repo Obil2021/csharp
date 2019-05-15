@@ -14,6 +14,8 @@ namespace SanJing.ThridPay
 {
     public class Alipay
     {
+        private const string BEGIN_RSA_PRIVATE_KEY = "-----BEGIN RSA PRIVATE KEY-----";
+        private const string END_RSA_PRIVATE_KEY = "-----END RSA PRIVATE KEY-----";
         /// <summary>
         /// 支付回调(始终返回成功)
         /// </summary>
@@ -25,7 +27,7 @@ namespace SanJing.ThridPay
         public static string PayCallBack(NameValueCollection form, string alipay_public_key, Action<string, double> action, Action<Exception> exception)
         {
             var formData = form.AllKeys.ToDictionary(key => key, key => form[key]);
-            if (AlipaySignature.RSACheckV2(formData, alipay_public_key, "utf-8", "RSA2", false))
+            if (AlipaySignature.RSACheckV1(formData, alipay_public_key, "utf-8", "RSA2", false))
             {
                 var ordernumber = formData["out_trade_no"];
                 var amount = double.Parse(formData["total_amount"]);
@@ -39,7 +41,7 @@ namespace SanJing.ThridPay
                 }
             }
             else
-                exception?.Invoke(new Exception(JsonConvert.SerializeObject(formData)));
+                exception?.Invoke(new Exception("验签失败：" + JsonConvert.SerializeObject(formData)));
             return "success";
         }
         /// <summary>
@@ -56,8 +58,7 @@ namespace SanJing.ThridPay
         /// <returns></returns>
         public static string PayByAPP(string ordernumber, double amount, string subject, string body, string callbackurl, string appid, string app_private_key_path, string alipay_public_key)
         {
-            var app_private_key = System.IO.File.ReadAllText(app_private_key_path);
-            app_private_key = app_private_key.Replace("-----BEGIN RSA PRIVATE KEY-----", string.Empty).Replace("-----END RSA PRIVATE KEY-----", string.Empty).Trim();
+            var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
             var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", false);
             AlipayTradeAppPayModel apppay = new AlipayTradeAppPayModel();
             apppay.Body = body;
@@ -88,8 +89,7 @@ namespace SanJing.ThridPay
         /// <returns></returns>
         public static string PayByH5(string ordernumber, double amount, string subject, string body, string callbackurl, string appid, string app_private_key_path, string alipay_public_key)
         {
-            var app_private_key = System.IO.File.ReadAllText(app_private_key_path);
-            app_private_key = app_private_key.Replace("-----BEGIN RSA PRIVATE KEY-----", string.Empty).Replace("-----END RSA PRIVATE KEY-----", string.Empty).Trim();
+            var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
             var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", true);
             AlipayTradePagePayModel apppay = new AlipayTradePagePayModel();
 
@@ -118,8 +118,7 @@ namespace SanJing.ThridPay
         /// <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
         public static void Refund(string ordernumber, string pay_ordernumber, double refund_amount, string appid, string app_private_key_path, string alipay_public_key)
         {
-            var app_private_key = System.IO.File.ReadAllText(app_private_key_path);
-            app_private_key = app_private_key.Replace("-----BEGIN RSA PRIVATE KEY-----", string.Empty).Replace("-----END RSA PRIVATE KEY-----", string.Empty).Trim();
+            var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
             var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", false);
             AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
             request.BizContent = JsonConvert.SerializeObject(new
@@ -146,8 +145,7 @@ namespace SanJing.ThridPay
         /// <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
         public static void Transfer(string ordernumber, double amount, string account, string username, string subject, string body, string appid, string app_private_key_path, string alipay_public_key)
         {
-            var app_private_key = System.IO.File.ReadAllText(app_private_key_path);
-            app_private_key = app_private_key.Replace("-----BEGIN RSA PRIVATE KEY-----", string.Empty).Replace("-----END RSA PRIVATE KEY-----", string.Empty).Trim();
+            var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
             var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", false);
             AlipayFundTransToaccountTransferRequest request = new AlipayFundTransToaccountTransferRequest();
             request.BizContent = JsonConvert.SerializeObject(new
@@ -163,6 +161,13 @@ namespace SanJing.ThridPay
             AlipayFundTransToaccountTransferResponse response = alipayClient.Execute(request);
             if (response.IsError)
                 throw new Exception(response.Body);
+        }
+        private static string getAppPrivateKeyFromFile(string app_private_key_path)
+        {
+            var app_private_key = System.IO.File.ReadAllText(app_private_key_path);
+            app_private_key = app_private_key.Replace(BEGIN_RSA_PRIVATE_KEY, string.Empty)
+                .Replace(END_RSA_PRIVATE_KEY, string.Empty).Trim();
+            return app_private_key;
         }
     }
 }
