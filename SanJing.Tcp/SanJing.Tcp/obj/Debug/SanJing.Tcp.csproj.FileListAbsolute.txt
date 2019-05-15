@@ -17,4 +17,3 @@ C:\Users\Administrator\Desktop\SanJing.Tcp\SanJing.Tcp\obj\Debug\SanJing.Tcp.csp
 C:\Users\Administrator\Desktop\SanJing.Tcp\SanJing.Tcp\obj\Debug\SanJing.Tcp.dll
 C:\Users\Administrator\Desktop\SanJing.Tcp\SanJing.Tcp\obj\Debug\SanJing.Tcp.pdb
 C:\Users\Administrator\Desktop\SanJing.Tcp\SanJing.Tcp\bin\Debug\SanJing.Tcp.xml
-C:\Users\Administrator\Desktop\SanJing.Tcp\SanJing.Tcp\obj\Debug\SanJing.Tcp.csprojAssemblyReference.cache

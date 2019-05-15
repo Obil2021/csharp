@@ -85,6 +85,14 @@
             TCP服务端
             </summary>
         </member>
+        <member name="M:SanJing.Tcp.TcpServer.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            初始化(UTF-8通信)
+            </summary>
+            <param name="host">IP地址</param>
+            <param name="port">端口</param>
+            <param name="backlog"></param>
+        </member>
         <member name="M:SanJing.Tcp.TcpServer.#ctor(System.String,System.Int32,System.Text.Encoding,System.Int32)">
             <summary>
             初始化

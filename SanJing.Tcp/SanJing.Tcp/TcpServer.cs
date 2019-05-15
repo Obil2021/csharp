@@ -17,6 +17,19 @@ namespace SanJing.Tcp
         internal const string _SHUTDOWNSERVER = "/SHUTDOWNSERVER/";
         private SocketListener SocketListener { get; set; }
         /// <summary>
+        /// 初始化(UTF-8通信)
+        /// </summary>
+        /// <param name="host">IP地址</param>
+        /// <param name="port">端口</param>
+        /// <param name="backlog"></param>
+        public TcpServer(string host, int port, int backlog = 10)
+        {
+            SocketListener = new SocketListener(port, host, backlog);
+            Host = host;
+            Encoding = Encoding.UTF8;
+            ContinueService = true;
+        }
+        /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="host">IP地址</param>
@@ -26,6 +39,7 @@ namespace SanJing.Tcp
         public TcpServer(string host, int port, Encoding encoding, int backlog = 10)
         {
             SocketListener = new SocketListener(port, host, backlog);
+            Host = host;
             Encoding = encoding;
             ContinueService = true;
         }
