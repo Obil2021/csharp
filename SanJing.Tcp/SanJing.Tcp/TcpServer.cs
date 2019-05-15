@@ -26,6 +26,7 @@ namespace SanJing.Tcp
         {
             SocketListener = new SocketListener(port, host, backlog);
             Host = host;
+            Port = port;
             Encoding = Encoding.UTF8;
             ContinueService = true;
         }
@@ -40,13 +41,13 @@ namespace SanJing.Tcp
         {
             SocketListener = new SocketListener(port, host, backlog);
             Host = host;
+            Port = port;
             Encoding = encoding;
             ContinueService = true;
         }
         private string Host { get; set; }
         private int Port { get; set; }
         private Encoding Encoding { get; set; }
-        private TcpClienter TcpClienter { get; set; }
         /// <summary>
         /// 继续服务
         /// </summary>
