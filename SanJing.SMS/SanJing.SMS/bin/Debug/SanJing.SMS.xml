@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.SMS</name>
+    </assembly>
+    <members>
+        <member name="T:SanJing.SMS.Aliyun">
+            <summary>
+            阿里云
+            </summary>
+        </member>
+        <member name="M:SanJing.SMS.Aliyun.Send(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String[],System.String,System.String,System.String)">
+            <summary>
+            群发短信
+            </summary>
+            <param name="templateCode">模板ID|管理控制台中配置的审核通过的短信模板的模板CODE（状态必须是验证通过）</param>
+            <param name="templateParam">模板中的变量</param>
+            <param name="phoneNumbers">手机号</param>
+            <param name="signName">签名|管理控制台中配置的短信签名（状态必须是验证通过）</param>
+            <param name="accessId">APPID</param>
+            <param name="accessSecret">APPKEY</param>
+        </member>
+        <member name="M:SanJing.SMS.Aliyun.Send(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.String)">
+            <summary>
+            单发短信
+            </summary>
+            <param name="templateCode">模板ID|管理控制台中配置的审核通过的短信模板的模板CODE（状态必须是验证通过）</param>
+            <param name="templateParam">模板中的变量</param>
+            <param name="phoneNumber">手机号</param>
+            <param name="signName">签名|管理控制台中配置的短信签名（状态必须是验证通过）</param>
+            <param name="accessId">APPID</param>
+            <param name="accessSecret">APPKEY</param>
+        </member>
+        <member name="T:SanJing.SMS.Tencent">
+            <summary>
+            腾讯云
+            </summary>
+        </member>
+        <member name="M:SanJing.SMS.Tencent.Send(System.Int32,System.String[],System.String,System.Int32,System.String)">
+            <summary>
+            指定模板 ID 单发短信(86)(默认签名)
+            </summary>
+            <param name="phoneNumber">手机号</param>
+            <param name="values">替换值|按顺序替换</param>
+            <param name="templateId">模板Id</param>
+            <param name="appid">APPID</param>
+            <param name="appkey">APPKEY</param>
+        </member>
+        <member name="M:SanJing.SMS.Tencent.Send(System.Int32,System.String[],System.String[],System.Int32,System.String)">
+            <summary>
+            指定模板 ID 单发短信(86)(默认签名)
+            </summary>
+            <param name="templateId">模板Id</param>
+            <param name="values">替换值|按顺序替换</param>
+            <param name="phoneNumbers">手机号</param>
+            <param name="appid">APPID</param>
+            <param name="appkey">APPKEY</param>
+        </member>
+        <member name="M:SanJing.SMS.Tencent.SendVoice(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            发送语音通知
+            数字默认按照个十百千万进行播报
+            </summary>
+            <param name="voiceContent">语音文本|示例：您的语音验证码是5,6,7,8</param>
+            <param name="phoneNumber">手机号</param>
+            <param name="appid">APPID</param>
+            <param name="appkey">APPKEY</param>
+        </member>
+    </members>
+</doc>

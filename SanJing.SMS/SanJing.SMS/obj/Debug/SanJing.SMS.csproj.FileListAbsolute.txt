@@ -1,0 +1,16 @@
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\SanJing.SMS.dll
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\SanJing.SMS.pdb
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\obj\Debug\SanJing.SMS.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\obj\Debug\SanJing.SMS.dll
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\obj\Debug\SanJing.SMS.pdb
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\qcloudsms_csharp.dll
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\System.Net.Http.dll
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\System.Net.Http.WebRequest.dll
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\System.Net.Http.xml
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\System.Net.Http.WebRequest.xml
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\obj\Debug\SanJing.SMS.csproj.CopyComplete
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\aliyun-net-sdk-core.dll
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\aliyun-net-sdk-dysmsapi.dll
+C:\Users\Administrator\source\repos\SanJing.SMS\SanJing.SMS\bin\Debug\SanJing.SMS.xml
