@@ -3,3 +3,9 @@ C:\Users\Administrator\source\repos\SanJing.Hash\SanJing.Hash\bin\Debug\SanJing.
 C:\Users\Administrator\source\repos\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\source\repos\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.dll
 C:\Users\Administrator\source\repos\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.pdb
+C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\bin\Debug\SanJing.Hash.dll
+C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\bin\Debug\SanJing.Hash.pdb
+C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.dll
+C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.pdb
