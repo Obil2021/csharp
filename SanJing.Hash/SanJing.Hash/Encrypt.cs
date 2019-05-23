@@ -14,7 +14,7 @@ namespace SanJing.Hash
         /// <param name="text">待加密文本</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public string MD5(string text, string encoding = "UTF-8")
+        public static string MD5(string text, string encoding = "UTF-8")
         {
             using (var sha = new MD5CryptoServiceProvider())
             {
@@ -28,7 +28,7 @@ namespace SanJing.Hash
         /// <param name="text">待加密文本</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public string SHA1(string text, string encoding = "UTF-8")
+        public static string SHA1(string text, string encoding = "UTF-8")
         {
             using (var sha = new SHA1CryptoServiceProvider())
             {
@@ -42,7 +42,7 @@ namespace SanJing.Hash
         /// <param name="text">待加密文本</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public string SHA256(string text, string encoding = "UTF-8")
+        public static string SHA256(string text, string encoding = "UTF-8")
         {
             using (var sha = new SHA256CryptoServiceProvider())
             {
@@ -56,7 +56,7 @@ namespace SanJing.Hash
         /// <param name="text">待加密文本</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public string SHA384(string text, string encoding = "UTF-8")
+        public static string SHA384(string text, string encoding = "UTF-8")
         {
             using (var sha = new SHA384CryptoServiceProvider())
             {
@@ -70,7 +70,7 @@ namespace SanJing.Hash
         /// <param name="text">待加密文本</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public string SHA512(string text, string encoding = "UTF-8")
+        public static string SHA512(string text, string encoding = "UTF-8")
         {
             using (var sha = new SHA512CryptoServiceProvider())
             {
