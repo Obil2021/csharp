@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:SanJing.WebApi.ApiControllerExpansion">
+            <summary>
+            WebApi扩展
+            </summary>
+        </member>
+        <member name="F:SanJing.WebApi.ApiControllerExpansion.MS_HTTPCONTEXT">
+            <summary>
+            请求示例名称
+            </summary>
+        </member>
+        <member name="F:SanJing.WebApi.ApiControllerExpansion.IP_ADDRESS">
+            <summary>
+            默认IP地址
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.RequestReady(System.Web.Http.ApiController,SanJing.WebApi.RequestModel,System.String)">
+            <summary>
+            请求准备(含数IP地址验证、数据验证、签名验证、时间戳验证，随机串验证、日志记录)
+            </summary>
+            <param name="apiController">API</param>
+            <param name="request">请求数据</param>
+            <param name="key">验签Key</param>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.TimeStamp(System.Web.Http.ApiController)">
+            <summary>
+            获取时间戳
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SanJing.WebApi.IPAddressException">
+            <summary>
+            IP地址异常（黑名单）
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.IPAddressException.#ctor">
+            <summary>
+            实例化
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.NonceStringException">
+            <summary>
+            随机串异常（重复）
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.NonceStringException.#ctor">
+            <summary>
+            实例化
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.NonceStringCache">
+            <summary>
+            服务器缓存
+            </summary>
+        </member>
+        <member name="F:SanJing.WebApi.NonceStringCache.keyValuePairs">
+            <summary>
+            缓存表
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.NonceStringCache.CheckAndAdd(System.String,System.Int64,System.Int32)">
+            <summary>
+            验证并添加
+            </summary>
+            <param name="key">KEY</param>
+            <param name="timeStamp">时间戳</param>
+            <param name="second">缓存时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.NonceStringCache.NonceStringCacheClear(System.Int64,System.Int32)">
+            <summary>
+            清理过期的缓存
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.Swagger">
+            <summary>
+            API说明
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.Swagger.GetXmlCommentsPath(System.String)">
+            <summary>
+            XML文件路径
+            </summary>
+            <param name="name">XML文件名（一般与项目名称相同）</param>
+            <returns></returns>
+        </member>
+        <member name="T:SanJing.WebApi.TimeStampException">
+            <summary>
+            时间戳异常（超出限定范围）
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.TimeStampException.#ctor">
+            <summary>
+            实例化
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.UserException">
+            <summary>
+            程序员可见的异常
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.UserException.#ctor(System.String)">
+            <summary>
+            初始化
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:SanJing.WebApi.RequestModel">
+            <summary>
+            WebApi请求模型
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.RequestModel.NonceString">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.RequestModel.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.RequestModel.Sign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <!-- 对于成员“M:SanJing.WebApi.RequestModel.CheckSign(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:SanJing.WebApi.RequestModel.CheckNonceString(System.String,System.String)">
+            <summary>
+            验证随机字符串（重复问题）
+            </summary>
+            <param name="urlPath">API接口</param>
+            <param name="ipAddress">IP地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.RequestModel.IPAddressBlackList">
+            <summary>
+            IP地址黑名单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.RequestModel.TimeStampLimit">
+            <summary>
+            时间戳限制范围（秒）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SanJing.WebApi.ResponseModel">
+            <summary>
+            WebApi返回模型
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.ResponseModel.StatuCode">
+            <summary>
+            状态码
+            1000表示成功
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.ResponseModel.StatuMsg">
+            <summary>
+            状态表述
+            Success表示成功
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.SignException">
+            <summary>
+            验签异常（失败）
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.SignException.#ctor">
+            <summary>
+            实例化
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.TokenException">
+            <summary>
+            身份认证异常（失败）
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.TokenException.#ctor">
+            <summary>
+            实例化
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.ValidException">
+            <summary>
+            数据验证
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.ValidException.#ctor(System.String)">
+            <summary>
+            实例化
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:SanJing.WebApi.WebApiExceptionFilterAttribute">
+            <summary>
+            WebApi全局异常处理
+            2000+ 表示用户可见
+            3000+ 表示程序员可见
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.WebApiExceptionFilterAttribute.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            异常处理
+            </summary>
+            <param name="actionExecutedContext"></param>
+        </member>
+    </members>
+</doc>
