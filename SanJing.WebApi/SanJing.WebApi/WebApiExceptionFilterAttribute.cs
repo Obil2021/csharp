@@ -63,11 +63,19 @@ namespace SanJing.WebApi
                     StatuMsg = actionExecutedContext.Exception.Message
                 });
             }
-            else if (actionExecutedContext.Exception is NonceStringException)
+            else if (actionExecutedContext.Exception is TimeStampException)
             {
                 actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(System.Net.HttpStatusCode.OK, new ResponseModel()
                 {
                     StatuCode = 3003,
+                    StatuMsg = actionExecutedContext.Exception.Message
+                });
+            }
+            else if (actionExecutedContext.Exception is NonceStringException)
+            {
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(System.Net.HttpStatusCode.OK, new ResponseModel()
+                {
+                    StatuCode = 3004,
                     StatuMsg = actionExecutedContext.Exception.Message
                 });
             }
