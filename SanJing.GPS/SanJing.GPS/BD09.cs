@@ -37,14 +37,7 @@ namespace SanJing.GPS
                 throw new ArgumentNullException(nameof(bd09));
             }
 
-            double radLatbegin = Rad(Lat);
-            double radLngbegin = Rad(Lng);
-            double radLatend = Rad(bd09.Lat);
-            double radLngend = Rad(bd09.Lng);
-            double a = radLatbegin - radLatend;
-            double b = radLngbegin - radLngend;
-            double c = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) + Math.Cos(radLatbegin) * Math.Cos(radLatend) * Math.Pow(Math.Sin(b / 2), 2)));
-            return c * RADIUS;
+            return distance(bd09);
         }
         /// <summary>
         /// 转换为火星坐标系

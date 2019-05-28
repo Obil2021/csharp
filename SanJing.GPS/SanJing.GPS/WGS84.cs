@@ -33,14 +33,7 @@ namespace SanJing.GPS
             {
                 throw new ArgumentNullException(nameof(wgs84));
             }
-            double radLatbegin = Rad(Lat);
-            double radLngbegin = Rad(Lng);
-            double radLatend = Rad(wgs84.Lat);
-            double radLngend = Rad(wgs84.Lng);
-            double a = radLatbegin - radLatend;
-            double b = radLngbegin - radLngend;
-            double c = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) + Math.Cos(radLatbegin) * Math.Cos(radLatend) * Math.Pow(Math.Sin(b / 2), 2)));
-            return c * RADIUS;
+            return distance(wgs84);
         }
     }
 }

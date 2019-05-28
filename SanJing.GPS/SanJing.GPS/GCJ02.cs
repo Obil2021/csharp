@@ -28,23 +28,16 @@ namespace SanJing.GPS
         /// <summary>
         /// 坐标距离计算
         /// </summary>
-        /// <param name="GCJ02">端点坐标</param>
+        /// <param name="gcj02">端点坐标</param>
         /// <returns>直线距离（米）</returns>
-        public double Distance(GCJ02 GCJ02)
+        public double Distance(GCJ02 gcj02)
         {
-            if (GCJ02 == null)
+            if (gcj02 == null)
             {
-                throw new ArgumentNullException(nameof(GCJ02));
+                throw new ArgumentNullException(nameof(gcj02));
             }
 
-            double radLatbegin = Rad(Lat);
-            double radLngbegin = Rad(Lng);
-            double radLatend = Rad(GCJ02.Lat);
-            double radLngend = Rad(GCJ02.Lng);
-            double a = radLatbegin - radLatend;
-            double b = radLngbegin - radLngend;
-            double c = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) + Math.Cos(radLatbegin) * Math.Cos(radLatend) * Math.Pow(Math.Sin(b / 2), 2)));
-            return c * RADIUS;
+            return distance(gcj02);
         }
         /// <summary>
         /// 转换为百度坐标系

@@ -12,16 +12,6 @@ namespace SanJing.GPS
         /// </summary>
         public const double RADIUS = 6378137;
         /// <summary>
-        /// 经纬度转化成弧度
-        /// </summary>
-        /// <param name="d"></param>
-        /// <returns></returns>
-        protected static double Rad(double d)
-        {
-            return d * Math.PI / 180d;
-        }
-
-        /// <summary>
         /// 创建一个地球坐标系（谷歌国际）
         /// </summary>
         /// <param name="lat"></param>
@@ -64,5 +54,31 @@ namespace SanJing.GPS
         /// 经度
         /// </summary>
         public double Lng { get; set; }
+
+        /// <summary>
+        /// 坐标距离计算
+        /// </summary>
+        /// <param name="gps">端点坐标</param>
+        /// <returns>直线距离（米）</returns>
+        protected double distance(GPS gps)
+        {
+            double radLatbegin = Rad(Lat);
+            double radLngbegin = Rad(Lng);
+            double radLatend = Rad(gps.Lat);
+            double radLngend = Rad(gps.Lng);
+            double a = radLatbegin - radLatend;
+            double b = radLngbegin - radLngend;
+            double c = 2 * Math.Asin(Math.Sqrt(Math.Pow(Math.Sin(a / 2), 2) + Math.Cos(radLatbegin) * Math.Cos(radLatend) * Math.Pow(Math.Sin(b / 2), 2)));
+            return c * RADIUS;
+        }
+        /// <summary>
+        /// 经纬度转化成弧度
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        private double Rad(double d)
+        {
+            return d * Math.PI / 180d;
+        }
     }
 }

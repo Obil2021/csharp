@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.GPS</name>
+    </assembly>
+    <members>
+        <member name="T:SanJing.GPS.BD09">
+            <summary>
+            百度坐标系（百度地图）
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.BD09.#ctor">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.BD09.#ctor(System.Double,System.Double)">
+            <summary>
+            初始化
+            </summary>
+            <param name="lat"></param>
+            <param name="lng"></param>
+        </member>
+        <member name="M:SanJing.GPS.BD09.#ctor(SanJing.GPS.GPS)">
+            <summary>
+            初始化
+            </summary>
+            <param name="gps"></param>
+        </member>
+        <member name="M:SanJing.GPS.BD09.Distance(SanJing.GPS.BD09)">
+            <summary>
+            坐标距离计算
+            </summary>
+            <param name="bd09">端点坐标</param>
+            <returns>直线距离（米）</returns>
+        </member>
+        <member name="M:SanJing.GPS.BD09.ToGCJ02">
+            <summary>
+            转换为火星坐标系
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SanJing.GPS.GCJ02">
+            <summary>
+            火星坐标系（腾讯地图，高德地图）
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.GCJ02.#ctor">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.GCJ02.#ctor(System.Double,System.Double)">
+            <summary>
+            初始化
+            </summary>
+            <param name="lat"></param>
+            <param name="lng"></param>
+        </member>
+        <member name="M:SanJing.GPS.GCJ02.#ctor(SanJing.GPS.GPS)">
+            <summary>
+            初始化
+            </summary>
+            <param name="gps"></param>
+        </member>
+        <member name="M:SanJing.GPS.GCJ02.Distance(SanJing.GPS.GCJ02)">
+            <summary>
+            坐标距离计算
+            </summary>
+            <param name="gcj02">端点坐标</param>
+            <returns>直线距离（米）</returns>
+        </member>
+        <member name="M:SanJing.GPS.GCJ02.ToBD09">
+            <summary>
+            转换为百度坐标系
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:SanJing.GPS.GPS.RADIUS">
+            <summary>
+            半径
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.GPS.NewWGS84(System.Double,System.Double)">
+            <summary>
+            创建一个地球坐标系（谷歌国际）
+            </summary>
+            <param name="lat"></param>
+            <param name="lng"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.GPS.GPS.NewGCJ02(System.Double,System.Double)">
+            <summary>
+            创建一个火星坐标系（腾讯，高德、谷歌中国）
+            </summary>
+            <param name="lat"></param>
+            <param name="lng"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.GPS.GPS.NewBD09(System.Double,System.Double)">
+            <summary>
+            创建一个百度坐标系（百度）
+            </summary>
+            <param name="lat"></param>
+            <param name="lng"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.GPS.GPS.#ctor">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.GPS.#ctor(System.Double,System.Double)">
+            <summary>
+            初始化
+            </summary>
+            <param name="lat"></param>
+            <param name="lng"></param>
+        </member>
+        <member name="P:SanJing.GPS.GPS.Lat">
+            <summary>
+            纬度
+            </summary>
+        </member>
+        <member name="P:SanJing.GPS.GPS.Lng">
+            <summary>
+            经度
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.GPS.distance(SanJing.GPS.GPS)">
+            <summary>
+            坐标距离计算
+            </summary>
+            <param name="gps">端点坐标</param>
+            <returns>直线距离（米）</returns>
+        </member>
+        <member name="M:SanJing.GPS.GPS.Rad(System.Double)">
+            <summary>
+            经纬度转化成弧度
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.GPS.WGS84.#ctor">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.WGS84.#ctor(System.Double,System.Double)">
+            <summary>
+            初始化
+            </summary>
+            <param name="lat"></param>
+            <param name="lng"></param>
+        </member>
+        <member name="M:SanJing.GPS.WGS84.#ctor(SanJing.GPS.GPS)">
+            <summary>
+            初始化
+            </summary>
+            <param name="gps"></param>
+        </member>
+        <member name="M:SanJing.GPS.WGS84.Distance(SanJing.GPS.WGS84)">
+            <summary>
+            坐标距离计算
+            </summary>
+            <param name="wgs84">端点坐标</param>
+            <returns>直线距离（米）</returns>
+        </member>
+    </members>
+</doc>

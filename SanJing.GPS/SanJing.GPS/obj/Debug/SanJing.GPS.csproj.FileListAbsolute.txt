@@ -3,3 +3,10 @@ C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GP
 C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.dll
 C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.pdb
+C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.dll
+C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.pdb
+C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.dll
+C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.pdb
+C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.xml
+C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.csprojAssemblyReference.cache
