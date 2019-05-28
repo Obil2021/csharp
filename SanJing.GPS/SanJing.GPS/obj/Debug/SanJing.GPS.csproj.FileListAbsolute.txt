@@ -1,0 +1,5 @@
+C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.dll
+C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.pdb
+C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.dll
+C:\Users\Administrator\source\repos\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.pdb

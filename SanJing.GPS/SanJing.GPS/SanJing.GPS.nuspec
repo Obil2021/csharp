@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SanJing.GPS</id>
+    <version>1.0.0</version>
+    <title>SanJing.GPS</title>
+    <authors>37www.com</authors>
+    <owners>37www.com</owners>
+    <projectUrl>http://www.lhstudio.top/article.html?id=26</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SanJing.GPS</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Sanjing GPS WGS84 CGJ02 BD09</tags>
+  </metadata>
+</package>
