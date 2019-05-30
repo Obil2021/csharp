@@ -39,7 +39,7 @@
       <HintPath>..\packages\NLog.4.6.3\lib\net40-client\NLog.dll</HintPath>
     </Reference>
     <Reference Include="SanJing.Hash, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SanJing.Hash.1.0.2\lib\net40\SanJing.Hash.dll</HintPath>
+      <HintPath>..\packages\SanJing.Hash.1.0.4\lib\net40\SanJing.Hash.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -71,6 +71,7 @@
     <Compile Include="SignException.cs" />
     <Compile Include="TokenException.cs" />
     <Compile Include="ValidException.cs" />
+    <Compile Include="WebApiController.cs" />
     <Compile Include="WebApiExceptionFilterAttribute.cs" />
   </ItemGroup>
   <ItemGroup>

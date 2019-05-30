@@ -27,10 +27,79 @@
             <param name="request">请求数据</param>
             <param name="key">验签Key</param>
         </member>
-        <member name="M:SanJing.WebApi.ApiControllerExpansion.TimeStamp(System.Web.Http.ApiController)">
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetTimeStamp(System.Web.Http.ApiController)">
             <summary>
             获取时间戳
             </summary>
+            <param name="apiController"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetRandom(System.Web.Http.ApiController)">
+            <summary>
+            获取随机种子
+            </summary>
+            <param name="apiController"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetServer(System.Web.Http.ApiController)">
+            <summary>
+            获取服务器实例
+            </summary>
+            <param name="apiController"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.TokenHashDecrypt(System.Web.Http.ApiController,System.String,System.Int32,System.Int32)">
+            <summary>
+            身份信息解密(用户提交)【可以根据用户提交的固定的字符串到缓存读取此凭据】
+            </summary>
+            <param name="apiController"></param>
+            <param name="hash">hash字符串</param>
+            <param name="userRole">用户角色</param>
+            <param name="day">有效期（天）</param>
+            <returns>用户标识</returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.TokenHashEncrypt(System.Web.Http.ApiController,System.Int32,System.Int32)">
+            <summary>
+            身份信息加密（返回给用户）【可以缓存此凭据后返回固定字符串】
+            </summary>
+            <param name="apiController"></param>
+            <param name="userId">用户标识</param>
+            <param name="userRole">用户角色</param>
+            <returns>返回给用户的字符串</returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.SMSHashDecrypt(System.Web.Http.ApiController,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            短信验证码解密(用户提交)
+            </summary>
+            <param name="apiController"></param>
+            <param name="hash">hash字符串</param>
+            <param name="phone">手机号</param>
+            <param name="code">验证码</param>
+            <param name="minute">有效期（分钟）</param>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.SMSHashEncrypt(System.Web.Http.ApiController,System.String,System.String)">
+            <summary>
+            短信验证码加密（返回给用户）
+            </summary>
+            <param name="apiController"></param>
+            <param name="phone">手机号</param>
+            <param name="code">验证码</param>
+            <returns>返回给用户的字符串</returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.HashEncrypt(System.Web.Http.ApiController,System.String[])">
+            <summary>
+            Hash字符串（可用于Token凭据、SMS验证码）生成
+            </summary>
+            <param name="apiController"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.HashDecrypt(System.Web.Http.ApiController,System.String)">
+            <summary>
+            Hash字符串（可用于Token凭据、SMS验证码）解析
+            </summary>
+            <param name="apiController"></param>
+            <param name="hash"></param>
             <returns></returns>
         </member>
         <member name="T:SanJing.WebApi.IPAddressException">
@@ -198,6 +267,17 @@
             实例化
             </summary>
             <param name="message"></param>
+        </member>
+        <member name="T:SanJing.WebApi.WebApiController">
+            <summary>
+            接口基础类
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.WebApiController.OPTIONS">
+            <summary>
+            某些浏览器跨域请求时会先请求此方法
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SanJing.WebApi.WebApiExceptionFilterAttribute">
             <summary>
