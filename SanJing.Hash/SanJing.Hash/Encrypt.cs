@@ -90,7 +90,7 @@ namespace SanJing.Hash
         /// <param name="key">密钥(16位)</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public string AES128(string text, string key = "1991060120210601", string encoding = "UTF-8")
+        public static string AES128(string text, string key = "1991060120210601", string encoding = "UTF-8")
         {
             byte[] plainText = Encoding.GetEncoding(encoding).GetBytes(text);
             return Convert.ToBase64String(AES128(plainText, key, encoding));
@@ -102,32 +102,21 @@ namespace SanJing.Hash
         /// <param name="key">密钥(16位)</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        private byte[] AES128(byte[] bytes, string key = "csharp.37www.com", string encoding = "UTF-8")
+        private static byte[] AES128(byte[] bytes, string key = "csharp.37www.com", string encoding = "UTF-8")
         {
             using (RijndaelManaged rijndaelCipher = new RijndaelManaged())
             {
-
                 rijndaelCipher.Mode = CipherMode.CBC;
-
                 rijndaelCipher.Padding = PaddingMode.PKCS7;
-
                 rijndaelCipher.KeySize = 128;
-
                 rijndaelCipher.BlockSize = 128;
-
                 rijndaelCipher.IV = _iv;
-
-
                 byte[] ivBytes = Encoding.GetEncoding(encoding).GetBytes(key);
                 rijndaelCipher.Key = ivBytes;
-
                 ICryptoTransform transform = rijndaelCipher.CreateEncryptor();
-
-                byte[] plainText = bytes;//Encoding.GetEncoding(encoding).GetBytes(bytes);
-
+                byte[] plainText = bytes;
                 return transform.TransformFinalBlock(plainText, 0, plainText.Length);
             }
-
         }
     }
 }
