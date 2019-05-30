@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SanJing.Hash
 {
-    public class Encrypt
+    public sealed class Encrypt
     {
         /// <summary>
         /// MD5加密（32位）
@@ -77,6 +77,57 @@ namespace SanJing.Hash
                 var bytes = sha.ComputeHash(Encoding.GetEncoding(encoding).GetBytes(text));
                 return BitConverter.ToString(bytes).Replace("-", string.Empty);
             }
+        }
+        /// <summary>
+        /// 加密初始化向量
+        /// </summary>
+        private static readonly byte[] _iv = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF, 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
+
+        /// <summary>
+        /// AES加密
+        /// </summary>
+        /// <param name="text">待加密文本</param>
+        /// <param name="key">密钥(16位)</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public string AES128(string text, string key = "1991060120210601", string encoding = "UTF-8")
+        {
+            byte[] plainText = Encoding.GetEncoding(encoding).GetBytes(text);
+            return Convert.ToBase64String(AES128(plainText, key, encoding));
+        }
+        /// <summary>
+        /// AES加密
+        /// </summary>
+        /// <param name="bytes">待加密二进制数据</param>
+        /// <param name="key">密钥(16位)</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        private byte[] AES128(byte[] bytes, string key = "csharp.37www.com", string encoding = "UTF-8")
+        {
+            using (RijndaelManaged rijndaelCipher = new RijndaelManaged())
+            {
+
+                rijndaelCipher.Mode = CipherMode.CBC;
+
+                rijndaelCipher.Padding = PaddingMode.PKCS7;
+
+                rijndaelCipher.KeySize = 128;
+
+                rijndaelCipher.BlockSize = 128;
+
+                rijndaelCipher.IV = _iv;
+
+
+                byte[] ivBytes = Encoding.GetEncoding(encoding).GetBytes(key);
+                rijndaelCipher.Key = ivBytes;
+
+                ICryptoTransform transform = rijndaelCipher.CreateEncryptor();
+
+                byte[] plainText = bytes;//Encoding.GetEncoding(encoding).GetBytes(bytes);
+
+                return transform.TransformFinalBlock(plainText, 0, plainText.Length);
+            }
+
         }
     }
 }
