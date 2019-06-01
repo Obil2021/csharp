@@ -67,15 +67,34 @@
             <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
         </member>
+        <member name="T:SanJing.ThridPay.Wxpay">
+            <summary>
+            微信支付
+            </summary>
+        </member>
+        <member name="M:SanJing.ThridPay.Wxpay.PayQuery(System.String,System.String,System.String,System.String)">
+            <summary>
+            统一下单查询（支持所有平台的下单）
+            https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_2
+            </summary>
+            <param name="orderNumber">订单编号</param>
+            <param name="appId">APPID</param>
+            <param name="mchId">商户ID</param>
+            <param name="mchKey">商户密钥</param>
+            <returns>订单信息</returns>
+        </member>
+        <!-- 对于成员“M:SanJing.ThridPay.Wxpay.PayByMicro(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“M:SanJing.ThridPay.Wxpay.PayByH5(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)”忽略有格式错误的 XML 注释 -->
         <member name="M:SanJing.ThridPay.Wxpay.PayByAPP(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             统一下单（移动应用版）
+            https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1
             </summary>
             <param name="amount">金额</param>
             <param name="body">描述</param>
             <param name="orderNumber">商户订单号</param>
             <param name="callbackUrl">回调地址</param>
-            <param name="appId">APPID</param>
+            <param name="appId">APPID（开放平台）</param>
             <param name="mchId">商户ID</param>
             <param name="mchKey">商户密钥</param>
             <param name="ipAddress">服务器（当前）IP地址</param>
@@ -84,45 +103,40 @@
         <member name="M:SanJing.ThridPay.Wxpay.PayByWx(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             统一下单（微信内网页和小程序版）
+            微信内：https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_1
+            小程序：https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_1
             </summary>
             <param name="amount">金额</param>
             <param name="body">描述</param>
             <param name="orderNumber">商户订单编号</param>
             <param name="callbackUrl">回调完整地址</param>
             <param name="appId">APPID</param>
-            <param name="mchId">商户ID</param>
+            <param name="mchId">商户ID（公众号|小程序）</param>
             <param name="mchKey">商户密钥</param>
             <param name="ipAddress">服务器（当前）IP地址</param>
             <param name="openId">微信用户编号</param>
-            <returns>小程序端调起支付需要的参数</returns>
+            <returns>小程序或微信内网页端调起支付需要的参数</returns>
         </member>
         <member name="M:SanJing.ThridPay.Wxpay.PayByQR(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             统一下单（扫一扫）（展示二维码供微信扫码支付）
+            https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1
             </summary>
             <param name="amount">金额</param>
             <param name="body">描述</param>
             <param name="orderNumber">商户订单编号</param>
             <param name="callbackUrl">回调完整地址</param>
-            <param name="appId">APPID</param>
+            <param name="appId">APPID（公众号|小程序）</param>
             <param name="mchId">商户ID</param>
             <param name="mchKey">商户密钥</param>
             <param name="ipAddress">服务器（当前）IP地址</param>
             <returns>生成二维码需要的字符串</returns>
         </member>
-        <member name="M:SanJing.ThridPay.Wxpay.PayCallBack(System.IO.Stream,System.String,System.Action{System.String,System.Double},System.Action{System.Exception})">
-            <summary>
-            统一下单 回调处理
-            </summary>
-            <param name="inputStream">微信发送过来的流</param>
-            <param name="mchKey">商户密钥（验签）</param>
-            <param name="action">回调处理方法，参数为商户订单编号和金额</param>
-            <param name="exception">异常处理</param>
-            <returns>将此结果返回给微信（始终为SUCCESS）</returns>
-        </member>
+        <!-- 对于成员“M:SanJing.ThridPay.Wxpay.PayCallBack(System.IO.Stream,System.String,System.Action{System.String,System.Double},System.Action{System.Exception})”忽略有格式错误的 XML 注释 -->
         <member name="M:SanJing.ThridPay.Wxpay.Refund(System.String,System.Double,System.String,System.Double,System.String,System.String,System.String,System.String)">
             <summary>
             统一退款 （支持开放平台，公众号，小程序订单）
+            https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_4
             </summary>
             <param name="refundOrderNumber">退款单号</param>
             <param name="refundAmount">退款金额（元）</param>
@@ -132,10 +146,12 @@
             <param name="mchId">商户号</param>
             <param name="mchKey">商户密钥</param>
             <param name="certFileNAME">商户密钥完整文件地址</param>
+            <returns></returns>
         </member>
         <member name="M:SanJing.ThridPay.Wxpay.Transfer(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             企业付款（支持开放平台，公众号，小程序订单）
+            https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_2
             </summary>
             <param name="orderNumber">付款编号</param>
             <param name="amount">付款金额（元）</param>
@@ -146,25 +162,8 @@
             <param name="mchkey">商户密钥</param>
             <param name="ipAddress">服务器（当前）IP地址</param>
             <param name="certFileName">商户密钥文件完整路径</param>
-        </member>
-        <member name="M:SanJing.ThridPay.Wxpay.RedPack(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
-            <summary>
-            企业发红包（仅支持公众号或企业号）
-            </summary>
-            <param name="orderNumber">红包编号</param>
-            <param name="amount">红包金额</param>
-            <param name="openId">OPENID|种子用户，多个红包时，它可以分享给别人领取红包</param>
-            <param name="sendName">商户名称</param>
-            <param name="appId">APPID|企业号corpid即为此appid</param>
-            <param name="mchId">商户号</param>
-            <param name="mchKey">商户密钥</param>
-            <param name="ipAddress">服务器（当前）IP地址</param>
-            <param name="certFileName">商户密钥文件完整路径</param>
-            <param name="wishing">祝福语</param>
-            <param name="actName">活动名称</param>
-            <param name="remark">备注</param>
-            <param name="totalNum">红包个数，默认值：1</param>
             <returns></returns>
         </member>
+        <!-- 对于成员“M:SanJing.ThridPay.Wxpay.RedPack(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)”忽略有格式错误的 XML 注释 -->
     </members>
 </doc>
