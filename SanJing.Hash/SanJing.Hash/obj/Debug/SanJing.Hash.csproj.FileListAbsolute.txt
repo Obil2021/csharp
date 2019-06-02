@@ -8,3 +8,8 @@ C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.
 C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.dll
 C:\Users\Administrator\Desktop\csharp-master\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.pdb
+C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\bin\Debug\SanJing.Hash.dll
+C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\bin\Debug\SanJing.Hash.pdb
+C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.dll
+C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.pdb

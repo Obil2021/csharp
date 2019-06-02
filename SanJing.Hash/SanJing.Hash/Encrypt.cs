@@ -90,7 +90,7 @@ namespace SanJing.Hash
         /// <param name="key">密钥(16位)</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public static string AES128(string text, string key = "1991060120210601", string encoding = "UTF-8")
+        public static string AES128(string text, string key = "csharp.37www.com", string encoding = "UTF-8")
         {
             byte[] plainText = Encoding.GetEncoding(encoding).GetBytes(text);
             return Convert.ToBase64String(AES128(plainText, key, encoding));
