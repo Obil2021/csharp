@@ -117,3 +117,7 @@ C:\Users\Administrator\Documents\GitHub\csharp\SanJing.WebApi\SanJing.WebApi\obj
 C:\Users\Administrator\Documents\GitHub\csharp\SanJing.WebApi\SanJing.WebApi\obj\Debug\SanJing.WebApi.csproj.CopyComplete
 C:\Users\Administrator\Documents\GitHub\csharp\SanJing.WebApi\SanJing.WebApi\obj\Debug\SanJing.WebApi.dll
 C:\Users\Administrator\Documents\GitHub\csharp\SanJing.WebApi\SanJing.WebApi\obj\Debug\SanJing.WebApi.pdb
+C:\Users\Administrator\Documents\GitHub\csharp\SanJing.WebApi\SanJing.WebApi\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Documents\GitHub\csharp\SanJing.WebApi\SanJing.WebApi\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\GitHub\csharp\SanJing.WebApi\SanJing.WebApi\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Documents\GitHub\csharp\SanJing.WebApi\SanJing.WebApi\bin\Debug\EntityFramework.SqlServer.xml

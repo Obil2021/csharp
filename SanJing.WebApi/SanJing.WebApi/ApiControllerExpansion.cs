@@ -2,6 +2,7 @@
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -88,6 +89,20 @@ namespace SanJing.WebApi
             webApiController.SetRedisString(hash, request.NonceString, new TimeSpan(0, WebApiConfig.NonceStringMinute, 0));
         }
         /// <summary>
+        /// 使用EF操作数据库(自动保存（SaveChanges）和释放（Dispose）)
+        /// </summary>
+        /// <param name="apiController"></param>
+        /// <param name="action"></param>
+        public static void Entity<T>(this ApiController apiController, Action<T> action) where T : DbContext, new()
+        {
+            //数据库
+            using (T entities = new T())
+            {
+                action?.Invoke(entities);
+                entities.SaveChanges();
+            }
+        }
+        /// <summary>
         /// 根据随机串生成唯一Key
         /// </summary>
         /// <param name="apiController"></param>
@@ -114,11 +129,11 @@ namespace SanJing.WebApi
         /// 获取随机数字
         /// </summary>
         /// <param name="apiController"></param>
-        /// <param name="length">长度</param>
+        /// <param name="length">长度[1,2,3,4,5,6,7,8,9]</param>
         /// <returns>随机数字</returns>
         public static string GetRandomNumber(this ApiController apiController, int length)
         {
-            length = length < 0 ? 0 : length;
+            length = length < 1 ? 1 : length > 9 ? 9 : length;
             var max = Math.Pow(10, length);
             var min = Math.Pow(10, length - 1);
             return Random.Next(Convert.ToInt32(min), Convert.ToInt32(max)).ToString();

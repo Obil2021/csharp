@@ -33,6 +33,13 @@
             <param name="key">验签Key</param>
             <param name="appName">APPName</param>
         </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.Entity``1(System.Web.Http.ApiController,System.Action{``0})">
+            <summary>
+            使用EF操作数据库(自动保存（SaveChanges）和释放（Dispose）)
+            </summary>
+            <param name="apiController"></param>
+            <param name="action"></param>
+        </member>
         <member name="M:SanJing.WebApi.ApiControllerExpansion.NonceStingHashEncrypt(System.Web.Http.ApiController,System.String,System.String)">
             <summary>
             根据随机串生成唯一Key
@@ -61,7 +68,7 @@
             获取随机数字
             </summary>
             <param name="apiController"></param>
-            <param name="length">长度</param>
+            <param name="length">长度[1,2,3,4,5,6,7,8,9]</param>
             <returns>随机数字</returns>
         </member>
         <member name="M:SanJing.WebApi.ApiControllerExpansion.GetServer(System.Web.Http.ApiController)">
@@ -180,6 +187,18 @@
             <param name="apiController"></param>
             <param name="hash"></param>
             <returns></returns>
+        </member>
+        <member name="T:SanJing.WebApi.EntityConnectionString">
+            <summary>
+            EF连接字符串
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.EntityConnectionString.ConnectionString``1">
+             <summary>
+            获取EF连接字符串
+             </summary>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
         </member>
         <member name="T:SanJing.WebApi.IPAddressException">
             <summary>
