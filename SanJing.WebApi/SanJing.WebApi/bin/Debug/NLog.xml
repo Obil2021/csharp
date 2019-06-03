@@ -1478,7 +1478,12 @@
         </member>
         <member name="P:NLog.Common.LogEventInfoBuffer.Size">
             <summary>
-            Gets the number of items in the array.
+            Gets the capacity of the buffer
+            </summary>
+        </member>
+        <member name="P:NLog.Common.LogEventInfoBuffer.Count">
+            <summary>
+            Gets the number of items in the buffer
             </summary>
         </member>
         <member name="M:NLog.Common.LogEventInfoBuffer.Append(NLog.Common.AsyncLogEventInfo)">
@@ -3507,7 +3512,7 @@
         </member>
         <member name="P:NLog.Config.LoggingRule.DefaultFilterResult">
             <summary>
-            Default action if all filters won't match
+            Default action if none of the filters match
             </summary>
         </member>
         <member name="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)">
@@ -7713,6 +7718,12 @@
             Gets the entire stack trace.
             </summary>
         </member>
+        <member name="M:NLog.Internal.CollectionExtensions.Filter``2(System.Collections.Generic.IList{``0},``1,System.Func{``0,``1,System.Boolean})">
+            <summary>
+            Memory optimized filtering
+            </summary>
+            <remarks>Passing state too avoid delegate capture and memory-allocations.</remarks>
+        </member>
         <member name="T:NLog.Internal.ConfigurationManager">
             <summary>
             Internal configuration manager used to read .NET configuration files.
@@ -9471,6 +9482,21 @@
             Converts object into a List of property-names and -values using reflection
             </summary>
         </member>
+        <member name="M:NLog.Internal.ObjectReflectionCache.ObjectPropertyList.TryFastLookupPropertyValue(System.String,NLog.Internal.ObjectReflectionCache.ObjectPropertyList.PropertyValue@)">
+            <summary>
+            Scans properties for name (Skips string-compare and value-lookup until finding match)
+            </summary>
+        </member>
+        <member name="M:NLog.Internal.ObjectReflectionCache.ObjectPropertyList.TrySlowLookupPropertyValue(System.String,NLog.Internal.ObjectReflectionCache.ObjectPropertyList.PropertyValue@)">
+            <summary>
+            Scans properties for name (Skips property value lookup until finding match)
+            </summary>
+        </member>
+        <member name="M:NLog.Internal.ObjectReflectionCache.ObjectPropertyList.TryListLookupPropertyValue(System.String,NLog.Internal.ObjectReflectionCache.ObjectPropertyList.PropertyValue@)">
+            <summary>
+            Scans properties for name
+            </summary>
+        </member>
         <member name="T:NLog.Internal.ObjectReflectionCache.GetBinderAdapter">
             <summary>
             Binder for retrieving value of <see cref="T:System.Dynamic.DynamicObject"/>
@@ -10306,7 +10332,7 @@
             <param name="builder">append to this</param>
             <param name="number">the number</param>
         </member>
-        <member name="M:NLog.Internal.StringBuilderExt.AppendIntegerAsString(System.Text.StringBuilder,System.Object,System.TypeCode)">
+        <member name="M:NLog.Internal.StringBuilderExt.AppendIntegerAsString(System.Text.StringBuilder,System.IConvertible,System.TypeCode)">
             <summary>
             Apend a int type (byte, int) as string
             </summary>
@@ -10634,7 +10660,7 @@
             <param name="xmlElementName"></param>
             <param name="allowNamespace"></param>
         </member>
-        <member name="M:NLog.Internal.XmlHelper.XmlConvertToString(System.Object,System.TypeCode,System.Boolean)">
+        <member name="M:NLog.Internal.XmlHelper.XmlConvertToString(System.IConvertible,System.TypeCode,System.Boolean)">
             <summary>
             Converts object value to invariant format (understood by JavaScript)
             </summary>
@@ -10739,6 +10765,13 @@
             Gets or sets string that will be used to separate key/value pairs.
             </summary>
             <docgen category='Rendering Options' order='10' />
+        </member>
+        <member name="P:NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer.IncludeEmptyValues">
+             <summary>
+             Get or set if empty values should be included.
+            
+             A value is empty when null or in case of a string, null or empty string.
+             </summary>
         </member>
         <member name="P:NLog.LayoutRenderers.AllEventPropertiesLayoutRenderer.Format">
             <summary>
@@ -11209,6 +11242,46 @@
             <inheritdoc/>
         </member>
         <member name="M:NLog.LayoutRenderers.EnvironmentLayoutRenderer.NLog#Internal#IStringValueRenderer#GetFormattedString(NLog.LogEventInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer">
+            <summary>
+            Thread identity information (username).
+            </summary>
+        </member>
+        <member name="M:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer" /> class.
+            </summary>
+        </member>
+        <member name="P:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer.UserName">
+            <summary>
+            Gets or sets a value indicating whether username should be included.
+            </summary>
+            <docgen category='Rendering Options' order='10' />
+        </member>
+        <member name="P:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer.Domain">
+            <summary>
+            Gets or sets a value indicating whether domain name should be included.
+            </summary>
+            <docgen category='Rendering Options' order='10' />
+        </member>
+        <member name="P:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer.DefaultUser">
+            <summary>
+            Gets or sets the default value to be used when the User is not set.
+            </summary>
+            <docgen category='Rendering Options' order='10' />
+        </member>
+        <member name="P:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer.DefaultDomain">
+            <summary>
+            Gets or sets the default value to be used when the Domain is not set.
+            </summary>
+            <docgen category='Rendering Options' order='10' />
+        </member>
+        <member name="M:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLog.LayoutRenderers.EnvironmentUserLayoutRenderer.NLog#Internal#IStringValueRenderer#GetFormattedString(NLog.LogEventInfo)">
             <inheritdoc/>
         </member>
         <member name="T:NLog.LayoutRenderers.EventContextLayoutRenderer">
@@ -13614,6 +13687,9 @@
         <member name="M:NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper.TransformFormattedMesssage(System.Text.StringBuilder)">
             <inheritdoc/>
         </member>
+        <member name="M:NLog.LayoutRenderers.Wrappers.WhenLayoutRendererWrapper.TryGetRawValue(NLog.LogEventInfo,System.Object@)">
+            <inheritdoc />
+        </member>
         <member name="T:NLog.LayoutRenderers.Wrappers.WrapLineLayoutRendererWrapper">
             <summary>
             Replaces newline characters from the result of another layout renderer with spaces.
@@ -14413,6 +14489,13 @@
             <summary>
             Gets the <see cref="T:NLog.LayoutRenderers.Log4JXmlEventLayoutRenderer"/> instance that renders log events.
             </summary>
+        </member>
+        <member name="P:NLog.Layouts.Log4JXmlEventLayout.Parameters">
+            <summary>
+            Gets the collection of parameters. Each parameter contains a mapping
+            between NLog layout and a named parameter.
+            </summary>
+            <docgen category='Payload Options' order='10' />
         </member>
         <member name="P:NLog.Layouts.Log4JXmlEventLayout.IncludeMdc">
             <summary>
@@ -18720,6 +18803,15 @@
             Gets the factory that created this logger.
             </summary>
         </member>
+        <member name="P:NLog.Logger.Properties">
+            <summary>
+            Collection of context properties for the Logger. The logger will append it for all log events
+            </summary>
+            <remarks>
+            It is recommended to use <see cref="M:NLog.Logger.WithProperty(System.String,System.Object)"/> for modifying context properties
+            when same named logger is used at multiple locations or shared by different thread contexts.
+            </remarks>
+        </member>
         <member name="M:NLog.Logger.IsEnabled(NLog.LogLevel)">
             <summary>
             Gets a value indicating whether logging is enabled for the specified level.
@@ -18736,14 +18828,22 @@
             <returns>New Logger object that automatically appends specified property</returns>
         </member>
         <member name="M:NLog.Logger.SetProperty(System.String,System.Object)">
-            <summary>
-            Updates the specified context property for the current logger. The logger will append it for all log events
-            </summary>
-            <remarks>
-            Will affect all locations/contexts that makes use of the same named logger object.
-            </remarks>
-            <param name="propertyKey">Property Name</param>
-            <param name="propertyValue">Property Value</param>
+             <summary>
+             Updates the specified context property for the current logger. The logger will append it for all log events.
+            
+             It could be rendered with ${event-properties:YOURNAME}
+            
+             With <see cref="P:NLog.Logger.Properties"/> property, all properties could be changed. 
+             </summary>
+             <remarks>
+             Will affect all locations/contexts that makes use of the same named logger object.
+             </remarks>
+             <param name="propertyKey">Property Name</param>
+             <param name="propertyValue">Property Value</param>
+             <remarks>
+             It is recommended to use <see cref="M:NLog.Logger.WithProperty(System.String,System.Object)"/> for modifying context properties
+             when same named logger is used at multiple locations or shared by different thread contexts.
+             </remarks>
         </member>
         <member name="M:NLog.Logger.Log(NLog.LogEventInfo)">
             <summary>
@@ -20946,15 +21046,10 @@
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:NLog.MessageTemplates.ValueFormatter.SerializeSimpleObject(System.Object,System.String,System.IFormatProvider,System.Text.StringBuilder)">
+        <member name="M:NLog.MessageTemplates.ValueFormatter.SerializeSimpleObject(System.Object,System.String,System.IFormatProvider,System.Text.StringBuilder,System.Boolean)">
             <summary>
             Try serialising a scalar (string, int, NULL) or simple type (IFormattable)
             </summary>
-            <param name="value"></param>
-            <param name="format"></param>
-            <param name="formatProvider"></param>
-            <param name="builder"></param>
-            <returns></returns>
         </member>
         <member name="M:NLog.MessageTemplates.ValueFormatter.SerializeDictionaryObject(System.Collections.IDictionary,System.String,System.IFormatProvider,System.Text.StringBuilder,NLog.Internal.SingleItemOptimizedHashSet{System.Object},System.Int32)">
             <summary>
@@ -22828,19 +22923,18 @@
             <param name="options">serialisation options</param>
             <returns>Object serialized succesfully (true/false).</returns>
         </member>
-        <member name="M:NLog.Targets.DefaultJsonSerializer.SerializeObject(System.Object,System.TypeCode,System.Text.StringBuilder,NLog.Targets.JsonSerializeOptions,NLog.Internal.SingleItemOptimizedHashSet{System.Object},System.Int32)">
+        <member name="M:NLog.Targets.DefaultJsonSerializer.SerializeObject(System.Object,System.Text.StringBuilder,NLog.Targets.JsonSerializeOptions,NLog.Internal.SingleItemOptimizedHashSet{System.Object},System.Int32)">
             <summary>
             Serialization of the object in JSON format to the destination StringBuilder
             </summary>
             <param name="value">The object to serialize to JSON.</param>
-            <param name="objTypeCode">The TypeCode for the object to serialize.</param>
             <param name="destination">Write the resulting JSON to this destination.</param>
             <param name="options">serialisation options</param>
             <param name="objectsInPath">The objects in path (Avoid cyclic reference loop).</param>
             <param name="depth">The current depth (level) of recursion.</param>
             <returns>Object serialized succesfully (true/false).</returns>
         </member>
-        <member name="M:NLog.Targets.DefaultJsonSerializer.SkipQuotes(System.Object,System.TypeCode)">
+        <member name="M:NLog.Targets.DefaultJsonSerializer.SkipQuotes(System.IConvertible,System.TypeCode)">
             <summary>
             No quotes needed for this type?
             </summary>
@@ -25296,6 +25390,12 @@
             </summary>
             <docgen category='Parameter Options' order='10' />
         </member>
+        <member name="P:NLog.Targets.NLogViewerParameterInfo.IncludeEmptyValue">
+            <summary>
+            Gets or sets whether an attribute with empty value should be included in the output
+            </summary>
+            <docgen category='Parameter Options' order='100' />
+        </member>
         <member name="T:NLog.Targets.NLogViewerTarget">
             <summary>
             Sends log messages to the remote instance of NLog Viewer. 
@@ -27352,6 +27452,15 @@
             </summary>
             <docgen category='Filtering Options' order='10' />
         </member>
+        <member name="P:NLog.Targets.Wrappers.FilteringTargetWrapper.Filter">
+            <summary>
+            Gets or sets the filter. Log events who evaluates to <see cref="F:NLog.Filters.FilterResult.Ignore"/> will be discarded
+            </summary>
+            <docgen category='Filtering Options' order='10' />
+        </member>
+        <member name="M:NLog.Targets.Wrappers.FilteringTargetWrapper.InitializeTarget">
+            <inheritdoc/>
+        </member>
         <member name="M:NLog.Targets.Wrappers.FilteringTargetWrapper.Write(NLog.Common.AsyncLogEventInfo)">
             <summary>
             Checks the condition against the passed log event.
@@ -27359,6 +27468,9 @@
             the wrapped target.
             </summary>
             <param name="logEvent">Log event.</param>
+        </member>
+        <member name="M:NLog.Targets.Wrappers.FilteringTargetWrapper.Write(System.Collections.Generic.IList{NLog.Common.AsyncLogEventInfo})">
+            <inheritdoc/>
         </member>
         <member name="T:NLog.Targets.Wrappers.ImpersonatingTargetWrapper">
             <summary>
@@ -27670,6 +27782,12 @@
             </summary>
             <docgen category='Filtering Rules' order='10' />
         </member>
+        <member name="M:NLog.Targets.Wrappers.PostFilteringTargetWrapper.InitializeTarget">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLog.Targets.Wrappers.PostFilteringTargetWrapper.Write(NLog.Common.AsyncLogEventInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:NLog.Targets.Wrappers.PostFilteringTargetWrapper.Write(NLog.Common.AsyncLogEventInfo[])">
             <summary>
             NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
@@ -27688,14 +27806,6 @@
             is applied to the array of log events.
             </summary>
             <param name="logEvents">Array of log events to be post-filtered.</param>
-        </member>
-        <member name="M:NLog.Targets.Wrappers.PostFilteringTargetWrapper.ApplyFilter(System.Collections.Generic.IList{NLog.Common.AsyncLogEventInfo},NLog.Conditions.ConditionExpression)">
-            <summary>
-            Apply the condition to the buffer
-            </summary>
-            <param name="logEvents"></param>
-            <param name="resultFilter"></param>
-            <returns></returns>
         </member>
         <member name="M:NLog.Targets.Wrappers.PostFilteringTargetWrapper.EvaluateAllRules(System.Collections.Generic.IList{NLog.Common.AsyncLogEventInfo})">
             <summary>

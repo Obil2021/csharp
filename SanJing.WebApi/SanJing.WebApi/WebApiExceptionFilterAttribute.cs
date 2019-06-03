@@ -8,8 +8,8 @@ using System.Web.Http.Filters;
 namespace SanJing.WebApi
 {
     /// <summary>
-    /// WebApi全局异常处理
-    /// 2000+ 表示用户可见
+    /// WebApi全局异常处理[NLog.Error]
+    /// 2000+ 表示用户可见(2000表示未登录或登录过期)
     /// 3000+ 表示程序员可见
     /// </summary>
     public class WebApiExceptionFilterAttribute : ExceptionFilterAttribute

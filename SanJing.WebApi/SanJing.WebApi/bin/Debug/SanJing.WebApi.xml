@@ -14,18 +14,32 @@
             请求示例名称
             </summary>
         </member>
+        <member name="F:SanJing.WebApi.ApiControllerExpansion.LOCAL_ADDR">
+            <summary>
+            请求中服务器IP地址名称
+            </summary>
+        </member>
         <member name="F:SanJing.WebApi.ApiControllerExpansion.IP_ADDRESS">
             <summary>
             默认IP地址
             </summary>
         </member>
-        <member name="M:SanJing.WebApi.ApiControllerExpansion.RequestReady(System.Web.Http.ApiController,SanJing.WebApi.RequestModel,System.String)">
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.RequestReady(SanJing.WebApi.WebApiController,SanJing.WebApi.RequestModel,System.String)">
             <summary>
-            请求准备(含数IP地址验证、数据验证、签名验证、时间戳验证，随机串验证、日志记录)
+            请求准备(含数IP地址验证、数据验证、签名验证、时间戳验证，随机串验证(Redis)、日志记录(NLog.Trace))
             </summary>
-            <param name="apiController">API</param>
+            <param name="webApiController"></param>
             <param name="request">请求数据</param>
             <param name="key">验签Key</param>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.NonceStingHashEncrypt(System.Web.Http.ApiController,System.String,System.String)">
+            <summary>
+            根据随机串生成唯一Key
+            </summary>
+            <param name="apiController"></param>
+            <param name="ipAddress"></param>
+            <param name="nonceString"></param>
+            <returns></returns>
         </member>
         <member name="M:SanJing.WebApi.ApiControllerExpansion.GetTimeStamp(System.Web.Http.ApiController)">
             <summary>
@@ -41,6 +55,14 @@
             <param name="apiController"></param>
             <returns></returns>
         </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetRandomNumber(System.Web.Http.ApiController,System.Int32)">
+            <summary>
+            获取随机数字
+            </summary>
+            <param name="apiController"></param>
+            <param name="length">长度</param>
+            <returns>随机数字</returns>
+        </member>
         <member name="M:SanJing.WebApi.ApiControllerExpansion.GetServer(System.Web.Http.ApiController)">
             <summary>
             获取服务器实例
@@ -48,14 +70,89 @@
             <param name="apiController"></param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.WebApi.ApiControllerExpansion.TokenHashDecrypt(System.Web.Http.ApiController,System.String,System.Int32,System.Int32)">
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetServerIPAddress(System.Web.Http.ApiController)">
+            <summary>
+            获取服务器IP地址
+            </summary>
+            <param name="apiController"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetServerHostUrl(System.Web.Http.ApiController)">
+            <summary>
+            获取服务器完整域名（ssss://xxx.xxx.xxx:pp）
+            </summary> 
+            <param name="apiController"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetSignString(System.Web.Http.ApiController,System.String,System.Int64,System.String)">
+            <summary>
+            生成签名
+            </summary>
+            <param name="apiController"></param>
+            <param name="key">密钥</param>
+            <param name="timeStamp">时间戳</param>
+            <param name="nonceString">随机字符串</param>
+            <returns>签名字符串</returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.SetSMSRedisString(System.Web.Http.ApiController,System.String)">
+            <summary>
+            随机生成短信验证码并缓存至Redis中
+            </summary>
+            <param name="apiController"></param>
+            <param name="phone">手机号</param>
+            <returns>短信验证码</returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetSMSRedisString(System.Web.Http.ApiController,System.String,System.String)">
+            <summary>
+            从Redus中读取并验证验证码(验证失败则抛出异常)
+            </summary>
+            <param name="apiController"></param>
+            <param name="phone">手机号</param>
+            <param name="code">验证码</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.SetUserRedisString(System.Web.Http.ApiController,System.Int32,System.Int32)">
+            <summary>
+            根据用户标识生成Token并缓存至Redis中
+            </summary>
+            <param name="apiController"></param>
+            <param name="userId">用户标识</param>
+            <param name="userRole">用户角色</param>
+            <returns>Token</returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetUserRedisString(System.Web.Http.ApiController,System.String,System.Int32)">
+            <summary>
+            从Redus中读取Token并解析出用户标识
+            </summary>
+            <param name="apiController"></param>
+            <param name="token">Tojen</param>
+            <param name="userRole">用户角色</param>
+            <returns>用户标识</returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.SetRedisString(System.Web.Http.ApiController,System.String,System.String,System.TimeSpan)">
+            <summary>
+            Redis写入字符串（GetDatabase(0)）
+            </summary>
+            <param name="apiController"></param>
+            <param name="key">键（重复时覆盖）</param>
+            <param name="value">值</param>
+            <param name="timeSpan">有效期，为null时永久有效</param>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.GetRedisString(System.Web.Http.ApiController,System.String)">
+            <summary>
+            Redis缓存字符串（GetDatabase(0)）
+            </summary>
+            <param name="apiController"></param>
+            <param name="key">键（重复时覆盖）</param>
+            <returns>值，不存在时返回null</returns>
+        </member>
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.TokenHashDecrypt(System.Web.Http.ApiController,System.String,System.Int32)">
             <summary>
             身份信息解密(用户提交)【可以根据用户提交的固定的字符串到缓存读取此凭据】
             </summary>
             <param name="apiController"></param>
             <param name="hash">hash字符串</param>
             <param name="userRole">用户角色</param>
-            <param name="day">有效期（天）</param>
             <returns>用户标识</returns>
         </member>
         <member name="M:SanJing.WebApi.ApiControllerExpansion.TokenHashEncrypt(System.Web.Http.ApiController,System.Int32,System.Int32)">
@@ -65,25 +162,6 @@
             <param name="apiController"></param>
             <param name="userId">用户标识</param>
             <param name="userRole">用户角色</param>
-            <returns>返回给用户的字符串</returns>
-        </member>
-        <member name="M:SanJing.WebApi.ApiControllerExpansion.SMSHashDecrypt(System.Web.Http.ApiController,System.String,System.String,System.String,System.Int32)">
-            <summary>
-            短信验证码解密(用户提交)
-            </summary>
-            <param name="apiController"></param>
-            <param name="hash">hash字符串</param>
-            <param name="phone">手机号</param>
-            <param name="code">验证码</param>
-            <param name="minute">有效期（分钟）</param>
-        </member>
-        <member name="M:SanJing.WebApi.ApiControllerExpansion.SMSHashEncrypt(System.Web.Http.ApiController,System.String,System.String)">
-            <summary>
-            短信验证码加密（返回给用户）
-            </summary>
-            <param name="apiController"></param>
-            <param name="phone">手机号</param>
-            <param name="code">验证码</param>
             <returns>返回给用户的字符串</returns>
         </member>
         <member name="M:SanJing.WebApi.ApiControllerExpansion.HashEncrypt(System.Web.Http.ApiController,System.String[])">
@@ -112,6 +190,29 @@
             实例化
             </summary>
         </member>
+        <member name="T:SanJing.WebApi.NLogReader">
+            <summary>
+            NLog读取器
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.NLogReader.TodayLogHtml">
+            <summary>
+            读取今天的日式记录【/logs/yyyy-mm-dd.log】
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.NLogReader.TodayLogText">
+            <summary>
+            读取今天的日式记录【/logs/yyyy-mm-dd.log】
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.NLogReader.TodayLogLines">
+            <summary>
+            读取今天的日式记录【/logs/yyyy-mm-dd.log】
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SanJing.WebApi.NonceStringException">
             <summary>
             随机串异常（重复）
@@ -120,30 +221,6 @@
         <member name="M:SanJing.WebApi.NonceStringException.#ctor">
             <summary>
             实例化
-            </summary>
-        </member>
-        <member name="T:SanJing.WebApi.NonceStringCache">
-            <summary>
-            服务器缓存
-            </summary>
-        </member>
-        <member name="F:SanJing.WebApi.NonceStringCache.keyValuePairs">
-            <summary>
-            缓存表
-            </summary>
-        </member>
-        <member name="M:SanJing.WebApi.NonceStringCache.CheckAndAdd(System.String,System.Int64,System.Int32)">
-            <summary>
-            验证并添加
-            </summary>
-            <param name="key">KEY</param>
-            <param name="timeStamp">时间戳</param>
-            <param name="second">缓存时间</param>
-            <returns></returns>
-        </member>
-        <member name="M:SanJing.WebApi.NonceStringCache.NonceStringCacheClear(System.Int64,System.Int32)">
-            <summary>
-            清理过期的缓存
             </summary>
         </member>
         <member name="T:SanJing.WebApi.Swagger">
@@ -157,6 +234,31 @@
             </summary>
             <param name="name">XML文件名（一般与项目名称相同）</param>
             <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.Swagger.GroupActionsBy(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            根据命名空间（文件夹）分组[Replace("Controllers", string.Empty) + " APIs"]
+            </summary>
+            <param name="apiDescription"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SanJing.WebApi.SwaggerHideAttribute">
+            <summary>
+            隐藏接口
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.ApplyDocumentVendorExtensions">
+            <summary>
+            过滤隐藏接口【SwaggerHide】
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.ApplyDocumentVendorExtensions.Apply(Swashbuckle.Swagger.SwaggerDocument,Swashbuckle.Swagger.SchemaRegistry,System.Web.Http.Description.IApiExplorer)">
+            <summary>
+            Apply
+            </summary>
+            <param name="swaggerDoc"></param>
+            <param name="schemaRegistry"></param>
+            <param name="apiExplorer"></param>
         </member>
         <member name="T:SanJing.WebApi.TimeStampException">
             <summary>
@@ -198,27 +300,6 @@
             <summary>
             签名
             </summary>
-        </member>
-        <!-- 对于成员“M:SanJing.WebApi.RequestModel.CheckSign(System.String)”忽略有格式错误的 XML 注释 -->
-        <member name="M:SanJing.WebApi.RequestModel.CheckNonceString(System.String,System.String)">
-            <summary>
-            验证随机字符串（重复问题）
-            </summary>
-            <param name="urlPath">API接口</param>
-            <param name="ipAddress">IP地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:SanJing.WebApi.RequestModel.IPAddressBlackList">
-            <summary>
-            IP地址黑名单
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SanJing.WebApi.RequestModel.TimeStampLimit">
-            <summary>
-            时间戳限制范围（秒）
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:SanJing.WebApi.ResponseModel">
             <summary>
@@ -268,21 +349,105 @@
             </summary>
             <param name="message"></param>
         </member>
+        <member name="T:SanJing.WebApi.WebApiAppKey">
+            <summary>
+            默认APPKEY【447AD97D40C592FBDA322EC14794132A】
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiAppKey.AppKey">
+            <summary>
+            AppKey
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.WebApiConfig">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiConfig.RedisConfiguration">
+            <summary>
+            Redis服务器地址（默认：127.0.0.1:6379）
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiConfig.IPAddressBlackList">
+            <summary>
+            IP地址黑名单（默认：空）
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiConfig.TokenDay">
+            <summary>
+            Token有效期（天）(默认：7)
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiConfig.TimeStampMinute">
+            <summary>
+            时间戳误差（分钟）（默认：5）
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiConfig.NonceStringMinute">
+            <summary>
+            随机串生命周期（分钟）（默认：1）
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiConfig.SMSDay">
+            <summary>
+            短信验证码有效期（分钟）（默认：5）
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiConfig.SMSLength">
+            <summary>
+            短信验证码长度（默认：6）
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiConfig.AppKey">
+            <summary>
+            默认APPKEY【447AD97D40C592FBDA322EC14794132A】
+            </summary>
+        </member>
         <member name="T:SanJing.WebApi.WebApiController">
             <summary>
             接口基础类
             </summary>
         </member>
-        <member name="M:SanJing.WebApi.WebApiController.OPTIONS">
+        <member name="M:SanJing.WebApi.WebApiController.Options">
             <summary>
             某些浏览器跨域请求时会先请求此方法
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SanJing.WebApi.WebApiController`2">
+            <summary>
+            接口基础类(默认APPKEY:447AD97D40C592FBDA322EC14794132A)
+            </summary>
+            <typeparam name="RequestT">请求模型</typeparam>
+            <typeparam name="ResponseT">返回模型</typeparam>
+        </member>
+        <member name="M:SanJing.WebApi.WebApiController`2.Post(`0)">
+            <summary>
+            请重写此方法
+            </summary>
+            <param name="request"></param>
+            <returns>ResponseT</returns>
+        </member>
+        <member name="T:SanJing.WebApi.WebApiController`3">
+            <summary>
+            接口基础类(自定义APPKEY)
+            </summary>
+            <typeparam name="RequestT">请求模型</typeparam>
+            <typeparam name="ResponseT">返回模型</typeparam>
+            <typeparam name="AppKeyT">APPKEY</typeparam>
+        </member>
+        <member name="M:SanJing.WebApi.WebApiController`3.Post(`0)">
+            <summary>
+            请重写此方法
+            </summary>
+            <param name="request"></param>
+            <returns>ResponseT</returns>
+        </member>
         <member name="T:SanJing.WebApi.WebApiExceptionFilterAttribute">
             <summary>
-            WebApi全局异常处理
-            2000+ 表示用户可见
+            WebApi全局异常处理[NLog.Error]
+            2000+ 表示用户可见(2000表示未登录或登录过期)
             3000+ 表示程序员可见
             </summary>
         </member>
