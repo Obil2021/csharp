@@ -27,11 +27,28 @@ namespace SanJing.WebApi
         /// </summary>
         /// <param name="apiDescription"></param>
         /// <returns></returns>
-        public static string GroupActionsBy(ApiDescription  apiDescription)
+        public static string GroupActionsBy(ApiDescription apiDescription)
         {
             string result = apiDescription.ActionDescriptor.ControllerDescriptor.ControllerType.Namespace.Split('.').Last();
             result = result.Replace("Controllers", string.Empty) + " APIs";
             return result == " APIs" ? "General" + result : result;
+        }
+        /// <summary>
+        /// SwaggerAPI路由模型[api/General/{{controller}}/{{id}}]
+        /// </summary>
+        /// <returns></returns>
+        public static string RouteTemplate()
+        {
+            return $"api/General/{{controller}}/{{id}}";
+        }
+        /// <summary>
+        /// SwaggerAPI路由模型[api/{webApiAppKey.AppName}/{{controller}}/{{id}}]
+        /// </summary>
+        /// <param name="webApiAppKey"></param>
+        /// <returns></returns>
+        public static string RouteTemplate(WebApiAppKey webApiAppKey)
+        {
+            return $"api/{webApiAppKey.AppName}/{{controller}}/{{id}}";
         }
     }
     /// <summary>
@@ -51,7 +68,7 @@ namespace SanJing.WebApi
         /// <param name="swaggerDoc"></param>
         /// <param name="schemaRegistry"></param>
         /// <param name="apiExplorer"></param>
-        public void Apply(SwaggerDocument swaggerDoc, SchemaRegistry schemaRegistry, IApiExplorer apiExplorer)
+        public virtual void Apply(SwaggerDocument swaggerDoc, SchemaRegistry schemaRegistry, IApiExplorer apiExplorer)
         {
             foreach (ApiDescription apiDescription in apiExplorer.ApiDescriptions)
             {
@@ -74,7 +91,16 @@ namespace SanJing.WebApi
                     else
                         swaggerDoc.paths[key].patch = null;
                 }
+            }
 
+            foreach (ApiDescription apiDescription in apiExplorer.ApiDescriptions)
+            {
+                string groupname = Swagger.GroupActionsBy(apiDescription);
+                if (!groupname.StartsWith(apiDescription.RelativePathSansQueryString().Split('/')[1]))
+                {
+                    string key = "/" + apiDescription.RelativePathSansQueryString();
+                    swaggerDoc.paths.Remove(key);
+                }
             }
         }
     }

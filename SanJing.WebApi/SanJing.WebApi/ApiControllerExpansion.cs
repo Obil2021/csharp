@@ -35,7 +35,8 @@ namespace SanJing.WebApi
         /// <param name="webApiController"></param>
         /// <param name="request">请求数据</param>
         /// <param name="key">验签Key</param>
-        internal static void RequestReady(this WebApiController webApiController, RequestModel request, string key)
+        /// <param name="appName">APPName</param>
+        internal static void RequestReady(this WebApiController webApiController, RequestModel request, string key, string appName = "General")
         {
 
             HttpContextWrapper httpContext = webApiController.Request.Properties[MS_HTTPCONTEXT] as HttpContextWrapper;
@@ -46,6 +47,12 @@ namespace SanJing.WebApi
             }
             //请求记录
             NLog.LogManager.GetCurrentClassLogger().Trace(JsonConvert.SerializeObject(new { IPAddress = ipAddress, Request = request }));
+
+            //APP验证（路由验证）
+            if (!webApiController.Request.RequestUri.AbsolutePath.ToLower().StartsWith("/api/" + appName.ToLower()))
+            {
+                throw new UrlException();
+            }
 
             //IP地址验证
             if (WebApiConfig.IPAddressBlackList.Contains(ipAddress))

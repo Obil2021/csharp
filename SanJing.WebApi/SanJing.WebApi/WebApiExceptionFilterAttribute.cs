@@ -22,8 +22,11 @@ namespace SanJing.WebApi
         {
             //日志记录
             NLog.LogManager.GetCurrentClassLogger().Error(actionExecutedContext.Exception);
-
-            if (actionExecutedContext.Exception is TokenException)
+            if (actionExecutedContext.Exception is UrlException)
+            {
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
+            }
+            else if (actionExecutedContext.Exception is TokenException)
             {
                 actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(System.Net.HttpStatusCode.OK, new ResponseModel()
                 {

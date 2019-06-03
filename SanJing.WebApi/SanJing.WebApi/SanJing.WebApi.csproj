@@ -98,6 +98,7 @@
     <Compile Include="WebApiException\NonceStringException.cs" />
     <Compile Include="Swagger.cs" />
     <Compile Include="WebApiException\TimeStampException.cs" />
+    <Compile Include="WebApiException\UrlException.cs" />
     <Compile Include="WebApiException\UserException.cs" />
     <Compile Include="RequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

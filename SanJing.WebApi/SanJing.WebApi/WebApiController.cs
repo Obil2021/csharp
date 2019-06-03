@@ -60,7 +60,8 @@ namespace SanJing.WebApi
         [HttpPost]
         public override ResponseT Post(RequestT request)
         {
-            this.RequestReady(request, new AppKeyT().AppKey);
+            var app = new AppKeyT();
+            this.RequestReady(request, app.AppKey, app.AppName);
             return new ResponseT();
         }
     }

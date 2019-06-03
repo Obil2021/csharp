@@ -24,13 +24,14 @@
             默认IP地址
             </summary>
         </member>
-        <member name="M:SanJing.WebApi.ApiControllerExpansion.RequestReady(SanJing.WebApi.WebApiController,SanJing.WebApi.RequestModel,System.String)">
+        <member name="M:SanJing.WebApi.ApiControllerExpansion.RequestReady(SanJing.WebApi.WebApiController,SanJing.WebApi.RequestModel,System.String,System.String)">
             <summary>
             请求准备(含数IP地址验证、数据验证、签名验证、时间戳验证，随机串验证(Redis)、日志记录(NLog.Trace))
             </summary>
             <param name="webApiController"></param>
             <param name="request">请求数据</param>
             <param name="key">验签Key</param>
+            <param name="appName">APPName</param>
         </member>
         <member name="M:SanJing.WebApi.ApiControllerExpansion.NonceStingHashEncrypt(System.Web.Http.ApiController,System.String,System.String)">
             <summary>
@@ -242,6 +243,19 @@
             <param name="apiDescription"></param>
             <returns></returns>
         </member>
+        <member name="M:SanJing.WebApi.Swagger.RouteTemplate">
+            <summary>
+            SwaggerAPI路由模型[api/General/{{controller}}/{{id}}]
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WebApi.Swagger.RouteTemplate(SanJing.WebApi.WebApiAppKey)">
+            <summary>
+            SwaggerAPI路由模型[api/{webApiAppKey.AppName}/{{controller}}/{{id}}]
+            </summary>
+            <param name="webApiAppKey"></param>
+            <returns></returns>
+        </member>
         <member name="T:SanJing.WebApi.SwaggerHideAttribute">
             <summary>
             隐藏接口
@@ -268,6 +282,16 @@
         <member name="M:SanJing.WebApi.TimeStampException.#ctor">
             <summary>
             实例化
+            </summary>
+        </member>
+        <member name="T:SanJing.WebApi.UrlException">
+            <summary>
+            路由异常
+            </summary>
+        </member>
+        <member name="M:SanJing.WebApi.UrlException.#ctor">
+            <summary>
+            初始化
             </summary>
         </member>
         <member name="T:SanJing.WebApi.UserException">
@@ -351,12 +375,17 @@
         </member>
         <member name="T:SanJing.WebApi.WebApiAppKey">
             <summary>
-            默认APPKEY【447AD97D40C592FBDA322EC14794132A】
+            APPKEY
             </summary>
         </member>
         <member name="P:SanJing.WebApi.WebApiAppKey.AppKey">
             <summary>
             AppKey
+            </summary>
+        </member>
+        <member name="P:SanJing.WebApi.WebApiAppKey.AppName">
+            <summary>
+            AppName（请与文件夹名称一致【AppControllers：AppName=App】且继承接口所使用的WebApiAppKey也必须一致，否则不能显示也不能访问）
             </summary>
         </member>
         <member name="T:SanJing.WebApi.WebApiConfig">
