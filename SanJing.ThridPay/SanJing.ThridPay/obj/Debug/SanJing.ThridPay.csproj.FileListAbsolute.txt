@@ -34,3 +34,15 @@ C:\Users\Administrator\Desktop\csharp-master\SanJing.ThridPay\SanJing.ThridPay\o
 C:\Users\Administrator\Desktop\csharp-master\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.csproj.CopyComplete
 C:\Users\Administrator\Desktop\csharp-master\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.dll
 C:\Users\Administrator\Desktop\csharp-master\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.pdb
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.ThridPay.xml
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.ThridPay.dll
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.ThridPay.pdb
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\Alipay.dll
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.WxBase.dll
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\bin\Debug\SanJing.WxBase.xml
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.csproj.CopyComplete
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.dll
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.pdb

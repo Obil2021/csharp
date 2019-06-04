@@ -12,10 +12,34 @@ using System.Text;
 
 namespace SanJing.ThridPay
 {
+    /// <summary>
+    /// 支付宝
+    /// </summary>
     public class Alipay
     {
         private const string BEGIN_RSA_PRIVATE_KEY = "-----BEGIN RSA PRIVATE KEY-----";
         private const string END_RSA_PRIVATE_KEY = "-----END RSA PRIVATE KEY-----";
+        /// <summary>
+        /// 订单查询
+        /// </summary>
+        /// <param name="ordernuber">订单编号</param>
+        /// <param name="appid">APPID</param>
+        /// <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+        /// <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+        /// <returns>AlipayTradeQueryResponse</returns>
+        public static AlipayTradeQueryResponse PayQuery(string ordernuber, string appid, string app_private_key_path, string alipay_public_key)
+        {
+            var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
+            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", false);
+            AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
+            AlipayTradeQueryModel apppay = new AlipayTradeQueryModel();
+            apppay.OutTradeNo = ordernuber;
+            request.SetBizModel(apppay);
+            AlipayTradeQueryResponse response = alipayClient.Execute(request);
+            if (response.IsError)
+                throw new Exception(JsonConvert.SerializeObject(response));
+            return response;
+        }
         /// <summary>
         /// 支付回调(始终返回成功)
         /// </summary>
@@ -72,11 +96,45 @@ namespace SanJing.ThridPay
             request.SetNotifyUrl(callbackurl);
             AlipayTradeAppPayResponse response = alipayClient.SdkExecute(request);
             if (response.IsError)
-                throw new Exception(response.Body);
+                throw new Exception(JsonConvert.SerializeObject(response));
             return response.Body;
         }
         /// <summary>
-        /// 支付(H5)
+        /// 支付(扫付款码支付)【面对面支付】
+        /// </summary>
+        /// <param name="ordernumber">订单编号</param>
+        /// <param name="authcode">扫码内容</param>
+        /// <param name="amount">订单金额（元）</param>
+        /// <param name="subject">公司名称</param>
+        /// <param name="body">项目名称</param>
+        /// <param name="appid">APPID</param>
+        /// <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+        /// <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+        /// <returns>跳转Url地址</returns>
+        public static string PayByFace(string ordernumber, string authcode, double amount, string subject, string body, string appid, string app_private_key_path, string alipay_public_key)
+        {
+            var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
+
+            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", true);
+            AlipayTradePayRequest request = new AlipayTradePayRequest();
+            request.BizContent = "{" +
+            "\"out_trade_no\":\"" + ordernumber + "\"," +
+            "\"scene\":\"bar_code\"," +
+            "\"auth_code\":\"" + authcode + "\"," +
+            "\"product_code\":\"FACE_TO_FACE_PAYMENT\"," +
+            "\"subject\":\"" + subject + "\"," +
+            "\"total_amount\":" + amount.ToString("f2") + "," +
+            "\"body\":\"" + body + "\"," +
+            "\"timeout_express\":\"90m\"," +
+            "  }";
+            AlipayTradePayResponse response = alipayClient.Execute(request);
+            // AlipayTradeWapPayResponse response = alipayClient.pageExecute(request, null, "GET");
+            if (response.IsError)
+                throw new Exception(JsonConvert.SerializeObject(response));
+            return response.Body;
+        }
+        /// <summary>
+        /// 支付(电脑H5网页)
         /// </summary>
         /// <param name="ordernumber">订单编号</param>
         /// <param name="amount">订单金额（元）</param>
@@ -86,8 +144,8 @@ namespace SanJing.ThridPay
         /// <param name="appid">APPID</param>
         /// <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
         /// <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
-        /// <returns></returns>
-        public static string PayByH5(string ordernumber, double amount, string subject, string body, string callbackurl, string appid, string app_private_key_path, string alipay_public_key)
+        /// <returns>跳转Url地址</returns>
+        public static string PayByPage(string ordernumber, double amount, string subject, string body, string callbackurl, string appid, string app_private_key_path, string alipay_public_key)
         {
             var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
             var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", true);
@@ -105,6 +163,40 @@ namespace SanJing.ThridPay
             AlipayTradePagePayResponse response = alipayClient.pageExecute(request, null, "GET");
             if (response.IsError)
                 throw new Exception(response.Body);
+            return response.Body;
+        }
+        /// <summary>
+        /// 支付(手机H5网页)
+        /// </summary>
+        /// <param name="ordernumber">订单编号</param>
+        /// <param name="amount">订单金额（元）</param>
+        /// <param name="subject">公司名称</param>
+        /// <param name="body">项目名称</param>
+        /// <param name="callbackurl">回调完整地址</param>
+        /// <param name="appid">APPID</param>
+        /// <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+        /// <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+        /// <returns>跳转Url地址</returns>
+        public static string PayByH5(string ordernumber, double amount, string subject, string body, string callbackurl, string appid, string app_private_key_path, string alipay_public_key)
+        {
+            var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
+
+            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", true);
+            AlipayTradeWapPayModel apppay = new AlipayTradeWapPayModel();
+
+            apppay.Body = body;
+            apppay.OutTradeNo = ordernumber;
+            apppay.ProductCode = "QUICK_WAP_WAY";
+            apppay.Subject = subject;
+            apppay.TimeoutExpress = "30m";
+            apppay.TotalAmount = amount.ToString("f2");
+
+            AlipayTradeWapPayRequest request = new AlipayTradeWapPayRequest();
+            request.SetBizModel(apppay);
+            request.SetNotifyUrl(callbackurl);
+            AlipayTradeWapPayResponse response = alipayClient.pageExecute(request, null, "GET");
+            if (response.IsError)
+                throw new Exception(JsonConvert.SerializeObject(response));
             return response.Body;
         }
         /// <summary>

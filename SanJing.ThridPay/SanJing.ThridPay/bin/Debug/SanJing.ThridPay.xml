@@ -4,6 +4,21 @@
         <name>SanJing.ThridPay</name>
     </assembly>
     <members>
+        <member name="T:SanJing.ThridPay.Alipay">
+            <summary>
+            支付宝
+            </summary>
+        </member>
+        <member name="M:SanJing.ThridPay.Alipay.PayQuery(System.String,System.String,System.String,System.String)">
+            <summary>
+            订单查询
+            </summary>
+            <param name="ordernuber">订单编号</param>
+            <param name="appid">APPID</param>
+            <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+            <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+            <returns>AlipayTradeQueryResponse</returns>
+        </member>
         <member name="M:SanJing.ThridPay.Alipay.PayCallBack(System.Collections.Specialized.NameValueCollection,System.String,System.Action{System.String,System.Double},System.Action{System.Exception})">
             <summary>
             支付回调(始终返回成功)
@@ -28,9 +43,23 @@
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.ThridPay.Alipay.PayByH5(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Alipay.PayByFace(System.String,System.String,System.Double,System.String,System.String,System.String,System.String,System.String)">
             <summary>
-            支付(H5)
+            支付(扫付款码支付)【面对面支付】
+            </summary>
+            <param name="ordernumber">订单编号</param>
+            <param name="authcode">扫码内容</param>
+            <param name="amount">订单金额（元）</param>
+            <param name="subject">公司名称</param>
+            <param name="body">项目名称</param>
+            <param name="appid">APPID</param>
+            <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+            <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+            <returns>跳转Url地址</returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Alipay.PayByPage(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            支付(电脑H5网页)
             </summary>
             <param name="ordernumber">订单编号</param>
             <param name="amount">订单金额（元）</param>
@@ -40,7 +69,21 @@
             <param name="appid">APPID</param>
             <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
-            <returns></returns>
+            <returns>跳转Url地址</returns>
+        </member>
+        <member name="M:SanJing.ThridPay.Alipay.PayByH5(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            支付(手机H5网页)
+            </summary>
+            <param name="ordernumber">订单编号</param>
+            <param name="amount">订单金额（元）</param>
+            <param name="subject">公司名称</param>
+            <param name="body">项目名称</param>
+            <param name="callbackurl">回调完整地址</param>
+            <param name="appid">APPID</param>
+            <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
+            <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
+            <returns>跳转Url地址</returns>
         </member>
         <member name="M:SanJing.ThridPay.Alipay.Refund(System.String,System.String,System.Double,System.String,System.String,System.String)">
             <summary>
