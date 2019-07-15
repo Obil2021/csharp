@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.Excel</name>
+    </assembly>
+    <members>
+        <member name="T:SanJing.Excel.Export">
+            <summary>
+            快速导出XLS文件
+            </summary>
+        </member>
+        <member name="M:SanJing.Excel.Export.SaveAs(System.String,System.Collections.Generic.IEnumerable{System.String[]},System.String[])">
+            <summary>
+            保存数据至XLS文件
+            </summary>
+            <param name="filename">完整文件名</param>
+            <param name="source">数据源</param>
+            <param name="titles">列标题</param>
+        </member>
+    </members>
+</doc>
