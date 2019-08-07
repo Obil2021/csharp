@@ -115,7 +115,7 @@ namespace SanJing.ThridPay
         {
             var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
 
-            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", true);
+            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", false);
             AlipayTradePayRequest request = new AlipayTradePayRequest();
             request.BizContent = "{" +
             "\"out_trade_no\":\"" + ordernumber + "\"," +
@@ -148,7 +148,7 @@ namespace SanJing.ThridPay
         public static string PayByPage(string ordernumber, double amount, string subject, string body, string callbackurl, string appid, string app_private_key_path, string alipay_public_key)
         {
             var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
-            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", true);
+            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", false);
             AlipayTradePagePayModel apppay = new AlipayTradePagePayModel();
 
             apppay.Body = body;
@@ -181,7 +181,7 @@ namespace SanJing.ThridPay
         {
             var app_private_key = getAppPrivateKeyFromFile(app_private_key_path);
 
-            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", true);
+            var alipayClient = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key, "JSON", "1.0", "RSA2", alipay_public_key, "utf-8", false);
             AlipayTradeWapPayModel apppay = new AlipayTradeWapPayModel();
 
             apppay.Body = body;

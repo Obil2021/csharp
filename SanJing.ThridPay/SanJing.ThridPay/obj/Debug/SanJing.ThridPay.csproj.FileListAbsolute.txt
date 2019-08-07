@@ -46,3 +46,4 @@ C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJi
 C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.csproj.CopyComplete
 C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.dll
 C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.pdb
+C:\Users\Administrator\Desktop\SanJing.ThridPay\SanJing.ThridPay\obj\Debug\SanJing.ThridPay.csprojAssemblyReference.cache
