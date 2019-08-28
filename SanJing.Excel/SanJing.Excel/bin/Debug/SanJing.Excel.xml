@@ -9,13 +9,33 @@
             快速导出XLS文件
             </summary>
         </member>
-        <member name="M:SanJing.Excel.Export.SaveAs(System.String,System.Collections.Generic.IEnumerable{System.String[]},System.String[])">
+        <member name="M:SanJing.Excel.Export.ReadAs2007(System.String)">
+            <summary>
+            从XLSX文件读取数据
+            </summary>
+            <param name="filename">完整文件名XLSX</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Excel.Export.ReadAs2003(System.String)">
+            <summary>
+            从XLS文件读取数据
+            </summary>
+            <param name="filename">完整文件名XLS</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Excel.Export.SaveAs2003(System.String,System.Collections.Generic.IEnumerable{System.String[]})">
             <summary>
             保存数据至XLS文件
             </summary>
-            <param name="filename">完整文件名</param>
+            <param name="filename">完整文件名XLS</param>
             <param name="source">数据源</param>
-            <param name="titles">列标题</param>
+        </member>
+        <member name="M:SanJing.Excel.Export.SaveAs2007(System.String,System.Collections.Generic.IEnumerable{System.String[]})">
+            <summary>
+            保存数据至XLSX文件
+            </summary>
+            <param name="filename">完整文件名XLSX</param>
+            <param name="source">数据源</param>
         </member>
     </members>
 </doc>
