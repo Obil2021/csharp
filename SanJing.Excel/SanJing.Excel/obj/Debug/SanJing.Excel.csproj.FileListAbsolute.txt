@@ -18,7 +18,6 @@ C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\bin\Debug\NPOI.dll
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\bin\Debug\NPOI.OOXML.dll
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\bin\Debug\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\bin\Debug\NPOI.OpenXmlFormats.dll
-C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\obj\Debug\SanJing.Excel.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\obj\Debug\SanJing.Excel.csproj.CopyComplete
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\obj\Debug\SanJing.Excel.dll
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\obj\Debug\SanJing.Excel.pdb
