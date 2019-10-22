@@ -5,3 +5,11 @@ C:\Users\Administrator\source\repos\SanJing.GraphicCode\SanJing.GraphicCode\bin\
 C:\Users\Administrator\source\repos\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.csproj.CopyComplete
 C:\Users\Administrator\source\repos\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.dll
 C:\Users\Administrator\source\repos\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.pdb
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\bin\Debug\SanJing.GraphicCode.xml
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\bin\Debug\SanJing.GraphicCode.dll
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\bin\Debug\SanJing.GraphicCode.pdb
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\bin\Debug\BarcodeLib.dll
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\bin\Debug\Gma.QrCodeNet.Encoding.dll
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.csproj.CopyComplete
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.dll
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.pdb

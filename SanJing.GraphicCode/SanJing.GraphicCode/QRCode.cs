@@ -9,6 +9,9 @@ using System.Text;
 
 namespace SanJing.GraphicCode
 {
+    /// <summary>
+    /// 二维码
+    /// </summary>
     public class QRCode
     {
         /// <summary>

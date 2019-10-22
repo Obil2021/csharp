@@ -8,6 +8,9 @@ using System.Text;
 
 namespace SanJing.GraphicCode
 {
+    /// <summary>
+    /// 一维码
+    /// </summary>
     public class BarCode
     {
         /// <summary>
