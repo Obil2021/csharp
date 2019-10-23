@@ -33,7 +33,7 @@ namespace SanJing.Excel
             var result = new List<string[]>();
             for (int i = 0; i <= sheet.LastRowNum; i++)  //对工作表每一行
             {
-                var val = new string[cellnum];
+                var val = new string[cellnum + 1];
                 row = sheet.GetRow(i);   //row读入第i行数据
                 if (row != null)
                 {
@@ -70,7 +70,7 @@ namespace SanJing.Excel
 
             for (int i = 0; i <= sheet.LastRowNum; i++)  //对工作表每一行
             {
-                var val = new string[cellnum];
+                var val = new string[cellnum + 1];
                 row = sheet.GetRow(i);   //row读入第i行数据
                 if (row != null)
                 {
