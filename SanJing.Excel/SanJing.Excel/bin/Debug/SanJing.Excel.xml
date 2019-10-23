@@ -28,19 +28,21 @@
             快速导入XLS文件
             </summary>
         </member>
-        <member name="M:SanJing.Excel.Import.ReadAs2007(System.String)">
+        <member name="M:SanJing.Excel.Import.ReadAs2007(System.String,System.Int32)">
             <summary>
             从XLSX文件读取数据
             </summary>
             <param name="filename">完整文件名XLSX</param>
-            <returns></returns>
+            <param name="cellnum">读取数据的最大列序数（从0开始算）</param>
+            <returns>（0,0）到（最大行序数,cellnum）</returns>
         </member>
-        <member name="M:SanJing.Excel.Import.ReadAs2003(System.String)">
+        <member name="M:SanJing.Excel.Import.ReadAs2003(System.String,System.Int32)">
             <summary>
             从XLS文件读取数据
             </summary>
             <param name="filename">完整文件名XLS</param>
-            <returns></returns>
+            <param name="cellnum">读取数据的最大列序数（从0开始算）</param>
+            <returns>（0,0）到（最大行序数,cellnum）</returns>
         </member>
     </members>
 </doc>
