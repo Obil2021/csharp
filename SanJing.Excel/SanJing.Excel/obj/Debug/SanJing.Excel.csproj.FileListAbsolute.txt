@@ -21,3 +21,4 @@ C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\bin\Debug\NPOI.OpenXm
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\obj\Debug\SanJing.Excel.csproj.CopyComplete
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\obj\Debug\SanJing.Excel.dll
 C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\obj\Debug\SanJing.Excel.pdb
+C:\Users\Administrator\Desktop\SanJing.Excel\SanJing.Excel\obj\Debug\SanJing.Excel.csprojAssemblyReference.cache
