@@ -6,3 +6,11 @@ C:\Users\Administrator\source\repos\SanJing.Email\SanJing.Email\bin\Debug\Mail.x
 C:\Users\Administrator\source\repos\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.csproj.CopyComplete
 C:\Users\Administrator\source\repos\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.dll
 C:\Users\Administrator\source\repos\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.pdb
+C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\bin\Debug\SanJing.Email.xml
+C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\bin\Debug\SanJing.Email.dll
+C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\bin\Debug\SanJing.Email.pdb
+C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\bin\Debug\Mail.dll
+C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\bin\Debug\Mail.xml
+C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.csproj.CopyComplete
+C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.dll
+C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.pdb

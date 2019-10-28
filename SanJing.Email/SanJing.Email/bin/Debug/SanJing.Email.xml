@@ -11,7 +11,7 @@
         </member>
         <member name="M:SanJing.Email.Email.SendByQQMail(System.String,System.String,System.String,System.String,System.String,System.String[])">
             <summary>
-             发送带附件邮件（QQ邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+             发送带附件邮件（QQ邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
             </summary>
             <param name="sendAccount">发送邮箱地址</param>
             <param name="sendPassword">发送邮箱密码</param>
@@ -23,7 +23,7 @@
         </member>
         <member name="M:SanJing.Email.Email.SendByQQMail(System.String,System.String,System.String,System.String[])">
             <summary>
-             发送带附件邮件（QQ邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+             发送带附件邮件（QQ邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
             </summary>
             <param name="recieveAccount">收件邮箱地址</param>
             <param name="subject">主题</param>
@@ -33,7 +33,7 @@
         </member>
         <member name="M:SanJing.Email.Email.SendByQQExMail(System.String,System.String,System.String,System.String,System.String,System.String[])">
             <summary>
-             发送带附件邮件（QQ企业邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+             发送带附件邮件（QQ企业邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
             </summary>
             <param name="sendAccount">发送邮箱地址</param>
             <param name="sendPassword">发送邮箱密码</param>
@@ -45,7 +45,7 @@
         </member>
         <member name="M:SanJing.Email.Email.SendByQQExMail(System.String,System.String,System.String,System.String[])">
             <summary>
-             发送带附件邮件（QQ企业邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+             发送带附件邮件（QQ企业邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
             </summary>
             <param name="recieveAccount">收件邮箱地址</param>
             <param name="subject">主题</param>

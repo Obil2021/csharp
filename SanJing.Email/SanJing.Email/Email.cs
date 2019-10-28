@@ -16,7 +16,7 @@ namespace SanJing.Email
     public class Email
     {
         /// <summary>
-        ///  发送带附件邮件（QQ邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+        ///  发送带附件邮件（QQ邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
         /// </summary>
         /// <param name="sendAccount">发送邮箱地址</param>
         /// <param name="sendPassword">发送邮箱密码</param>
@@ -53,8 +53,8 @@ namespace SanJing.Email
             }
 
             MailBuilder builder = new MailBuilder();
-            builder.From.Add(new MailBox(recieveAccount, recieveAccount));
-            builder.To.Add(new MailBox(sendAccount, sendAccount));
+            builder.From.Add(new MailBox(sendAccount, sendAccount));
+            builder.To.Add(new MailBox(recieveAccount, recieveAccount));
             builder.Subject = subject;
             builder.Html = body;
             foreach (var item in filenames)
@@ -72,7 +72,7 @@ namespace SanJing.Email
             }
         }
         /// <summary>
-        ///  发送带附件邮件（QQ邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+        ///  发送带附件邮件（QQ邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
         /// </summary>
         /// <param name="recieveAccount">收件邮箱地址</param>
         /// <param name="subject">主题</param>
@@ -109,8 +109,8 @@ namespace SanJing.Email
             }
 
             MailBuilder builder = new MailBuilder();
-            builder.From.Add(new MailBox(recieveAccount, recieveAccount));
-            builder.To.Add(new MailBox(sendAccount, sendAccount));
+            builder.From.Add(new MailBox(sendAccount, sendAccount));
+            builder.To.Add(new MailBox(recieveAccount, recieveAccount));
             builder.Subject = subject;
             builder.Html = body;
             foreach (var item in filenames)
@@ -128,7 +128,7 @@ namespace SanJing.Email
             }
         }
         /// <summary>
-        ///  发送带附件邮件（QQ企业邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+        ///  发送带附件邮件（QQ企业邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
         /// </summary>
         /// <param name="sendAccount">发送邮箱地址</param>
         /// <param name="sendPassword">发送邮箱密码</param>
@@ -165,8 +165,8 @@ namespace SanJing.Email
             }
 
             MailBuilder builder = new MailBuilder();
-            builder.From.Add(new MailBox(recieveAccount, recieveAccount));
-            builder.To.Add(new MailBox(sendAccount, sendAccount));
+            builder.From.Add(new MailBox(sendAccount, sendAccount));
+            builder.To.Add(new MailBox(recieveAccount, recieveAccount));
             builder.Subject = subject;
             builder.Html = body;
             foreach (var item in filenames)
@@ -184,7 +184,7 @@ namespace SanJing.Email
             }
         }
         /// <summary>
-        ///  发送带附件邮件（QQ企业邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+        ///  发送带附件邮件（QQ企业邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
         /// </summary>
         /// <param name="recieveAccount">收件邮箱地址</param>
         /// <param name="subject">主题</param>
@@ -221,8 +221,8 @@ namespace SanJing.Email
             }
 
             MailBuilder builder = new MailBuilder();
-            builder.From.Add(new MailBox(recieveAccount, recieveAccount));
-            builder.To.Add(new MailBox(sendAccount, sendAccount));
+            builder.From.Add(new MailBox(sendAccount, sendAccount));
+            builder.To.Add(new MailBox(recieveAccount, recieveAccount));
             builder.Subject = subject;
             builder.Html = body;
             foreach (var item in filenames)
