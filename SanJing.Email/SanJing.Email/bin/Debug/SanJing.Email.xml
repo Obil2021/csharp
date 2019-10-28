@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.Email</name>
+    </assembly>
+    <members>
+        <member name="T:SanJing.Email.Email">
+            <summary>
+            发送邮箱
+            </summary>
+        </member>
+        <member name="M:SanJing.Email.Email.SendByQQMail(System.String,System.String,System.String,System.String,System.String,System.String[])">
+            <summary>
+             发送带附件邮件（QQ邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+            </summary>
+            <param name="sendAccount">发送邮箱地址</param>
+            <param name="sendPassword">发送邮箱密码</param>
+            <param name="recieveAccount">收件邮箱地址</param>
+            <param name="subject">主题</param>
+            <param name="body">内容（支持HTML）</param>
+            <param name="filenames">附件</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Email.Email.SendByQQMail(System.String,System.String,System.String,System.String[])">
+            <summary>
+             发送带附件邮件（QQ邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+            </summary>
+            <param name="recieveAccount">收件邮箱地址</param>
+            <param name="subject">主题</param>
+            <param name="body">内容（支持HTML）</param>
+            <param name="filenames">附件</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Email.Email.SendByQQExMail(System.String,System.String,System.String,System.String,System.String,System.String[])">
+            <summary>
+             发送带附件邮件（QQ企业邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+            </summary>
+            <param name="sendAccount">发送邮箱地址</param>
+            <param name="sendPassword">发送邮箱密码</param>
+            <param name="recieveAccount">收件邮箱地址</param>
+            <param name="subject">主题</param>
+            <param name="body">内容（支持HTML）</param>
+            <param name="filenames">附件</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Email.Email.SendByQQExMail(System.String,System.String,System.String,System.String[])">
+            <summary>
+             发送带附件邮件（QQ企业邮箱，SSL）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
+            </summary>
+            <param name="recieveAccount">收件邮箱地址</param>
+            <param name="subject">主题</param>
+            <param name="body">内容（支持HTML）</param>
+            <param name="filenames">附件</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
