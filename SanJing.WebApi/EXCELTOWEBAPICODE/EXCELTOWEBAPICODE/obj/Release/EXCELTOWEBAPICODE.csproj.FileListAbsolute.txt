@@ -16,3 +16,4 @@ C:\Users\Administrator\Desktop\EXCELTOWEBAPICODE\EXCELTOWEBAPICODE\obj\Release\E
 C:\Users\Administrator\Desktop\EXCELTOWEBAPICODE\EXCELTOWEBAPICODE\obj\Release\EXCELTOWEBAPICODE.csproj.CopyComplete
 C:\Users\Administrator\Desktop\EXCELTOWEBAPICODE\EXCELTOWEBAPICODE\obj\Release\EXCELTOWEBAPICODE.exe
 C:\Users\Administrator\Desktop\EXCELTOWEBAPICODE\EXCELTOWEBAPICODE\obj\Release\EXCELTOWEBAPICODE.pdb
+C:\Users\Administrator\Desktop\EXCELTOWEBAPICODE\EXCELTOWEBAPICODE\obj\Release\EXCELTOWEBAPICODE.csprojAssemblyReference.cache

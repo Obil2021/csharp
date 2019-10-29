@@ -126,6 +126,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using WebAPI.OutputCache;
 
 namespace MvcApplication2.Controllers
 {
@@ -139,8 +140,42 @@ namespace MvcApplication2.Controllers
         /// &lt;/summary&gt;
         /// &lt;param name="userInfo"&gt;请求实例&lt;/param&gt;
         /// &lt;returns&gt;返回实例&lt;/returns&gt;
+        [HttpGet]
+        [CacheOutput(ClientTimeSpan = 60, ServerTimeSpan = 60)]
+        public UserInfoResponse Get([FromUri]UserInfoRequest userInfo)
+        {
+            //验证
+            if (!ModelState.IsValid)
+                return Models.HTTPResponse.CreateHTTPResponseErrorValid&lt;UserInfoResponse&gt;(ModelState);
+
+            //身份
+            if (!Models.HTTPToken.TryGetUserId(userInfo.Token, out int userid))
+                return Models.HTTPResponse.CreateHTTPResponseErrorToken&lt;UserInfoResponse&gt;();
+
+            var result = new UserInfoResponse();
+            //to do
+
+            //记录
+            Models.HTTPLog.WriteLog(new Models.HTTPLog()
+            {
+                UserId = userid,
+                UserRole = 0,
+                Path = Request.RequestUri.GetLeftPart(UriPartial.Path),
+                Request = userInfo.ToString(),
+                Response = result.ToString(),
+                IPAddress = HttpContext.Current.Request.UserHostAddress
+            });
+            return result;
+
+        }
+
+        /// &lt;summary&gt;
+        /// 用户信息
+        /// &lt;/summary&gt;
+        /// &lt;param name="userInfo"&gt;请求实例&lt;/param&gt;
+        /// &lt;returns&gt;返回实例&lt;/returns&gt;
         [HttpPost]
-        public UserInfoResponse Post(UserInfoRequest userInfo)
+        public UserInfoResponse Post([FromBody]UserInfoRequest userInfo)
         {
             //验证
             if (!ModelState.IsValid)
