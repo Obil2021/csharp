@@ -69,7 +69,7 @@ namespace EXCELTOWEBAPICODE.Properties {
         ///using System.Net.Http;
         ///using System.Web;
         ///using System.Web.Http;
-        ///using WebAPI.OutputCache;
+        ///using WebApi.OutputCache.V2;
         ///
         ///namespace MvcApplication2.Controllers
         ///{
@@ -82,7 +82,7 @@ namespace EXCELTOWEBAPICODE.Properties {
         ///        /// 用户信息
         ///        /// &lt;/summary&gt;
         ///        /// &lt;param name=&quot;userInfo&quot;&gt;请求实例&lt;/param&gt;
-        ///        ///  [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///        / [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string String1 {
             get {
