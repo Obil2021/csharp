@@ -72,7 +72,7 @@ namespace SanJing.ThridPay
         /// <param name="mchKey">商户密钥</param>
         /// <param name="ipAddress">服务器（当前）IP地址</param>
         /// <returns></returns>
-        public static IDictionary<string, object> PayByMicro(double amount, string body, string orderNumber,
+        public static IDictionary<string, object> PayByMicro(decimal amount, string body, string orderNumber,
             string auth_code, string appId, string mchId, string mchKey, string ipAddress)
         {
             if (string.IsNullOrWhiteSpace(body))
@@ -115,7 +115,7 @@ namespace SanJing.ThridPay
             order.Add("nonce_str", WxBase.WxBase.NonceStr());
             order.Add("body", body);
             order.Add("out_trade_no", orderNumber);
-            order.Add("total_fee", (amount * 100).ToString("f0"));
+            order.Add("total_fee", (amount * 100m).ToString("f0"));
             order.Add("spbill_create_ip", ipAddress);
             order.Add("auth_code", auth_code);
             order.Add("sign", WxBase.WxBase.Md5Sign(mchKey, order));
@@ -135,7 +135,7 @@ namespace SanJing.ThridPay
         /// <param name="mchKey">商户密钥</param>
         /// <param name="ipAddress">服务器（当前）IP地址</param>
         /// <returns>移动端网页调起支付需要跳转的URL地址</returns>
-        public static string PayByH5(double amount, string body, string orderNumber,
+        public static string PayByH5(decimal amount, string body, string orderNumber,
             string callbackUrl, string appId, string mchId, string mchKey, string ipAddress)
         {
             if (string.IsNullOrWhiteSpace(body))
@@ -179,7 +179,7 @@ namespace SanJing.ThridPay
             order.Add("nonce_str", WxBase.WxBase.NonceStr());
             order.Add("body", body);
             order.Add("out_trade_no", orderNumber);
-            order.Add("total_fee", (amount * 100).ToString("f0"));
+            order.Add("total_fee", (amount * 100m).ToString("f0"));
             order.Add("spbill_create_ip", ipAddress);
             order.Add("notify_url", callbackUrl);
             order.Add("trade_type", "MWEB");
@@ -200,7 +200,7 @@ namespace SanJing.ThridPay
         /// <param name="mchKey">商户密钥</param>
         /// <param name="ipAddress">服务器（当前）IP地址</param>
         /// <returns>移动端调起支付需要的参数</returns>
-        public static IDictionary<string, object> PayByAPP(double amount, string body, string orderNumber,
+        public static IDictionary<string, object> PayByAPP(decimal amount, string body, string orderNumber,
             string callbackUrl, string appId, string mchId, string mchKey, string ipAddress)
         {
             if (string.IsNullOrWhiteSpace(body))
@@ -244,7 +244,7 @@ namespace SanJing.ThridPay
             order.Add("nonce_str", WxBase.WxBase.NonceStr());
             order.Add("body", body);
             order.Add("out_trade_no", orderNumber);
-            order.Add("total_fee", (amount * 100).ToString("f0"));
+            order.Add("total_fee", (amount * 100m).ToString("f0"));
             order.Add("spbill_create_ip", ipAddress);
             order.Add("notify_url", callbackUrl);
             order.Add("trade_type", "APP");
@@ -276,7 +276,7 @@ namespace SanJing.ThridPay
         /// <param name="ipAddress">服务器（当前）IP地址</param>
         /// <param name="openId">微信用户编号</param>
         /// <returns>小程序或微信内网页端调起支付需要的参数</returns>
-        public static IDictionary<string, object> PayByWx(double amount, string body, string orderNumber,
+        public static IDictionary<string, object> PayByWx(decimal amount, string body, string orderNumber,
             string callbackUrl, string appId, string mchId, string mchKey, string ipAddress, string openId)
         {
             if (string.IsNullOrWhiteSpace(body))
@@ -326,7 +326,7 @@ namespace SanJing.ThridPay
             order.Add("body", body);
             order.Add("openid", openId);
             order.Add("out_trade_no", orderNumber);
-            order.Add("total_fee", (amount * 100).ToString("f0"));
+            order.Add("total_fee", (amount * 100m).ToString("f0"));
             order.Add("spbill_create_ip", ipAddress);
             order.Add("notify_url", callbackUrl);
             order.Add("trade_type", "JSAPI");
@@ -355,7 +355,7 @@ namespace SanJing.ThridPay
         /// <param name="mchKey">商户密钥</param>
         /// <param name="ipAddress">服务器（当前）IP地址</param>
         /// <returns>生成二维码需要的字符串</returns>
-        public static string PayByQR(double amount, string body, string orderNumber, string callbackUrl,
+        public static string PayByQR(decimal amount, string body, string orderNumber, string callbackUrl,
             string appId, string mchId, string mchKey, string ipAddress)
         {
             if (string.IsNullOrWhiteSpace(body))
@@ -399,7 +399,7 @@ namespace SanJing.ThridPay
             order.Add("nonce_str", WxBase.WxBase.NonceStr());
             order.Add("body", body);
             order.Add("out_trade_no", orderNumber);
-            order.Add("total_fee", (amount * 100).ToString("f0"));
+            order.Add("total_fee", (amount * 100m).ToString("f0"));
             order.Add("spbill_create_ip", ipAddress);
             order.Add("notify_url", callbackUrl);
             order.Add("trade_type", "NATIVE");
@@ -416,7 +416,7 @@ namespace SanJing.ThridPay
         /// <param name="action">回调处理方法，参数为商户订单编号和金额</param>
         /// <param name="exception">异常处理</param>
         /// <returns>将此结果返回给微信（始终为SUCCESS）</returns>
-        public static string PayCallBack(Stream inputStream, string mchKey, Action<string, double> action,
+        public static string PayCallBack(Stream inputStream, string mchKey, Action<string, decimal> action,
             Action<Exception> exception)
         {
             if (inputStream == null)
@@ -433,7 +433,7 @@ namespace SanJing.ThridPay
             {
                 var formData = WxBase.WxBase.StreamToDictionary(inputStream, mchKey);
                 var ordernumber = formData["out_trade_no"].ToString();
-                var amount = Convert.ToDouble(formData["total_fee"]) / 100;
+                var amount = Convert.ToDecimal(formData["total_fee"]) * 0.01m;
                 action?.Invoke(ordernumber, amount);
             }
             catch (Exception ex)
@@ -455,8 +455,8 @@ namespace SanJing.ThridPay
         /// <param name="mchKey">商户密钥</param>
         /// <param name="certFileNAME">商户密钥完整文件地址</param>
         /// <returns></returns>
-        public static IDictionary<string, object> Refund(string refundOrderNumber, double refundAmount,
-            string orderNumber, double amount, string appId, string mchId, string mchKey, string certFileNAME)
+        public static IDictionary<string, object> Refund(string refundOrderNumber, decimal refundAmount,
+            string orderNumber, decimal amount, string appId, string mchId, string mchKey, string certFileNAME)
         {
             if (string.IsNullOrWhiteSpace(refundOrderNumber))
             {
@@ -494,8 +494,8 @@ namespace SanJing.ThridPay
             data.Add("nonce_str", WxBase.WxBase.NonceStr());
             data.Add("out_trade_no", orderNumber);
             data.Add("out_refund_no", refundOrderNumber);
-            data.Add("total_fee", (amount * 100).ToString("f0"));
-            data.Add("refund_fee", (refundAmount * 100).ToString("f0"));
+            data.Add("total_fee", (amount * 100m).ToString("f0"));
+            data.Add("refund_fee", (refundAmount * 100m).ToString("f0"));
             data.Add("sign", WxBase.WxBase.Md5Sign(mchKey, data));
             return WxBase.WxBase.ApiPostXmlRequestWithCert(data, mchId, certFileNAME,
                 URL_ORDER_REFUND, true);
@@ -514,7 +514,7 @@ namespace SanJing.ThridPay
         /// <param name="ipAddress">服务器（当前）IP地址</param>
         /// <param name="certFileName">商户密钥文件完整路径</param>
         /// <returns></returns>
-        public static IDictionary<string, object> Transfer(string orderNumber, double amount, string openId,
+        public static IDictionary<string, object> Transfer(string orderNumber, decimal amount, string openId,
             string desc, string appId, string mchId, string mchkey, string ipAddress, string certFileName)
         {
             if (string.IsNullOrWhiteSpace(orderNumber))
@@ -564,7 +564,7 @@ namespace SanJing.ThridPay
             data.Add("partner_trade_no", orderNumber);
             data.Add("openid", openId);
             data.Add("check_name", "NO_CHECK");
-            data.Add("amount", (amount * 100).ToString("f0"));
+            data.Add("amount", (amount * 100m).ToString("f0"));
             data.Add("desc", desc);
             data.Add("spbill_create_ip", ipAddress);
             data.Add("sign", WxBase.WxBase.Md5Sign(mchkey, data));
@@ -590,7 +590,7 @@ namespace SanJing.ThridPay
         /// <param name="remark">备注</param>
         /// <param name="totalNum">红包个数，默认值：1</param>
         /// <returns></returns>
-        public static IDictionary<string, object> RedPack(string orderNumber, double amount, string openId,
+        public static IDictionary<string, object> RedPack(string orderNumber, decimal amount, string openId,
             string sendName, string appId, string mchId, string mchKey, string ipAddress, string certFileName,
             string wishing, string actName, string remark, int totalNum = 1)
         {
@@ -660,7 +660,7 @@ namespace SanJing.ThridPay
             data.Add("mch_billno", orderNumber);
             data.Add("re_openid", openId);
             data.Add("total_num", totalNum);
-            data.Add("total_amount", (amount * 100).ToString("f0"));
+            data.Add("total_amount", (amount * 100m).ToString("f0"));
             data.Add("send_name", sendName);
             data.Add("wishing", wishing);
             data.Add("act_name", actName);

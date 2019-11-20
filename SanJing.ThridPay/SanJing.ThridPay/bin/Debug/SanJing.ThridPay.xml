@@ -19,7 +19,7 @@
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
             <returns>AlipayTradeQueryResponse</returns>
         </member>
-        <member name="M:SanJing.ThridPay.Alipay.PayCallBack(System.Collections.Specialized.NameValueCollection,System.String,System.Action{System.String,System.Double},System.Action{System.Exception})">
+        <member name="M:SanJing.ThridPay.Alipay.PayCallBack(System.Collections.Specialized.NameValueCollection,System.String,System.Action{System.String,System.Decimal},System.Action{System.Exception})">
             <summary>
             支付回调(始终返回成功)
             </summary>
@@ -29,7 +29,7 @@
             <param name="exception">异常处理</param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.ThridPay.Alipay.PayByAPP(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Alipay.PayByAPP(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             支付（APP）
             </summary>
@@ -43,7 +43,7 @@
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.ThridPay.Alipay.PayByFace(System.String,System.String,System.Double,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Alipay.PayByFace(System.String,System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             支付(扫付款码支付)【面对面支付】
             </summary>
@@ -57,7 +57,7 @@
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
             <returns>跳转Url地址</returns>
         </member>
-        <member name="M:SanJing.ThridPay.Alipay.PayByPage(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Alipay.PayByPage(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             支付(电脑H5网页)
             </summary>
@@ -71,7 +71,7 @@
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
             <returns>跳转Url地址</returns>
         </member>
-        <member name="M:SanJing.ThridPay.Alipay.PayByH5(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Alipay.PayByH5(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             支付(手机H5网页)
             </summary>
@@ -85,7 +85,7 @@
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
             <returns>跳转Url地址</returns>
         </member>
-        <member name="M:SanJing.ThridPay.Alipay.Refund(System.String,System.String,System.Double,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Alipay.Refund(System.String,System.String,System.Decimal,System.String,System.String,System.String)">
             <summary>
             退款
             </summary>
@@ -96,7 +96,7 @@
             <param name="app_private_key_path">应用私钥文件完整路径|rsa_private_key.pem</param>
             <param name="alipay_public_key">支付宝公钥(开放平台可查)</param>
         </member>
-        <member name="M:SanJing.ThridPay.Alipay.Transfer(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Alipay.Transfer(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             转账到个人支付宝账户
             </summary>
@@ -126,9 +126,9 @@
             <param name="mchKey">商户密钥</param>
             <returns>订单信息</returns>
         </member>
-        <!-- 对于成员“M:SanJing.ThridPay.Wxpay.PayByMicro(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)”忽略有格式错误的 XML 注释 -->
-        <!-- 对于成员“M:SanJing.ThridPay.Wxpay.PayByH5(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)”忽略有格式错误的 XML 注释 -->
-        <member name="M:SanJing.ThridPay.Wxpay.PayByAPP(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <!-- Badly formed XML comment ignored for member "M:SanJing.ThridPay.Wxpay.PayByMicro(System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:SanJing.ThridPay.Wxpay.PayByH5(System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String)" -->
+        <member name="M:SanJing.ThridPay.Wxpay.PayByAPP(System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             统一下单（移动应用版）
             https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=9_1
@@ -143,7 +143,7 @@
             <param name="ipAddress">服务器（当前）IP地址</param>
             <returns>移动端调起支付需要的参数</returns>
         </member>
-        <member name="M:SanJing.ThridPay.Wxpay.PayByWx(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Wxpay.PayByWx(System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             统一下单（微信内网页和小程序版）
             微信内：https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_1
@@ -160,7 +160,7 @@
             <param name="openId">微信用户编号</param>
             <returns>小程序或微信内网页端调起支付需要的参数</returns>
         </member>
-        <member name="M:SanJing.ThridPay.Wxpay.PayByQR(System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Wxpay.PayByQR(System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             统一下单（扫一扫）（展示二维码供微信扫码支付）
             https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1
@@ -175,8 +175,8 @@
             <param name="ipAddress">服务器（当前）IP地址</param>
             <returns>生成二维码需要的字符串</returns>
         </member>
-        <!-- 对于成员“M:SanJing.ThridPay.Wxpay.PayCallBack(System.IO.Stream,System.String,System.Action{System.String,System.Double},System.Action{System.Exception})”忽略有格式错误的 XML 注释 -->
-        <member name="M:SanJing.ThridPay.Wxpay.Refund(System.String,System.Double,System.String,System.Double,System.String,System.String,System.String,System.String)">
+        <!-- Badly formed XML comment ignored for member "M:SanJing.ThridPay.Wxpay.PayCallBack(System.IO.Stream,System.String,System.Action{System.String,System.Decimal},System.Action{System.Exception})" -->
+        <member name="M:SanJing.ThridPay.Wxpay.Refund(System.String,System.Decimal,System.String,System.Decimal,System.String,System.String,System.String,System.String)">
             <summary>
             统一退款 （支持开放平台，公众号，小程序订单）
             https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_4
@@ -191,7 +191,7 @@
             <param name="certFileNAME">商户密钥完整文件地址</param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.ThridPay.Wxpay.Transfer(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.ThridPay.Wxpay.Transfer(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             企业付款（支持开放平台，公众号，小程序订单）
             https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_2
@@ -207,6 +207,6 @@
             <param name="certFileName">商户密钥文件完整路径</param>
             <returns></returns>
         </member>
-        <!-- 对于成员“M:SanJing.ThridPay.Wxpay.RedPack(System.String,System.Double,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)”忽略有格式错误的 XML 注释 -->
+        <!-- Badly formed XML comment ignored for member "M:SanJing.ThridPay.Wxpay.RedPack(System.String,System.Decimal,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)" -->
     </members>
 </doc>
