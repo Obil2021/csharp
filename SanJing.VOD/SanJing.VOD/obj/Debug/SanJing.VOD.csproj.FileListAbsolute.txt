@@ -1,0 +1,5 @@
+C:\Users\Administrator\source\repos\SanJing.VOD\SanJing.VOD\bin\Debug\SanJing.VOD.dll
+C:\Users\Administrator\source\repos\SanJing.VOD\SanJing.VOD\bin\Debug\SanJing.VOD.pdb
+C:\Users\Administrator\source\repos\SanJing.VOD\SanJing.VOD\obj\Debug\SanJing.VOD.dll
+C:\Users\Administrator\source\repos\SanJing.VOD\SanJing.VOD\obj\Debug\SanJing.VOD.pdb
+C:\Users\Administrator\source\repos\SanJing.VOD\SanJing.VOD\obj\Debug\SanJing.VOD.csprojAssemblyReference.cache
