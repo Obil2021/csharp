@@ -73,8 +73,11 @@ namespace SanJing.Email
             }
 
             //设置邮件发送服务器,服务器根据你使用的邮箱而不同,可以到相应的 邮箱管理后台查看,下面是QQ的
-            SmtpClient client = new SmtpClient("smtp.qq.com", 465)
-                ;
+            SmtpClient client = new SmtpClient("smtp.qq.com", 587);
+
+            //设置使用自定义凭据
+            client.UseDefaultCredentials = false;
+
             //设置发送人的邮箱账号和密码，POP3/SMTP服务要开启, 密码要是POP3/SMTP等服务的授权码
             client.Credentials = new System.Net.NetworkCredential(sendAccount, sendPassword);
 
@@ -161,7 +164,10 @@ namespace SanJing.Email
             }
 
             //设置邮件发送服务器,服务器根据你使用的邮箱而不同,可以到相应的 邮箱管理后台查看,下面是QQ的
-            SmtpClient client = new SmtpClient("smtp.exmail.qq.com", 465);
+            SmtpClient client = new SmtpClient("smtp.exmail.qq.com", 587);
+
+            //设置使用自定义凭据
+            client.UseDefaultCredentials = false;
 
             //设置发送人的邮箱账号和密码，POP3/SMTP服务要开启, 密码要是POP3/SMTP等服务的授权码
             client.Credentials = new System.Net.NetworkCredential(sendAccount, sendPassword);
