@@ -13,3 +13,5 @@ C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\bin\Debug
 C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.csproj.CopyComplete
 C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.dll
 C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\obj\Debug\SanJing.GraphicCode.pdb
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\SanJing.GraphicCode\SanJing.GraphicCode\bin\Debug\Newtonsoft.Json.xml
