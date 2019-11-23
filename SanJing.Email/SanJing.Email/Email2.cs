@@ -1,19 +1,16 @@
-﻿using Limilabs.Mail;
-using Limilabs.Mail.Headers;
-using Limilabs.Mail.MIME;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 
 namespace SanJing.Email
 {
     /// <summary>
-    /// 发送邮箱[https://www.limilabs.com/mail]
+    /// 发送邮箱[System.Net.Mail]
     /// </summary>
-    public class Email
+    public class Email2
     {
         /// <summary>
         ///  发送带附件邮件（QQ邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
@@ -52,24 +49,41 @@ namespace SanJing.Email
                 throw new ArgumentException("IsNullOrEmpty", nameof(body));
             }
 
-            MailBuilder builder = new MailBuilder();
-            builder.From.Add(new MailBox(sendAccount, sendAccount));
-            builder.To.Add(new MailBox(recieveAccount, recieveAccount));
-            builder.Subject = subject;
-            builder.Html = body;
+            MailMessage message = new MailMessage();
+            //设置发件人,发件人需要与设置的邮件发送服务器的邮箱一致
+            MailAddress fromAddr = new MailAddress(sendAccount);
+            message.From = fromAddr;
+
+            //设置收件人,可添加多个,添加方法与下面的一样
+            message.To.Add(recieveAccount);
+
+            //设置邮件标题
+            message.Subject = subject;
+
+            //设置支持HTML
+            message.IsBodyHtml = true;
+
+            //设置邮件内容
+            message.Body = body;
+
+            //设置邮件附件
             foreach (var item in filenames)
             {
-                MimeData image = builder.AddVisual(item);
-                image.ContentId = Path.GetFileName(item);
+                message.Attachments.Add(new Attachment(item));
             }
-            IMail email = builder.Create();
-            using (Limilabs.Client.SMTP.Smtp smtp = new Limilabs.Client.SMTP.Smtp())
-            {
-                smtp.ConnectSSL("smtp.qq.com");
-                smtp.UseBestLogin(sendAccount, sendPassword);
-                var result = smtp.SendMessage(email);
-                return result.Status == Limilabs.Client.SMTP.SendMessageStatus.Success;
-            }
+
+            //设置邮件发送服务器,服务器根据你使用的邮箱而不同,可以到相应的 邮箱管理后台查看,下面是QQ的
+            SmtpClient client = new SmtpClient("smtp.qq.com", 465)
+                ;
+            //设置发送人的邮箱账号和密码，POP3/SMTP服务要开启, 密码要是POP3/SMTP等服务的授权码
+            client.Credentials = new System.Net.NetworkCredential(sendAccount, sendPassword);
+
+            //启用ssl,也就是安全发送
+            client.EnableSsl = true;
+
+            //发送邮件
+            client.Send(message);
+            return true;
         }
         /// <summary>
         ///  发送带附件邮件（QQ邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）
@@ -123,24 +137,41 @@ namespace SanJing.Email
                 throw new ArgumentException("IsNullOrEmpty", nameof(body));
             }
 
-            MailBuilder builder = new MailBuilder();
-            builder.From.Add(new MailBox(sendAccount, sendAccount));
-            builder.To.Add(new MailBox(recieveAccount, recieveAccount));
-            builder.Subject = subject;
-            builder.Html = body;
+            MailMessage message = new MailMessage();
+            //设置发件人,发件人需要与设置的邮件发送服务器的邮箱一致
+            MailAddress fromAddr = new MailAddress(sendAccount);
+            message.From = fromAddr;
+
+            //设置收件人,可添加多个,添加方法与下面的一样
+            message.To.Add(recieveAccount);
+
+            //设置邮件标题
+            message.Subject = subject;
+
+            //设置支持HTML
+            message.IsBodyHtml = true;
+
+            //设置邮件内容
+            message.Body = body;
+
+            //设置邮件附件
             foreach (var item in filenames)
             {
-                MimeData image = builder.AddVisual(item);
-                image.ContentId = Path.GetFileName(item);
+                message.Attachments.Add(new Attachment(item));
             }
-            IMail email = builder.Create();
-            using (Limilabs.Client.SMTP.Smtp smtp = new Limilabs.Client.SMTP.Smtp())
-            {
-                smtp.ConnectSSL("smtp.exmail.qq.com");
-                smtp.UseBestLogin(sendAccount, sendPassword);
-                var result = smtp.SendMessage(email);
-                return result.Status == Limilabs.Client.SMTP.SendMessageStatus.Success;
-            }
+
+            //设置邮件发送服务器,服务器根据你使用的邮箱而不同,可以到相应的 邮箱管理后台查看,下面是QQ的
+            SmtpClient client = new SmtpClient("smtp.exmail.qq.com", 465);
+
+            //设置发送人的邮箱账号和密码，POP3/SMTP服务要开启, 密码要是POP3/SMTP等服务的授权码
+            client.Credentials = new System.Net.NetworkCredential(sendAccount, sendPassword);
+
+            //启用ssl,也就是安全发送
+            client.EnableSsl = true;
+
+            //发送邮件
+            client.Send(message);
+            return true;
         }
         /// <summary>
         ///  发送带附件邮件（QQ企业邮箱，SSL，SMTP）（AppSettings[EmailAccount]，AppSettings[EmailPassword]）

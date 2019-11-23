@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SanJing.Email</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>SanJing.Email</title>
     <authors>37www.com</authors>
     <owners>$author$</owners>
@@ -11,6 +11,6 @@
     <description>SanJing.Email</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright 37www.com 2019</copyright>
-    <tags>Emil QQEmai QQExEmail</tags>
+    <tags>Emil QQEmail QQExEmail</tags>
   </metadata>
 </package>
