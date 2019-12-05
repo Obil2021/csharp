@@ -161,15 +161,20 @@ namespace EXCELTOWEBAPICODE
                 var namespaces = fullexcel.GroupBy(q => q[0]).ToArray();
                 foreach (var item in namespaces)
                 {
-                    var apis = item.GroupBy(q => q[1]).ToArray();
+                    var apis = item.GroupBy(q =>q[1]).ToArray();
                     foreach (var item1 in apis)
                     {
                         var request = item1.Where(q => !string.IsNullOrWhiteSpace(q[3])).ToArray();
                         var response = item1.Where(q => !string.IsNullOrWhiteSpace(q[8])).ToArray();
-                        var code = Properties.Resources.String1.Replace("MvcApplication2", item.Key);
-                        code = code.Replace("UserInfo", item1.Key);
-                        code = code.Replace("userInfo", item1.Key.Substring(0, 1).ToLower() + item1.Key.Substring(1));
-                        code = code.Replace("用户信息", item1.First()[2]);
+                        var tagNamespace = "SanJing.WebApi";
+                        var codeController = Properties.Resources.String1.Replace(tagNamespace, item.Key);
+                        var codeRequest = Properties.Resources.String2.Replace(tagNamespace, item.Key);
+                        var codeResponse = Properties.Resources.String3.Replace(tagNamespace, item.Key);
+                        codeController = codeController.Replace("UserInfo", item1.Key);
+                        codeRequest = codeRequest.Replace("UserInfo", item1.Key);
+                        codeResponse = codeResponse.Replace("UserInfo", item1.Key);
+                        codeController = codeController.Replace("userInfo", item1.Key.Substring(0, 1).ToLower() + item1.Key.Substring(1));
+                        codeController = codeController.Replace("用户信息", item1.First()[2]);
 
                         foreach (var item2 in request)
                         {
@@ -186,9 +191,9 @@ namespace EXCELTOWEBAPICODE
                             propmodel = propmodel.Replace("@string", item2[4]);
                             propmodel = propmodel.Replace("@Password", item2[3]);
                             propmodel = propmodel.Replace("@Value", item2[4].ToLower() == "string" ? " = string.Empty;" : string.Empty);
-                            code = code.Replace("@RequestClass", propmodel);
+                            codeRequest = codeRequest.Replace("@RequestClass", propmodel);
                         }
-                        code = code.Replace("@RequestClass", string.Empty);
+                        codeRequest = codeRequest.Replace("@RequestClass", string.Empty);
 
                         foreach (var item2 in response.GroupBy(q => q[8].Split('.')[0]))
                         {
@@ -201,7 +206,7 @@ namespace EXCELTOWEBAPICODE
             @ResponseClass";
                                 propmodel = propmodel.Replace("@密码", item2.First()[9]);
                                 propmodel = propmodel.Replace("@Password", item2.First()[8]);
-                                code = code.Replace("@ResponseClass", propmodel);
+                                codeResponse = codeResponse.Replace("@ResponseClass", propmodel);
                             }
                             else
                             {
@@ -216,7 +221,7 @@ namespace EXCELTOWEBAPICODE
                                     propmodel = propmodel.Replace("@密码", cla[9]);
                                     propmodel = propmodel.Replace("@string", cla[8] + "Item");
                                     propmodel = propmodel.Replace("@Password", cla[8]);
-                                    code = code.Replace("@ResponseClass", propmodel);
+                                    codeResponse = codeResponse.Replace("@ResponseClass", propmodel);
 
                                     propmodel = @"/// <summary>
             /// @密码
@@ -228,7 +233,7 @@ namespace EXCELTOWEBAPICODE
             @ResponseClass";
                                     propmodel = propmodel.Replace("@密码", cla[9]);
                                     propmodel = propmodel.Replace("@Password", cla[8] + "Item");
-                                    code = code.Replace("@ResponseClass", propmodel);
+                                    codeResponse = codeResponse.Replace("@ResponseClass", propmodel);
                                     foreach (var item3 in item2)
                                     {
                                         if (item3 == cla)
@@ -240,19 +245,34 @@ namespace EXCELTOWEBAPICODE
                 @ResponseClassItem";
                                         propmodel = propmodel.Replace("@密码", item3[9]);
                                         propmodel = propmodel.Replace("@Password", item3[8].Replace(cla[8] + ".", string.Empty));
-                                        code = code.Replace("@ResponseClassItem", propmodel);
+                                        codeResponse = codeResponse.Replace("@ResponseClassItem", propmodel);
                                     }
-                                    code = code.Replace("@ResponseClassItem", string.Empty);
+                                    codeResponse = codeResponse.Replace("@ResponseClassItem", string.Empty);
                                 }
-                                catch(Exception ex)
+                                catch (Exception ex)
                                 {
                                     ERROR_LABLE.Text = $"{item2.Key} FORMAT IS ERROR";
                                     return;
                                 }
                             }
                         }
-                        code = code.Replace("@ResponseClass", string.Empty);
-                        File.WriteAllText($@"{CS_TEXT.Text}\{item1.Key}Controller.cs", code, Encoding.UTF8);
+                        codeResponse = codeResponse.Replace("@ResponseClass", string.Empty);
+                        if (!Directory.Exists(CS_TEXT.Text))
+                        {
+                            ERROR_LABLE.Text = $"{CS_TEXT.Text} DIRECTORY IS NOT EXISTS";
+                            return;
+                        }
+                        if (!Directory.Exists($@"{CS_TEXT.Text}\Controllers"))
+                        {
+                            Directory.CreateDirectory($@"{CS_TEXT.Text}\Controllers");
+                        }
+                        if (!Directory.Exists($@"{CS_TEXT.Text}\Models"))
+                        {
+                            Directory.CreateDirectory($@"{CS_TEXT.Text}\Models");
+                        }
+                        File.WriteAllText($@"{CS_TEXT.Text}\Controllers\{item1.Key}Controller.cs", codeController, Encoding.UTF8);
+                        File.WriteAllText($@"{CS_TEXT.Text}\Models\{item1.Key}Request.cs", codeRequest, Encoding.UTF8);
+                        File.WriteAllText($@"{CS_TEXT.Text}\Models\{item1.Key}Response.cs", codeResponse, Encoding.UTF8);
                     }
                 }
                 ERROR_LABLE.Text = "SUCCESS";

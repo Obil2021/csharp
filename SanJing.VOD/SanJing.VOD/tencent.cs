@@ -1,8 +1,13 @@
-﻿using System;
+﻿using SanJing.VOD.TencentResult;
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 namespace SanJing.VOD
 {
@@ -107,7 +112,7 @@ namespace SanJing.VOD
             strContent += ("&Nonce=" + m_iRandom);
             strContent += ("&SecretId=" + Uri.EscapeDataString(appId));
             strContent += ("&Timestamp=" + m_qwNowTime);
-            strContent += "&Version=2018-07-17";
+            strContent += ("&Version=" + "2018-07-17");
             strContent += ("&Signature=" + signature(appKey, $"GETvod.tencentcloudapi.com/?{strContent}"));
             string apiUrl = "https://vod.tencentcloudapi.com/?" + strContent;
             using (System.Net.WebClient wc = new System.Net.WebClient())
@@ -118,6 +123,218 @@ namespace SanJing.VOD
                 {
                     throw new Exception(result);
                 }
+            }
+        }
+        /// <summary>
+        /// 修改指定视频名称
+        /// </summary>
+        /// <param name="videoid">视频ID</param>
+        /// <param name="name">视频名称</param>
+        /// <param name="appId">APPID</param>
+        /// <param name="appKey">APPKEY</param>
+        public static void UpdateName(string videoid, string name, string appId, string appKey)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("name", "IsNullOrWhiteSpace");
+            }
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            var m_qwNowTime = Convert.ToInt64(ts.TotalSeconds);
+            var m_iRandom = random.Next(10000000, 100000000);
+
+            string strContent = "Action=ModifyMediaInfo";
+            strContent += ("&FileId=" + videoid);
+            strContent += ("&Name=" + name);
+            strContent += ("&Nonce=" + m_iRandom);
+            strContent += ("&SecretId=" + Uri.EscapeDataString(appId));
+            strContent += ("&Timestamp=" + m_qwNowTime);
+            strContent += ("&Version=" + "2018-07-17");
+            strContent += ("&Signature=" + signature(appKey, $"GETvod.tencentcloudapi.com/?{strContent}"));
+            string apiUrl = "https://vod.tencentcloudapi.com/?" + strContent;
+            using (System.Net.WebClient wc = new System.Net.WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                var result = wc.DownloadString(apiUrl);
+                if (result.Contains("Error"))
+                {
+                    throw new Exception(result);
+                }
+            }
+        }
+        /// <summary>
+        /// 修改指定视频封面
+        /// </summary>
+        /// <param name="videoid">视频ID</param>
+        ///  <param name="fullfilename">图片完整地址【jpeg|png】</param>
+        /// <param name="appId">APPID</param>
+        /// <param name="appKey">APPKEY</param>
+        public static string UpdateCover(string videoid, string fullfilename, string appId, string appKey)
+        {
+            if (string.IsNullOrWhiteSpace(fullfilename))
+            {
+                throw new ArgumentNullException("fullfilename", "IsNullOrWhiteSpace");
+            }
+            if (!File.Exists(fullfilename))
+                throw new ArgumentNullException("fullfilename", $"{fullfilename} 不存在");
+            string ex = Path.GetExtension(fullfilename).ToLower();
+            if (!new[] { ".jpeg", ".jpg", ".png" }.Contains(ex))
+            {
+                throw new ArgumentException("fullfilename", $"{fullfilename} 不支持的图片格式");
+            }
+            string coverdata = string.Empty;
+            using (Bitmap bmp = new Bitmap(fullfilename))
+            {
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    if (ex == ".jpeg" || ex == ".jpg")
+                    {
+                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                    else
+                    {
+                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                    byte[] arr = new byte[ms.Length];
+                    ms.Position = 0;
+                    ms.Read(arr, 0, (int)ms.Length);
+                    coverdata = Convert.ToBase64String(arr);
+                }
+            }
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            var m_qwNowTime = Convert.ToInt64(ts.TotalSeconds);
+            var m_iRandom = random.Next(10000000, 100000000);
+
+            var strContent = $"POSTvod.tencentcloudapi.com/?Action=ModifyMediaInfo&CoverData={coverdata}&FileId={videoid}&Language=zh-CN&Nonce={m_iRandom}&Region=&SecretId={appId}&Timestamp={m_qwNowTime}&Token=&Version=2018-07-17";
+            var strSignature = signature(appKey, strContent);
+            var kvContent = strContent.Split('?')[1].Split('&');
+            var kvSortedDictionary = new SortedDictionary<string, string>();
+            foreach (var item in kvContent)
+            {
+                kvSortedDictionary.Add(item.Split('=')[0], HttpUtility.UrlEncode(item.Split('=')[1]));
+            }
+            kvSortedDictionary.Add("Signature", HttpUtility.UrlEncode(strSignature));
+            string strPost = string.Join("&", kvSortedDictionary.Select(q => $"{q.Key}={q.Value}"));
+            string apiUrl = "https://vod.tencentcloudapi.com/?";
+            using (System.Net.WebClient wc = new System.Net.WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                wc.Headers[System.Net.HttpRequestHeader.Host] = "vod.tencentcloudapi.com";
+                wc.Headers[System.Net.HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                var result = wc.UploadString(apiUrl, "POST", strPost);
+                if (result.Contains("Error"))
+                {
+                    throw new Exception(result);
+                }
+                var updateCoverResult = Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateCoverResult>(result);
+                return updateCoverResult.Response.CoverUrl;
+            }
+        }
+        /// <summary>
+        /// 修改指定视频名称及封面
+        /// </summary>
+        /// <param name="videoid">视频ID</param>
+        /// <param name="name">视频名称</param>
+        ///  <param name="fullfilename">图片完整地址【jpeg|png】</param>
+        /// <param name="appId">APPID</param>
+        /// <param name="appKey">APPKEY</param>
+        public static string UpdateNameAndCover(string videoid, string name, string fullfilename, string appId, string appKey)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("name", "IsNullOrWhiteSpace");
+            }
+            if (string.IsNullOrWhiteSpace(fullfilename))
+            {
+                throw new ArgumentNullException("fullfilename", "IsNullOrWhiteSpace");
+            }
+            if (!File.Exists(fullfilename))
+                throw new ArgumentNullException("fullfilename", $"{fullfilename} 不存在");
+            string ex = Path.GetExtension(fullfilename).ToLower();
+            if (!new[] { ".jpeg", ".jpg", ".png" }.Contains(ex))
+            {
+                throw new ArgumentException("fullfilename", $"{fullfilename} 不支持的图片格式");
+            }
+            string coverdata = string.Empty;
+            using (Bitmap bmp = new Bitmap(fullfilename))
+            {
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    if (ex == ".jpeg" || ex == ".jpg")
+                    {
+                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                    else
+                    {
+                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                    byte[] arr = new byte[ms.Length];
+                    ms.Position = 0;
+                    ms.Read(arr, 0, (int)ms.Length);
+                    coverdata = Convert.ToBase64String(arr);
+                }
+            }
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            var m_qwNowTime = Convert.ToInt64(ts.TotalSeconds);
+            var m_iRandom = random.Next(10000000, 100000000);
+
+            var strContent = $"POSTvod.tencentcloudapi.com/?Action=ModifyMediaInfo&CoverData={coverdata}&FileId={videoid}&Language=zh-CN&Name={name}&Nonce={m_iRandom}&Region=&SecretId={appId}&Timestamp={m_qwNowTime}&Token=&Version=2018-07-17";
+            var strSignature = signature(appKey, strContent);
+            var kvContent = strContent.Split('?')[1].Split('&');
+            var kvSortedDictionary = new SortedDictionary<string, string>();
+            foreach (var item in kvContent)
+            {
+                kvSortedDictionary.Add(item.Split('=')[0], HttpUtility.UrlEncode(item.Split('=')[1]));
+            }
+            kvSortedDictionary.Add("Signature", HttpUtility.UrlEncode(strSignature));
+            string strPost = string.Join("&", kvSortedDictionary.Select(q => $"{q.Key}={q.Value}"));
+            string apiUrl = "https://vod.tencentcloudapi.com/?";
+            using (System.Net.WebClient wc = new System.Net.WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                wc.Headers[System.Net.HttpRequestHeader.Host] = "vod.tencentcloudapi.com";
+                wc.Headers[System.Net.HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                var result = wc.UploadString(apiUrl, "POST", strPost);
+                if (result.Contains("Error"))
+                {
+                    throw new Exception(result);
+                }
+                var updateCoverResult = Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateCoverResult>(result);
+                return updateCoverResult.Response.CoverUrl;
+            }
+        }
+        /// <summary>
+        /// 查询指定视频基础信息
+        /// </summary>
+        /// <param name="videoid">视频ID</param>
+        /// <param name="appId">APPID</param>
+        /// <param name="appKey">APPKEY</param>
+        public static BasicInfo SelectBasicInfo(string videoid, string appId, string appKey)
+        {
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            var m_qwNowTime = Convert.ToInt64(ts.TotalSeconds);
+            var m_iRandom = random.Next(10000000, 100000000);
+
+            string strContent = "Action=DescribeMediaInfos";
+            strContent += ("&FileIds.0=" + videoid);
+            strContent += ("&Filters.0=" + "basicInfo");
+            strContent += ("&Nonce=" + m_iRandom);
+            strContent += ("&SecretId=" + Uri.EscapeDataString(appId));
+            strContent += ("&Timestamp=" + m_qwNowTime);
+            strContent += ("&Version=" + "2018-07-17");
+            strContent += ("&Signature=" + signature(appKey, $"GETvod.tencentcloudapi.com/?{strContent}"));
+            string apiUrl = "https://vod.tencentcloudapi.com/?" + strContent;
+            using (System.Net.WebClient wc = new System.Net.WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                var result = wc.DownloadString(apiUrl);
+                if (result.Contains("Error"))
+                {
+                    throw new Exception(result);
+                }
+                var selectBasicInfoResult = Newtonsoft.Json.JsonConvert.DeserializeObject<SelectBasicInfoResult>(result);
+                return selectBasicInfoResult.Response.MediaInfoSet[0].BasicInfo;
             }
         }
     }

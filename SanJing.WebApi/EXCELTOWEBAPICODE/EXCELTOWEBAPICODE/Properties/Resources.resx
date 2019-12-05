@@ -118,9 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="String1" xml:space="preserve">
-    <value>using System;
+    <value>using SanJing.WebApi.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -128,7 +129,7 @@ using System.Web;
 using System.Web.Http;
 using WebApi.OutputCache.V2;
 
-namespace MvcApplication2.Controllers
+namespace SanJing.WebApi.Controllers
 {
     /// &lt;summary&gt;
     /// 用户信息
@@ -146,17 +147,17 @@ namespace MvcApplication2.Controllers
         {
             //验证
             if (!ModelState.IsValid)
-                return Models.HTTPResponse.CreateHTTPResponseErrorValid&lt;UserInfoResponse&gt;(ModelState);
+                return HTTPResponse.CreateHTTPResponseErrorValid&lt;UserInfoResponse&gt;(ModelState);
 
             //身份
-            if (!Models.HTTPToken.TryGetUserId(userInfo.Token, out int userid))
-                return Models.HTTPResponse.CreateHTTPResponseErrorToken&lt;UserInfoResponse&gt;();
+            if (!HTTPToken.TryGetUserId(userInfo.Token, out int userid))
+                return HTTPResponse.CreateHTTPResponseErrorToken&lt;UserInfoResponse&gt;();
 
             var result = new UserInfoResponse();
             //to do
 
             //记录
-            Models.HTTPLog.WriteLog(new Models.HTTPLog()
+            HTTPLog.WriteLog(new HTTPLog()
             {
                 UserId = userid,
                 UserRole = 0,
@@ -166,7 +167,6 @@ namespace MvcApplication2.Controllers
                 IPAddress = HttpContext.Current.Request.UserHostAddress
             });
             return result;
-
         }
 
         /// &lt;summary&gt;
@@ -179,17 +179,17 @@ namespace MvcApplication2.Controllers
         {
             //验证
             if (!ModelState.IsValid)
-                return Models.HTTPResponse.CreateHTTPResponseErrorValid&lt;UserInfoResponse&gt;(ModelState);
+                return HTTPResponse.CreateHTTPResponseErrorValid&lt;UserInfoResponse&gt;(ModelState);
 
             //身份
-            if (!Models.HTTPToken.TryGetUserId(userInfo.Token, out int userid))
-                return Models.HTTPResponse.CreateHTTPResponseErrorToken&lt;UserInfoResponse&gt;();
+            if (!HTTPToken.TryGetUserId(userInfo.Token, out int userid))
+                return HTTPResponse.CreateHTTPResponseErrorToken&lt;UserInfoResponse&gt;();
 
             var result = new UserInfoResponse();
             //to do
 
             //记录
-            Models.HTTPLog.WriteLog(new Models.HTTPLog()
+            HTTPLog.WriteLog(new HTTPLog()
             {
                 UserId = userid,
                 UserRole = 0,
@@ -199,22 +199,33 @@ namespace MvcApplication2.Controllers
                 IPAddress = HttpContext.Current.Request.UserHostAddress
             });
             return result;
+        }
+    }
+}</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>using System.ComponentModel.DataAnnotations;
 
-        }
-        /// &lt;summary&gt;
-        /// 请求模型
-        /// &lt;/summary&gt;
-        public class UserInfoRequest : Models.HTTPRequst
-        {
+namespace SanJing.WebApi.Models
+{
+    /// &lt;summary&gt;
+    /// 请求模型
+    /// &lt;/summary&gt;
+    public class UserInfoRequest : HTTPRequst
+    {
             @RequestClass
-        }
-        /// &lt;summary&gt;
-        /// 返回模型
-        /// &lt;/summary&gt;
-        public class UserInfoResponse : Models.HTTPResponse
-        {
-            @ResponseClass
-        }
+    }
+}</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>namespace SanJing.WebApi.Models
+{
+    /// &lt;summary&gt;
+    /// 返回模型
+    /// &lt;/summary&gt;
+    public class UserInfoResponse : HTTPResponse
+    {
+           @ResponseClass
     }
 }</value>
   </data>

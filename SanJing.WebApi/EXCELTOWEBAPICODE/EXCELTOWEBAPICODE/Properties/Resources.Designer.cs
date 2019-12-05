@@ -61,9 +61,10 @@ namespace EXCELTOWEBAPICODE.Properties {
         }
         
         /// <summary>
-        ///   查找类似 using System;
+        ///   查找类似 using SanJing.WebApi.Models;
+        ///using System;
         ///using System.Collections.Generic;
-        ///using System.ComponentModel.DataAnnotations;
+        ///using System.Data.Entity;
         ///using System.Linq;
         ///using System.Net;
         ///using System.Net.Http;
@@ -71,7 +72,7 @@ namespace EXCELTOWEBAPICODE.Properties {
         ///using System.Web.Http;
         ///using WebApi.OutputCache.V2;
         ///
-        ///namespace MvcApplication2.Controllers
+        ///namespace SanJing.WebApi.Controllers
         ///{
         ///    /// &lt;summary&gt;
         ///    /// 用户信息
@@ -81,12 +82,49 @@ namespace EXCELTOWEBAPICODE.Properties {
         ///        /// &lt;summary&gt;
         ///        /// 用户信息
         ///        /// &lt;/summary&gt;
-        ///        /// &lt;param name=&quot;userInfo&quot;&gt;请求实例&lt;/param&gt;
-        ///        / [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///        /// &lt;param name=&quot;userInfo&quot;&gt;请求实例&lt;/param&gt;        /// [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string String1 {
             get {
                 return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 using System.ComponentModel.DataAnnotations;
+        ///
+        ///namespace SanJing.WebApi.Models
+        ///{
+        ///    /// &lt;summary&gt;
+        ///    /// 请求模型
+        ///    /// &lt;/summary&gt;
+        ///    public class UserInfoRequest : HTTPRequst
+        ///    {
+        ///            @RequestClass
+        ///    }
+        ///} 的本地化字符串。
+        /// </summary>
+        internal static string String2 {
+            get {
+                return ResourceManager.GetString("String2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 namespace SanJing.WebApi.Models
+        ///{
+        ///    /// &lt;summary&gt;
+        ///    /// 返回模型
+        ///    /// &lt;/summary&gt;
+        ///    public class UserInfoResponse : HTTPResponse
+        ///    {
+        ///           @ResponseClass
+        ///    }
+        ///} 的本地化字符串。
+        /// </summary>
+        internal static string String3 {
+            get {
+                return ResourceManager.GetString("String3", resourceCulture);
             }
         }
     }
