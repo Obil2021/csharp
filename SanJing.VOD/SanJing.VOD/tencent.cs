@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -162,7 +163,7 @@ namespace SanJing.VOD
             }
         }
         /// <summary>
-        /// 修改指定视频封面
+        /// 修改指定视频封面(小于1M)
         /// </summary>
         /// <param name="videoid">视频ID</param>
         ///  <param name="fullfilename">图片完整地址【jpeg|png】</param>
@@ -182,7 +183,7 @@ namespace SanJing.VOD
                 throw new ArgumentException("fullfilename", $"{fullfilename} 不支持的图片格式");
             }
             string coverdata = string.Empty;
-            using (Bitmap bmp = new Bitmap(fullfilename))
+            using (Image bmp = resizeImage(Image.FromFile(fullfilename), new Size() { Height = 300, Width = 500 }))
             {
 
                 using (MemoryStream ms = new MemoryStream())
@@ -230,8 +231,40 @@ namespace SanJing.VOD
                 return updateCoverResult.Response.CoverUrl;
             }
         }
+        private static Image resizeImage(Image imgToResize, Size size)
+        {
+            //获取图片宽度
+            int sourceWidth = imgToResize.Width;
+            //获取图片高度
+            int sourceHeight = imgToResize.Height;
+
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+            //计算宽度的缩放比例
+            nPercentW = ((float)size.Width / (float)sourceWidth);
+            //计算高度的缩放比例
+            nPercentH = ((float)size.Height / (float)sourceHeight);
+
+            if (nPercentH < nPercentW)
+                nPercent = nPercentH;
+            else
+                nPercent = nPercentW;
+            //期望的宽度
+            int destWidth = (int)(sourceWidth * nPercent);
+            //期望的高度
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            Bitmap b = new Bitmap(destWidth, destHeight);
+            Graphics g = Graphics.FromImage(b);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            //绘制图像
+            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+            g.Dispose();
+            return b;
+        }
         /// <summary>
-        /// 修改指定视频名称及封面
+        /// 修改指定视频名称及封面(小于1M)
         /// </summary>
         /// <param name="videoid">视频ID</param>
         /// <param name="name">视频名称</param>
@@ -256,7 +289,7 @@ namespace SanJing.VOD
                 throw new ArgumentException("fullfilename", $"{fullfilename} 不支持的图片格式");
             }
             string coverdata = string.Empty;
-            using (Bitmap bmp = new Bitmap(fullfilename))
+            using (Image bmp = resizeImage(Image.FromFile(fullfilename), new Size() { Height = 300, Width = 500 }))
             {
 
                 using (MemoryStream ms = new MemoryStream())
