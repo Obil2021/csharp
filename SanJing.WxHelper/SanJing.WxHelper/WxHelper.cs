@@ -8,7 +8,7 @@ namespace SanJing.WxHelper
     public class WxHelper
     {
         private const string URL_LOGIN_LITE = "https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code";
-        private const string URL_TEMPLATE_SEND = "https://api.weixin.qq.com/cgi-bin/IsNullOrWhiteSpace/template/send?access_token={0}";
+        private const string URL_TEMPLATE_SEND = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={0}";
         private const string URL_ACCESS_TOKEN = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
         private const string URL_LOGIN_H5_AUTH = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope={2}&state={3}#wechat_redirect";
         private const string URL_LOGIN_H5ORMOBILE = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code";
@@ -86,6 +86,65 @@ namespace SanJing.WxHelper
             }
             return accessToken;
         }
+        /// <summary>
+        /// JSConfig参数（仅支持公众号）
+        /// </summary>
+        /// <param name="url">页面完整地址（含参数）</param>
+        /// <param name="appId">APPID</param>
+        /// <param name="accessToken">Access_Token</param>
+        /// <param name="jsapiTicketCacheFileName">TICKET缓存文件完整路劲（全局）</param>
+        /// <returns></returns>
+        public static Dictionary<string, object> GetJsConfig(string url, string appId,
+            string accessToken, string jsapiTicketCacheFileName)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(url));
+            }
+            if (string.IsNullOrWhiteSpace(accessToken))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(accessToken));
+            }
+
+            if (string.IsNullOrWhiteSpace(jsapiTicketCacheFileName))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(jsapiTicketCacheFileName));
+            }
+
+            string jsapi_ticket;
+            if (!WxBase.WxBase.ReadCacheTicket(jsapiTicketCacheFileName, out jsapi_ticket))
+            {
+                var ticketurl = string.Format(URL_GETTICKET, accessToken);
+                var tickettemp = WxBase.WxBase.ApiGetRequest(ticketurl, true);
+                jsapi_ticket = tickettemp["ticket"].ToString();
+                WxBase.WxBase.WriteCacheTicket(jsapiTicketCacheFileName, jsapi_ticket, DateTime.Now.AddSeconds(Convert.ToDouble(tickettemp["expires_in"])));
+            }
+            var data = new Dictionary<string, object>();
+            data.Add("noncestr", WxBase.WxBase.NonceStr());
+            data.Add("jsapi_ticket", jsapi_ticket);
+            data.Add("timestamp", WxBase.WxBase.TimeStamp());
+            data.Add("url", url);
+
+
+            data.Add("signature", WxBase.WxBase.Sha1Sign(data));
+            data.Add("appId", appId);
+            return data;
+        }
+        /// <summary>
+        /// JSConfig参数（仅支持公众号）
+        /// </summary>
+        /// <param name="url">页面完整地址（含参数）</param>
+        /// <param name="appId">APPID</param>
+        /// <param name="appkey">APPKEY</param>
+        /// <param name="accessTokenCacheFileName">Access_Token缓存文件完整路劲（全局）</param>
+        /// <param name="jsapiTicketCacheFileName">TICKET缓存文件完整路劲（全局）</param>
+        /// <returns></returns>
+        public static Dictionary<string, object> GetJsConfig(string url, string appId,
+           string appkey, string accessTokenCacheFileName, string jsapiTicketCacheFileName)
+        {
+            return GetJsConfig(url, appId, GetAccessToken(appId, appkey, accessTokenCacheFileName), jsapiTicketCacheFileName);
+        }
+
         /// <summary>
         /// JSConfig代码（仅支持公众号）
         /// </summary>

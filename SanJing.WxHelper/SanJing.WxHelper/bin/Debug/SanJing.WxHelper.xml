@@ -24,6 +24,27 @@
             <param name="accessTokenCacheFileName">TOKEN缓存文件完整路劲（全局）</param>
             <returns></returns>
         </member>
+        <member name="M:SanJing.WxHelper.WxHelper.GetJsConfig(System.String,System.String,System.String,System.String)">
+            <summary>
+            JSConfig参数（仅支持公众号）
+            </summary>
+            <param name="url">页面完整地址（含参数）</param>
+            <param name="appId">APPID</param>
+            <param name="accessToken">Access_Token</param>
+            <param name="jsapiTicketCacheFileName">TICKET缓存文件完整路劲（全局）</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.WxHelper.WxHelper.GetJsConfig(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            JSConfig参数（仅支持公众号）
+            </summary>
+            <param name="url">页面完整地址（含参数）</param>
+            <param name="appId">APPID</param>
+            <param name="appkey">APPKEY</param>
+            <param name="accessTokenCacheFileName">Access_Token缓存文件完整路劲（全局）</param>
+            <param name="jsapiTicketCacheFileName">TICKET缓存文件完整路劲（全局）</param>
+            <returns></returns>
+        </member>
         <member name="M:SanJing.WxHelper.WxHelper.GetJsConfigCode(System.String,System.String[],System.Boolean,System.String,System.String,System.String)">
             <summary>
             JSConfig代码（仅支持公众号）
