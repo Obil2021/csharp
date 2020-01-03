@@ -7,3 +7,11 @@ C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\bin\Debug\MariGold.HtmlPars
 C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.CopyComplete
 C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.xml
 C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csprojAssemblyReference.cache
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.xml
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.dll
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.pdb
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\bin\Debug\MariGold.HtmlParser.dll
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.CoreCompileInputs.cache
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.CopyComplete
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.dll
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.pdb
