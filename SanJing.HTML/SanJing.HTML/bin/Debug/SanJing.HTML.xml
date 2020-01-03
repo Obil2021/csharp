@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.HTML</name>
+    </assembly>
+    <members>
+        <member name="T:SanJing.HTML.Html">
+            <summary>
+            HTML解析
+            </summary>
+        </member>
+        <member name="M:SanJing.HTML.Html.GetHtmlNodeByTag(System.String,System.String)">
+            <summary>
+            根据标签名获取节点
+            </summary>
+            <param name="htmlCode">HTML代码</param>
+            <param name="tagName">标签名</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.HTML.Html.GetHtmlNodeByTag(MariGold.HtmlParser.IHtmlNode,System.String,System.Collections.Generic.List{MariGold.HtmlParser.IHtmlNode})">
+            <summary>
+            根据标签名获取节点
+            </summary>
+            <param name="htmlNode">节点</param>
+            <param name="tagName">标签名</param>
+            <param name="result"></param>
+        </member>
+        <member name="M:SanJing.HTML.Html.GetHtmlNodeByAttr(System.String,System.String,System.String)">
+            <summary>
+            根据属性和值获取节点
+            </summary>
+            <param name="htmlCode">HTML代码</param>
+            <param name="attrName">属性名</param>
+            <param name="attrValue">属性值|class用匹配，其他用相等</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.HTML.Html.GetHtmlNodeByAttr(MariGold.HtmlParser.IHtmlNode,System.String,System.String,System.Collections.Generic.List{MariGold.HtmlParser.IHtmlNode})">
+            <summary>
+            根据属性和值获取节点
+            </summary>
+            <param name="htmlNode">节点</param>
+            <param name="attrName">属性名</param>
+            <param name="attrValue">属性值|class用匹配，其他用相等</param>
+            <param name="result"></param>
+        </member>
+        <member name="M:SanJing.HTML.Html.GetText(System.String)">
+            <summary>
+            获取HTML中所有文本
+            </summary>
+            <param name="htmlCode">HTML代码</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.HTML.Html.GetText(MariGold.HtmlParser.IHtmlNode,System.Text.StringBuilder)">
+            <summary>
+            获取节点中所有文本
+            </summary>
+            <param name="htmlNode">节点</param>
+            <param name="result"></param>
+        </member>
+        <member name="M:SanJing.HTML.Html.GetTagAttr(System.String,System.String,System.String)">
+            <summary>
+            获取HTML中指定标签名的指定属性
+            </summary>
+            <param name="htmlCode">HTML代码</param>
+            <param name="tagName">标签名</param>
+            <param name="attrName">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.HTML.Html.GetTagAttr(MariGold.HtmlParser.IHtmlNode,System.String,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            获取节点中指定标签名的指定属性
+            </summary>
+            <param name="htmlNode">节点</param>
+            <param name="tagName">标签名</param>
+            <param name="attrName">属性名</param>
+            <param name="result"></param>
+        </member>
+    </members>
+</doc>

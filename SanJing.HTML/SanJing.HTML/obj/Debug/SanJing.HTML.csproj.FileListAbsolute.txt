@@ -1,0 +1,9 @@
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.dll
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.pdb
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.CoreCompileInputs.cache
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.dll
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.pdb
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\bin\Debug\MariGold.HtmlParser.dll
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.CopyComplete
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.xml
+C:\Users\home\source\repos\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csprojAssemblyReference.cache
