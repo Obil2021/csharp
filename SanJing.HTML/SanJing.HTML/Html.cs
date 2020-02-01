@@ -72,7 +72,7 @@ namespace SanJing.HTML
         /// <returns></returns>
         public static string GetHtmlText(string htmlCode)
         {
-            return string.Join(string.Empty, GetHtmlTags(htmlCode).Where(q => q.IsText));
+            return string.Join(string.Empty, GetHtmlTags(htmlCode).Where(q => q.IsText).Select(q => q.InnerText));
         }
 
         /// <summary>

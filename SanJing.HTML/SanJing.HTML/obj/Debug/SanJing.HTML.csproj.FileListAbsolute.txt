@@ -15,3 +15,4 @@ C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.Co
 C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.CopyComplete
 C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.dll
 C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.pdb
+C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csprojAssemblyReference.cache
