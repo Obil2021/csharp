@@ -16,3 +16,10 @@ C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.Co
 C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.dll
 C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.pdb
 C:\Users\home\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.xml
+C:\Users\Administrator\Desktop\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.dll
+C:\Users\Administrator\Desktop\SanJing.HTML\SanJing.HTML\bin\Debug\SanJing.HTML.pdb
+C:\Users\Administrator\Desktop\SanJing.HTML\SanJing.HTML\bin\Debug\MariGold.HtmlParser.dll
+C:\Users\Administrator\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.csproj.CopyComplete
+C:\Users\Administrator\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.dll
+C:\Users\Administrator\Desktop\SanJing.HTML\SanJing.HTML\obj\Debug\SanJing.HTML.pdb
