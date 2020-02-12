@@ -8,6 +8,15 @@ namespace SanJing.MsgPush
 {
     public class Huawei
     {
+        /// <summary>
+        /// 华为推送
+        /// </summary>
+        /// <param name="appid">APPID</param>
+        /// <param name="appkey">APPKEY</param>
+        /// <param name="msg">消息</param>
+        /// <param name="title">标题</param>
+        /// <param name="tags">目标ID</param>
+        /// <returns></returns>
         public static string Push(string appid, string appkey, string msg, string title, string[] tags)
         {
 

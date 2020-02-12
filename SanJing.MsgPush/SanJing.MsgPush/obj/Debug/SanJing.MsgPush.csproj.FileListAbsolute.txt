@@ -7,3 +7,11 @@ C:\Users\Administrator\source\repos\SanJing.MsgPush\SanJing.MsgPush\obj\Debug\Sa
 C:\Users\Administrator\source\repos\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Administrator\source\repos\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Administrator\source\repos\SanJing.MsgPush\SanJing.MsgPush\obj\Debug\SanJing.MsgPush.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\obj\Debug\SanJing.MsgPush.dll
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\obj\Debug\SanJing.MsgPush.pdb
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\SanJing.MsgPush.dll
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\SanJing.MsgPush.pdb
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\SanJing.Hash.dll
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\obj\Debug\SanJing.MsgPush.csproj.CopyComplete

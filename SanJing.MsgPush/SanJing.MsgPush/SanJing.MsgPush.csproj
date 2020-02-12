@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="Huawei.cs" />
     <Compile Include="Jiguang.cs" />
+    <Compile Include="Meizu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xiaomi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

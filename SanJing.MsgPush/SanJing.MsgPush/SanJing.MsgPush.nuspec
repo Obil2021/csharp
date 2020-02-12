@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SanJing.MsgPush</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>SanJing.MsgPush</title>
     <authors>37www.com</authors>
     <owners>37www.com</owners>
@@ -12,6 +12,6 @@
     <description>SanJing.MsgPush</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>Jiguang Huawei</tags>
+    <tags>Jiguang Huawei Xiaomi Meizu</tags>
   </metadata>
 </package>

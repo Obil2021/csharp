@@ -17,9 +17,9 @@ namespace SanJing.MsgPush
         /// <summary>
         /// 广播所有设备
         /// </summary>
-        /// <param name="msg">消息内容</param>
         /// <param name="appId">app_key</param>
         /// <param name="appKey">masterSecret</param>
+        /// <param name="msg">消息内容</param>
         /// <returns></returns>
         public static string Push(string appId, string appKey, string msg)
         {
@@ -51,10 +51,10 @@ namespace SanJing.MsgPush
         /// <summary>
         /// 指定设备推送
         /// </summary>
-        /// <param name="msg">详细内容</param>
-        /// <param name="registrationId">已注册设备标识</param>
         /// <param name="appId">app_key</param>
         /// <param name="appKey">masterSecret</param>
+        /// <param name="msg">详细内容</param>
+        /// <param name="registrationId">已注册设备标识</param>
         /// <returns></returns>
         public static string Push(string appId, string appKey, string msg, string registrationId)
         {
