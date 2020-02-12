@@ -15,3 +15,5 @@ C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\Newtons
 C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\SanJing.Hash.dll
 C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\obj\Debug\SanJing.MsgPush.csproj.CopyComplete
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\bin\Debug\SanJing.MsgPush.xml
+C:\Users\Administrator\Desktop\SanJing.MsgPush\SanJing.MsgPush\obj\Debug\SanJing.MsgPush.csprojAssemblyReference.cache

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SanJing.MsgPush</name>
+    </assembly>
+    <members>
+        <member name="M:SanJing.MsgPush.Huawei.Push(System.String,System.String,System.String,System.String,System.String[])">
+            <summary>
+            华为推送
+            </summary>
+            <param name="appid">APPID</param>
+            <param name="appkey">APPKEY</param>
+            <param name="msg">消息</param>
+            <param name="title">标题</param>
+            <param name="tags">目标ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:SanJing.MsgPush.Jiguang">
+            <summary>
+            极光推送
+            </summary>
+        </member>
+        <member name="M:SanJing.MsgPush.Jiguang.Push(System.String,System.String,System.String)">
+            <summary>
+            广播所有设备
+            </summary>
+            <param name="appId">app_key</param>
+            <param name="appKey">masterSecret</param>
+            <param name="msg">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.MsgPush.Jiguang.Push(System.String,System.String,System.String,System.String)">
+            <summary>
+            指定设备推送
+            </summary>
+            <param name="appId">app_key</param>
+            <param name="appKey">masterSecret</param>
+            <param name="msg">详细内容</param>
+            <param name="registrationId">已注册设备标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.MsgPush.Meizu.Push(System.String,System.String,System.String,System.String[])">
+            <summary>
+            魅族推送
+            </summary>
+            <param name="appId">APPID</param>
+            <param name="appKey">APPKEY</param>
+            <param name="msg">消息</param>
+            <param name="tags">目标ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.MsgPush.Xiaomi.Push(System.String,System.String,System.String,System.String,System.String[])">
+            <summary>
+            小米推送，安卓版
+            </summary>
+            <param name="appKey">密钥</param>
+            <param name="appPackageName">App的包名</param>
+            <param name="msg">消息</param>
+            <param name="title">标题</param>
+            <param name="tags">目标ID</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
