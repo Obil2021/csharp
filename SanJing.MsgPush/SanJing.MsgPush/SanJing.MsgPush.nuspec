@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SanJing.MsgPush</id>
+    <version>1.0.1</version>
+    <title>SanJing.MsgPush</title>
+    <authors>37www.com</authors>
+    <owners>37www.com</owners>
+    <licenseUrl>https://github.com/37www/csharp</licenseUrl>
+    <projectUrl>https://github.com/37www/csharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SanJing.MsgPush</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2020</copyright>
+    <tags>Jiguang Huawei</tags>
+  </metadata>
+</package>
