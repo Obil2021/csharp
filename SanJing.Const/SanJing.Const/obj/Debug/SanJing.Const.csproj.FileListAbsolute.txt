@@ -1,0 +1,12 @@
+C:\Users\home\source\repos\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.dll
+C:\Users\home\source\repos\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.pdb
+C:\Users\home\source\repos\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.csproj.CoreCompileInputs.cache
+C:\Users\home\source\repos\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.dll
+C:\Users\home\source\repos\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.pdb
+C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.dll
+C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.pdb
+C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.csproj.CoreCompileInputs.cache
+C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.dll
+C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.pdb
+C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.xml
+C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.csprojAssemblyReference.cache
