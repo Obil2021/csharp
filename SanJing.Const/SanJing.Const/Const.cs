@@ -1,10 +1,24 @@
 ﻿using System;
 namespace SanJing
 {
+    /// <summary>
+    /// 常量
+    /// </summary>
     public class Const
     {
+        /// <summary>
+        /// 日期格式
+        /// </summary>
         public const string DATE_YYYYMMDD = "yyyy-MM-dd";
+        /// <summary>
+        /// /// <summary>
+        /// 日期格式
+        /// </summary>
+        /// </summary>
         public const string DATE_YYYYMMDDHHMM = "yyyy-MM-dd HH:mm";
+        /// <summary>
+        /// 日期格式
+        /// </summary>
         public const string DATE_YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss";
         /// <summary>
         /// 随机种子
@@ -15,6 +29,9 @@ namespace SanJing
 
 namespace System
 {
+    /// <summary>
+    /// DateTime扩展
+    /// </summary>
     public static class SanJingDateTime
     {
         /// <summary>

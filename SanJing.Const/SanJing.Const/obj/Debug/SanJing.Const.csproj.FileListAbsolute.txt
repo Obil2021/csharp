@@ -10,3 +10,11 @@ C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.dll
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.pdb
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.xml
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.xml
+C:\Users\Administrator\Desktop\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.dll
+C:\Users\Administrator\Desktop\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.pdb
+C:\Users\Administrator\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.dll
+C:\Users\Administrator\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.pdb
+C:\Users\Administrator\Desktop\SanJing.Const\SanJing.Const\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\SanJing.Const\SanJing.Const\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.csproj.CopyComplete

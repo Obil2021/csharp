@@ -4,9 +4,141 @@
         <name>SanJing.Const</name>
     </assembly>
     <members>
+        <member name="T:SanJing.Cache">
+            <summary>
+            缓存(内存)
+            </summary>
+        </member>
+        <member name="P:SanJing.Cache.rootPath">
+            <summary>
+            根目录
+            </summary>
+        </member>
+        <member name="F:SanJing.Cache.cachePath">
+            <summary>
+            缓存路径
+            </summary>
+        </member>
+        <member name="P:SanJing.Cache.isInitialization">
+            <summary>
+            是否启动
+            </summary>
+        </member>
+        <member name="F:SanJing.Cache.defaultId">
+            <summary>
+            默认ID
+            </summary>
+        </member>
+        <member name="F:SanJing.Cache.ID_TOKEN">
+            <summary>
+            凭据Id
+            </summary>
+        </member>
+        <member name="F:SanJing.Cache.ID_VERCODE">
+            <summary>
+            验证码Id
+            </summary>
+        </member>
+        <member name="P:SanJing.Cache.cacheItems">
+            <summary>
+            缓存对象集合
+            </summary>
+        </member>
+        <member name="M:SanJing.Cache.Initialization(System.String)">
+            <summary>
+            初始化（请在程序启动时执行此代码）
+            </summary>
+            <param name="root">缓存文件夹(已存在的)路径</param>
+        </member>
+        <member name="M:SanJing.Cache.ReadAs(System.String,System.String,System.String@)">
+            <summary>
+            读取
+            </summary>
+            <param name="key">键</param>
+            <param name="id">标识(用于分组)</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Cache.ReadAsDefault(System.String,System.String@)">
+            <summary>
+            读取(默认ID)
+            </summary>
+            <param name="key">键</param>
+            <param name="value">标识(用于分组)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SanJing.Cache.SaveAs(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            存储（key不存在）或修改（key存在）
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="expireMiunte">有效期（分钟）</param>
+            <param name="id">标识(用于分组)</param>
+        </member>
+        <member name="M:SanJing.Cache.SaveAsDefault(System.String,System.String,System.Int32)">
+            <summary>
+            存储（默认ID）（key不存在）或修改（key存在）
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="expireMiunte">有效期（分钟）</param>
+        </member>
+        <member name="T:SanJing.CacheItem">
+            <summary>
+            缓存对象
+            </summary>
+        </member>
+        <member name="P:SanJing.CacheItem.Id">
+            <summary>
+            标识（用于分组）
+            </summary>
+        </member>
+        <member name="P:SanJing.CacheItem.Key">
+            <summary>
+            键
+            </summary>
+        </member>
+        <member name="P:SanJing.CacheItem.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:SanJing.CacheItem.Expire">
+            <summary>
+            过期时间戳
+            </summary>
+        </member>
+        <member name="T:SanJing.Const">
+            <summary>
+            常量
+            </summary>
+        </member>
+        <member name="F:SanJing.Const.DATE_YYYYMMDD">
+            <summary>
+            日期格式
+            </summary>
+        </member>
+        <member name="F:SanJing.Const.DATE_YYYYMMDDHHMM">
+            <summary>
+            /// <summary>
+            日期格式
+            </summary>
+            </summary>
+        </member>
+        <member name="F:SanJing.Const.DATE_YYYYMMDDHHMMSS">
+            <summary>
+            日期格式
+            </summary>
+        </member>
         <member name="F:SanJing.Const.RANDOM_SEED">
             <summary>
             随机种子
+            </summary>
+        </member>
+        <member name="T:System.SanJingDateTime">
+            <summary>
+            DateTime扩展
             </summary>
         </member>
         <member name="M:System.SanJingDateTime.ToUnixTimestamp(System.DateTime)">
