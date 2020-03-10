@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,6 +20,26 @@ namespace SanJing.Hash
             using (var sha = new MD5CryptoServiceProvider())
             {
                 var bytes = sha.ComputeHash(Encoding.GetEncoding(encoding).GetBytes(text));
+                return BitConverter.ToString(bytes).Replace("-", string.Empty);
+            }
+        }
+        /// <summary>
+        /// MD5加密（32位）
+        /// </summary>
+        /// <param name="stream">待加密流</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public static string MD5(Stream stream, string encoding = "UTF-8")
+        {
+            using (var sha = new MD5CryptoServiceProvider())
+            {
+                // 设置当前流的位置为流的开始
+                stream.Seek(0, SeekOrigin.Begin);
+                byte[] streamBytes = new byte[stream.Length];
+                stream.Read(streamBytes, 0, streamBytes.Length);
+                // 设置当前流的位置为流的开始
+                stream.Seek(0, SeekOrigin.Begin);
+                var bytes = sha.ComputeHash(streamBytes);
                 return BitConverter.ToString(bytes).Replace("-", string.Empty);
             }
         }

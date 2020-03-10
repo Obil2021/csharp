@@ -13,3 +13,9 @@ C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\bin\Debug
 C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.dll
 C:\Users\Administrator\Desktop\csharp-master\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.pdb
+C:\Users\Administrator\Desktop\SanJing.Hash\SanJing.Hash\bin\Debug\SanJing.Hash.dll
+C:\Users\Administrator\Desktop\SanJing.Hash\SanJing.Hash\bin\Debug\SanJing.Hash.pdb
+C:\Users\Administrator\Desktop\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.dll
+C:\Users\Administrator\Desktop\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.pdb
+C:\Users\Administrator\Desktop\SanJing.Hash\SanJing.Hash\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Administrator\Desktop\SanJing.Hash\SanJing.Hash\obj\Debug\SanJing.Hash.csproj.CopyComplete
