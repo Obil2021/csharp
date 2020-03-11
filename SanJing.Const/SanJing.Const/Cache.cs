@@ -170,6 +170,34 @@ namespace SanJing
         {
             SaveAs(key, value, expireMiunte, defaultId);
         }
+        /// <summary>
+        /// 根据值清理缓存
+        /// </summary>
+        /// <param name="id">标识(用于分组)</param>
+        /// <param name="value">值</param>
+        public static void Clear(string id,string value)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                throw new ArgumentException("IsNullOrWhiteSpace", nameof(id));
+            }
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+            foreach (var item in cacheItems.Where(q => q.Id == id).Where(q => q.Value == value))
+            {
+                item.Expire = 0;
+            }
+        }
+        /// <summary>
+        /// 根据值清理缓存(默认ID)
+        /// </summary>
+        /// <param name="value">值</param>
+        public static void ClearDefault(string value)
+        {
+            Clear(defaultId, value);
+        }
     }
     /// <summary>
     /// 缓存对象

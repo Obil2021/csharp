@@ -84,6 +84,19 @@
             <param name="value">值</param>
             <param name="expireMiunte">有效期（分钟）</param>
         </member>
+        <member name="M:SanJing.Cache.Clear(System.String,System.String)">
+            <summary>
+            根据值清理缓存
+            </summary>
+            <param name="id">标识(用于分组)</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:SanJing.Cache.ClearDefault(System.String)">
+            <summary>
+            根据值清理缓存(默认ID)
+            </summary>
+            <param name="value">值</param>
+        </member>
         <member name="T:SanJing.CacheItem">
             <summary>
             缓存对象
