@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>SanJing.SMS</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>SanJing.SMS</title>
     <authors>37www.com</authors>
     <owners>37www.com</owners>
-    <projectUrl>http://www.lhstudio.top/article.html?id=24</projectUrl>
+    <projectUrl>https://github.com/37www/csharp</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>SanJing.SMS</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright 2019</copyright>
-    <tags>SanJing SMS</tags>
+    <tags>SanJing SMS Phone</tags>
   </metadata>
 </package>
