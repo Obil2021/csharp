@@ -44,6 +44,7 @@
     <Compile Include="BD09.cs" />
     <Compile Include="GCJ02.cs" />
     <Compile Include="GPS.cs" />
+    <Compile Include="Mercator.cs" />
     <Compile Include="WGS84.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

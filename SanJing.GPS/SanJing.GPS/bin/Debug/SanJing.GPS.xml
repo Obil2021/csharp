@@ -141,6 +141,38 @@
             <param name="d"></param>
             <returns></returns>
         </member>
+        <member name="M:SanJing.GPS.GPS.ToMercator">
+            <summary>
+            转墨卡托投影
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SanJing.GPS.Mercator">
+            <summary>
+            墨卡托
+            </summary>
+        </member>
+        <member name="F:SanJing.GPS.Mercator.PERIMETER">
+            <summary>
+            地球周长
+            </summary>
+        </member>
+        <member name="P:SanJing.GPS.Mercator.X">
+            <summary>
+            X轴
+            </summary>
+        </member>
+        <member name="P:SanJing.GPS.Mercator.Y">
+            <summary>
+            Y轴
+            </summary>
+        </member>
+        <member name="M:SanJing.GPS.Mercator.ToGPS">
+            <summary>
+            转GPS坐标
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SanJing.GPS.WGS84.#ctor">
             <summary>
             初始化

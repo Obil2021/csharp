@@ -10,3 +10,9 @@ C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.dll
 C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.pdb
 C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.xml
 C:\Users\Administrator\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.csprojAssemblyReference.cache
+C:\Users\home\Desktop\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.xml
+C:\Users\home\Desktop\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.dll
+C:\Users\home\Desktop\SanJing.GPS\SanJing.GPS\bin\Debug\SanJing.GPS.pdb
+C:\Users\home\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.csproj.CoreCompileInputs.cache
+C:\Users\home\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.dll
+C:\Users\home\Desktop\SanJing.GPS\SanJing.GPS\obj\Debug\SanJing.GPS.pdb

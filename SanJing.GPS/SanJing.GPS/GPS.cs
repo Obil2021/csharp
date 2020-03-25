@@ -80,5 +80,17 @@ namespace SanJing.GPS
         {
             return d * Math.PI / 180d;
         }
+        /// <summary>
+        /// 转墨卡托投影
+        /// </summary>
+        /// <returns></returns>
+        public Mercator ToMercator()
+        {
+            Mercator mercator = new Mercator();
+            mercator.X = Lng * Mercator.PERIMETER / 180;
+            mercator.Y = Math.Log(Math.Tan((90 + Lat) * Math.PI / 360)) / (Math.PI / 180);
+            mercator.Y = mercator.Y * Mercator.PERIMETER / 180;
+            return mercator;
+        }
     }
 }
