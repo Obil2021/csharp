@@ -9,26 +9,6 @@
             一维码
             </summary>
         </member>
-        <member name="M:SanJing.GraphicCode.BarCode.GetBase64String(System.String,System.Int32,System.Int32)">
-            <summary>
-            获取一维条码图片的base64字符串（注：Base64字符串前面默认添加了“data:image/jpg;base64,”，取值的时候请根据需要对这个内容进行处理）
-            https://github.com/MZCretin/RollToolsApi#%E7%94%9F%E6%88%90%E6%8C%87%E5%AE%9A%E6%9D%A1%E5%BD%A2%E7%A0%81
-            </summary>
-            <param name="codeContent">条码类容</param>
-            <param name="width">宽度</param>
-            <param name="height">高度</param>
-            <returns>base64字符串</returns>
-        </member>
-        <member name="M:SanJing.GraphicCode.BarCode.GetUrlAddress(System.String,System.Int32,System.Int32)">
-            <summary>
-            获取一维条码图片URL地址
-            https://github.com/MZCretin/RollToolsApi#%E7%94%9F%E6%88%90%E6%8C%87%E5%AE%9A%E6%9D%A1%E5%BD%A2%E7%A0%81
-            </summary>
-            <param name="codeContent">验证码</param>
-            <param name="width">宽度(100-1000)</param>
-            <param name="height">高度(50-500)</param>
-            <returns>URL地址</returns>
-        </member>
         <member name="M:SanJing.GraphicCode.BarCode.SaveAsCODE128(System.String,System.String,System.Boolean,System.Int32,System.Int32)">
             <summary>
             生成一维码（CODE128）图片（PNG）
@@ -49,90 +29,10 @@
             <param name="width">宽度（默认250）</param>
             <param name="height">高度（默认100）</param>
         </member>
-        <member name="T:SanJing.GraphicCode.BarCode.Data">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.BarCode.Data.barCodeUrl">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.BarCode.Data.content">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.BarCode.Data.type">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.BarCode.Data.barCodeBase64">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:SanJing.GraphicCode.BarCode.RootObject">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.BarCode.RootObject.code">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.BarCode.RootObject.msg">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.BarCode.RootObject.data">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:SanJing.GraphicCode.ImageBase64">
-            <summary>
-            BASE64转图片
-            </summary>
-        </member>
-        <member name="M:SanJing.GraphicCode.ImageBase64.SaveAsJpeg(System.String,System.String)">
-            <summary>
-            保存为JPG图面
-            </summary>
-            <param name="base64"></param>
-            <param name="fullFileName"></param>
-        </member>
-        <member name="M:SanJing.GraphicCode.ImageBase64.SaveAsPng(System.String,System.String)">
-            <summary>
-            保存为PNG图面
-            </summary>
-            <param name="base64"></param>
-            <param name="fullFileName"></param>
-        </member>
         <member name="T:SanJing.GraphicCode.QRCode">
             <summary>
             二维码
             </summary>
-        </member>
-        <member name="M:SanJing.GraphicCode.QRCode.GetBase64String(System.String,System.Int32)">
-            <summary>
-            获取二维码码图片的base64字符串（注：Base64字符串前面默认添加了“data:image/jpg;base64,”，取值的时候请根据需要对这个内容进行处理）
-            </summary>
-            <param name="codeContent">条码类容</param>
-            <param name="size">尺寸（默认500）</param>
-            <returns>base64字符串</returns>
-        </member>
-        <member name="M:SanJing.GraphicCode.QRCode.GetUrlAddress(System.String,System.Int32)">
-            <summary>
-            获取二维码码图片URL地址
-            </summary>
-            <param name="codeContent">验证码</param>
-            <param name="size">尺寸（默认500）</param>
-            <returns>URL地址</returns>
         </member>
         <member name="M:SanJing.GraphicCode.QRCode.SaveAs(System.String,System.String,System.Int32)">
             <summary>
@@ -141,116 +41,6 @@
             <param name="fileName">存储图片文件的完整路径</param>
             <param name="codeContent">条码内容</param>
             <param name="moduleSize">1=33*33;2=66*66;3=99*99;4=132*132;5=165*165(默认2)</param>
-        </member>
-        <member name="T:SanJing.GraphicCode.QRCode.Data">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.QRCode.Data.qrCodeUrl">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.QRCode.Data.content">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.QRCode.Data.type">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.QRCode.Data.qrCodeBase64">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:SanJing.GraphicCode.QRCode.RootObject">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.QRCode.RootObject.code">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.QRCode.RootObject.msg">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.QRCode.RootObject.data">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:SanJing.GraphicCode.VerifyCode">
-            <summary>
-            生成图片验证码【联网版】
-            https://github.com/MZCretin/RollToolsApi#%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81
-            </summary>
-        </member>
-        <member name="M:SanJing.GraphicCode.VerifyCode.GetBase64String(System.String@)">
-            <summary>
-            获取5位长度验证码图片的base64字符串（注：Base64字符串前面默认添加了“data:image/jpg;base64,”，取值的时候请根据需要对这个内容进行处理）
-            </summary>
-            <param name="verifyCode">验证码</param>
-            <returns>base64字符串</returns>
-        </member>
-        <member name="M:SanJing.GraphicCode.VerifyCode.GetUrlAddress(System.String@)">
-            <summary>
-            获取5位长度验证码图片URL地址
-            </summary>
-            <param name="verifyCode">验证码</param>
-            <returns>URL地址</returns>
-        </member>
-        <member name="T:SanJing.GraphicCode.VerifyCode.Data">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.VerifyCode.Data.verifyCode">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.VerifyCode.Data.verifyCodeImgUrl">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.VerifyCode.Data.verifyCodeBase64">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.VerifyCode.Data.whRatio">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:SanJing.GraphicCode.VerifyCode.RootObject">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.VerifyCode.RootObject.code">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.VerifyCode.RootObject.msg">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:SanJing.GraphicCode.VerifyCode.RootObject.data">
-            <summary>
-            
-            </summary>
         </member>
     </members>
 </doc>
