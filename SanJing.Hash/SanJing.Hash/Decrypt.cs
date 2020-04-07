@@ -48,5 +48,24 @@ namespace SanJing.Hash
                 return transform.TransformFinalBlock(encryptedData, 0, encryptedData.Length);
             }
         }
+
+        /// <summary>
+        /// Rsa验签 1024bit
+        /// </summary>
+        /// <param name="sign">签名</param>
+        /// <param name="content">内容</param>
+        /// <param name="xmlPubKey">公钥|xml格式</param>
+        /// <param name="hash">类型|MD5|SHA1</param>
+        /// <param name="keySize">长度|1024|2048</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public static bool RsaSignVerify(string sign, string content, string xmlPubKey, string hash = "MD5", int keySize = 1024, string encoding = "utf-8")
+        {
+            byte[] btContent = Encoding.GetEncoding(encoding).GetBytes(content);
+            byte[] btSign = Encoding.GetEncoding(encoding).GetBytes(sign);
+            RSACryptoServiceProvider rsp = new RSACryptoServiceProvider(keySize);
+            rsp.FromXmlString(xmlPubKey);
+            return rsp.VerifyData(btContent, hash, btSign);
+        }
     }
 }

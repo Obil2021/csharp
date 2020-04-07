@@ -139,5 +139,22 @@ namespace SanJing.Hash
                 return transform.TransformFinalBlock(plainText, 0, plainText.Length);
             }
         }
+        /// <summary>
+        /// Rsa签名
+        /// </summary>
+        /// <param name="content">内容</param>
+        /// <param name="xmlPriKey">私钥|xml格式</param>
+        /// <param name="hash">类型|MD5|SHA1</param>
+        /// <param name="keySize">长度|1024|2048</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public static string RsaSign(string content, string xmlPriKey, string hash = "MD5", int keySize = 1024, string encoding = "utf-8")
+        {
+            byte[] btContent = Encoding.GetEncoding(encoding).GetBytes(content);
+            RSACryptoServiceProvider rsp = new RSACryptoServiceProvider(keySize);
+            rsp.FromXmlString(xmlPriKey);
+            byte[] signature = rsp.SignData(btContent, hash);
+            return Convert.ToBase64String(signature);
+        }
     }
 }
