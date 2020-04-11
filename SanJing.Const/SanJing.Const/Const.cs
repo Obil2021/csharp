@@ -21,9 +21,50 @@ namespace SanJing
         /// </summary>
         public const string DATE_YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss";
         /// <summary>
+        /// 数字或账号组成
+        /// </summary>
+        public const string REGULAR_NUM_ABC = "^[A-Za-z0-9]+$";
+        /// <summary>
+        /// 数字组成
+        /// </summary>
+        public const string REGULAR_NUM = "^[0-9]*$";
+        /// <summary>
+        /// 邮箱
+        /// </summary>
+        public const string REGULAR_EMAIL = @"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
+        /// <summary>
+        /// 身份证
+        /// </summary>
+        public const string REGULAR_IDCARD = @"^\d{15}|\d{18}$";
+        /// <summary>
+        /// 日期
+        /// </summary>
+        public const string REGULAR_DATE = @"^\d{4}-\d{1,2}-\d{1,2}";
+        /// <summary>
         /// 随机种子
         /// </summary>
         public static Random RANDOM_SEED = new Random();
+        /// <summary>
+        /// 唯一序列ID的KEY
+        /// </summary>
+        private const string SERIALNUM_KEY = "FE198AABA4A94C92B71CC1C8C9653941";
+        /// <summary>
+        /// 唯一序列ID
+        /// </summary>
+        public static decimal SerialNum
+        {
+            get
+            {
+                decimal value = 0m;
+                if (Cache.ReadAsDefault(SERIALNUM_KEY, out string num))
+                    value = Convert.ToDecimal(num) + 1;
+                else
+                    value = DateTime.Now.ToUnixTimestamp();
+
+                Cache.SaveAsDefault(SERIALNUM_KEY, value.ToString(), 60 * 24 * 365 * 20);//20年
+                return value;
+            }
+        }
     }
 }
 

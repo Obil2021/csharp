@@ -13,13 +13,21 @@ namespace SanJing
     public static class Cache
     {
         /// <summary>
-        /// 根目录
-        /// </summary>
-        private static string rootPath { get; set; }
-        /// <summary>
         /// 缓存路径
         /// </summary>
-        private const string cachePath = "sanjing.cache";
+        private const string cachePath = "sanjing.db";
+        /// <summary>
+        /// 数据库密码
+        /// </summary>
+        private const string cachePassword = "SANJING.PASSWORD";
+        /// <summary>
+        /// 表名
+        /// </summary>
+        private const string cacheTable = "SANJINGTABLE";
+        /// <summary>
+        /// 数据库文件地址
+        /// </summary>
+        private static string datasource { get; set; }
         /// <summary>
         /// 是否启动
         /// </summary>
@@ -37,10 +45,6 @@ namespace SanJing
         /// </summary>
         public const string ID_VERCODE = "SanJing.Cache.VerCodeId";
         /// <summary>
-        /// 缓存对象集合
-        /// </summary>
-        private static List<CacheItem> cacheItems { get; set; }
-        /// <summary>
         /// 初始化（请在程序启动时执行此代码）
         /// </summary>
         /// <param name="root">缓存文件夹(已存在的)路径</param>
@@ -53,18 +57,26 @@ namespace SanJing
             {
                 throw new ArgumentException("IsNullOrWhiteSpace", nameof(root));
             }
-
-            if (Directory.Exists(root)) rootPath = root.Trim('\\') + "\\";
-            else throw new DirectoryNotFoundException(root);
-
-            cacheItems = new List<CacheItem>();
-            if (File.Exists(rootPath + cachePath))
+            var rootPath = root.Trim('\\') + "\\";
+            Directory.CreateDirectory(rootPath);
+            datasource = rootPath + cachePath;
+            if (!File.Exists(datasource))
+                System.Data.SQLite.SQLiteConnection.CreateFile(datasource);
+            //连接数据库
+            using (System.Data.SQLite.SQLiteConnection conn = new System.Data.SQLite.SQLiteConnection())
             {
-                cacheItems = JsonConvert.DeserializeObject<List<CacheItem>>(File.ReadAllText(rootPath + cachePath, Encoding.UTF8));
-            }
-            else
-            {
-                File.WriteAllText(rootPath + cachePath, JsonConvert.SerializeObject(cacheItems), Encoding.UTF8);
+                System.Data.SQLite.SQLiteConnectionStringBuilder connstr = new System.Data.SQLite.SQLiteConnectionStringBuilder();
+                connstr.DataSource = datasource;
+                connstr.Password = cachePassword;//设置密码，SQLite ADO.NET实现了数据库密码保护
+                conn.ConnectionString = connstr.ToString();
+                conn.Open();
+                //创建表
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand())
+                {
+                    cmd.CommandText = $"CREATE TABLE IF NOT EXISTS {cacheTable}(Id VARCHAR(100) NOT NULL,Key VARCHAR(500) NOT NULL,Value NVARCHAR(4000),Expire DECIMAL(18,0))";
+                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
         /// <summary>
@@ -88,15 +100,27 @@ namespace SanJing
                 throw new ArgumentException("IsNullOrWhiteSpace", nameof(id));
             }
 
-            var cache = cacheItems.Where(q => q.Id == id).SingleOrDefault(q => q.Key == key);
+            //连接数据库
+            using (System.Data.SQLite.SQLiteConnection conn = new System.Data.SQLite.SQLiteConnection())
+            {
+                System.Data.SQLite.SQLiteConnectionStringBuilder connstr = new System.Data.SQLite.SQLiteConnectionStringBuilder();
+                connstr.DataSource = datasource;
+                connstr.Password = cachePassword;//设置密码，SQLite ADO.NET实现了数据库密码保护
+                conn.ConnectionString = connstr.ToString();
+                conn.Open();
+                //执行语句
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand())
+                {
+                    cmd.Connection = conn;
 
-            if (cache == null) return false;
-
-            if (cache.Expire < DateTime.Now.ToUnixTimestamp()) return false;
-
-            value = cache.Value;
-
-            return true;
+                    //查询旧数据
+                    cmd.CommandText = $"SELECT Value FROM {cacheTable} WHERE Id = '{id}' AND Key = '{key}' AND Expire >= '{DateTime.Now.ToUnixTimestamp()}'";
+                    var obj = cmd.ExecuteScalar();
+                    if (obj == null || obj == DBNull.Value) return false;
+                    value = obj.ToString();
+                    return true;
+                }
+            }
         }
 
         /// <summary>
@@ -137,27 +161,38 @@ namespace SanJing
                 throw new ArgumentException("IsNullOrWhiteSpace", nameof(id));
             }
 
-            lock (cacheItems)
+            //连接数据库
+            using (System.Data.SQLite.SQLiteConnection conn = new System.Data.SQLite.SQLiteConnection())
             {
-                var cache = cacheItems.Where(q => q.Id == id).SingleOrDefault(q => q.Key == key);
-                if (cache == null)
+                System.Data.SQLite.SQLiteConnectionStringBuilder connstr = new System.Data.SQLite.SQLiteConnectionStringBuilder();
+                connstr.DataSource = datasource;
+                connstr.Password = cachePassword;//设置密码，SQLite ADO.NET实现了数据库密码保护
+                conn.ConnectionString = connstr.ToString();
+                conn.Open();
+                //创建表
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand())
                 {
-                    cacheItems.Add(new CacheItem()
-                    {
-                        Id = id,
-                        Expire = DateTime.Now.AddMinutes(expireMiunte).ToUnixTimestamp(),
-                        Key = key,
-                        Value = value,
-                    });
-                }
-                else
-                {
-                    cache.Value = value;
-                    cache.Expire = DateTime.Now.AddMinutes(expireMiunte).ToUnixTimestamp();
-                }
+                    cmd.Connection = conn;
 
-                cacheItems.RemoveAll(q => q.Expire < DateTime.Now.ToUnixTimestamp());
-                File.WriteAllText(rootPath + cachePath, JsonConvert.SerializeObject(cacheItems), Encoding.UTF8);
+                    //查询旧数据
+                    cmd.CommandText = $"SELECT Id FROM {cacheTable} WHERE Id = '{id}' AND Key = '{key}'";
+                    var obj = cmd.ExecuteScalar();
+                    if (obj == null || obj == DBNull.Value)
+                    {
+                        //存储新数据
+                        cmd.CommandText = $"INSERT INTO {cacheTable} (Id,Key,Value,Expire) VALUES ('{id}','{key}','{value}','{DateTime.Now.AddMinutes(expireMiunte).ToUnixTimestamp()}')"; ;
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        //修改旧数据
+                        cmd.CommandText = $"UPDATE {cacheTable} SET Value = '{value}',Expire = '{DateTime.Now.AddMinutes(expireMiunte).ToUnixTimestamp()}' WHERE Id = '{id}' AND Key = '{key}'";
+                        cmd.ExecuteNonQuery();
+                    }
+                    //清除过期数据
+                    cmd.CommandText = $"DELETE FROM {cacheTable} WHERE Expire < '{DateTime.Now.ToUnixTimestamp()}'";
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
         /// <summary>
@@ -175,7 +210,7 @@ namespace SanJing
         /// </summary>
         /// <param name="id">标识(用于分组)</param>
         /// <param name="value">值</param>
-        public static void Clear(string id,string value)
+        public static void Clear(string id, string value)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -185,9 +220,22 @@ namespace SanJing
             {
                 throw new ArgumentNullException(nameof(value));
             }
-            foreach (var item in cacheItems.Where(q => q.Id == id).Where(q => q.Value == value))
+            //连接数据库
+            using (System.Data.SQLite.SQLiteConnection conn = new System.Data.SQLite.SQLiteConnection())
             {
-                item.Expire = 0;
+                System.Data.SQLite.SQLiteConnectionStringBuilder connstr = new System.Data.SQLite.SQLiteConnectionStringBuilder();
+                connstr.DataSource = datasource;
+                connstr.Password = cachePassword;//设置密码，SQLite ADO.NET实现了数据库密码保护
+                conn.ConnectionString = connstr.ToString();
+                conn.Open();
+                //创建表
+                using (System.Data.SQLite.SQLiteCommand cmd = new System.Data.SQLite.SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    //清除数据
+                    cmd.CommandText = $"DELETE FROM {cacheTable} WHERE Id = '{id}' AND Value = '{value}'";
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
         /// <summary>
@@ -198,27 +246,5 @@ namespace SanJing
         {
             Clear(defaultId, value);
         }
-    }
-    /// <summary>
-    /// 缓存对象
-    /// </summary>
-    public class CacheItem
-    {
-        /// <summary>
-        /// 标识（用于分组）
-        /// </summary>
-        public string Id { get; set; } = string.Empty;
-        /// <summary>
-        /// 键
-        /// </summary>
-        public string Key { get; set; } = string.Empty;
-        /// <summary>
-        /// 值
-        /// </summary>
-        public string Value { get; set; } = string.Empty;
-        /// <summary>
-        /// 过期时间戳
-        /// </summary>
-        public long Expire { get; set; } = 0;
     }
 }

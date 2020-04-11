@@ -9,14 +9,24 @@
             缓存(内存)
             </summary>
         </member>
-        <member name="P:SanJing.Cache.rootPath">
-            <summary>
-            根目录
-            </summary>
-        </member>
         <member name="F:SanJing.Cache.cachePath">
             <summary>
             缓存路径
+            </summary>
+        </member>
+        <member name="F:SanJing.Cache.cachePassword">
+            <summary>
+            数据库密码
+            </summary>
+        </member>
+        <member name="F:SanJing.Cache.cacheTable">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:SanJing.Cache.datasource">
+            <summary>
+            数据库文件地址
             </summary>
         </member>
         <member name="P:SanJing.Cache.isInitialization">
@@ -37,11 +47,6 @@
         <member name="F:SanJing.Cache.ID_VERCODE">
             <summary>
             验证码Id
-            </summary>
-        </member>
-        <member name="P:SanJing.Cache.cacheItems">
-            <summary>
-            缓存对象集合
             </summary>
         </member>
         <member name="M:SanJing.Cache.Initialization(System.String)">
@@ -97,31 +102,6 @@
             </summary>
             <param name="value">值</param>
         </member>
-        <member name="T:SanJing.CacheItem">
-            <summary>
-            缓存对象
-            </summary>
-        </member>
-        <member name="P:SanJing.CacheItem.Id">
-            <summary>
-            标识（用于分组）
-            </summary>
-        </member>
-        <member name="P:SanJing.CacheItem.Key">
-            <summary>
-            键
-            </summary>
-        </member>
-        <member name="P:SanJing.CacheItem.Value">
-            <summary>
-            值
-            </summary>
-        </member>
-        <member name="P:SanJing.CacheItem.Expire">
-            <summary>
-            过期时间戳
-            </summary>
-        </member>
         <member name="T:SanJing.Const">
             <summary>
             常量
@@ -144,9 +124,44 @@
             日期格式
             </summary>
         </member>
+        <member name="F:SanJing.Const.REGULAR_NUM_ABC">
+            <summary>
+            数字或账号组成
+            </summary>
+        </member>
+        <member name="F:SanJing.Const.REGULAR_NUM">
+            <summary>
+            数字组成
+            </summary>
+        </member>
+        <member name="F:SanJing.Const.REGULAR_EMAIL">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="F:SanJing.Const.REGULAR_IDCARD">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="F:SanJing.Const.REGULAR_DATE">
+            <summary>
+            日期
+            </summary>
+        </member>
         <member name="F:SanJing.Const.RANDOM_SEED">
             <summary>
             随机种子
+            </summary>
+        </member>
+        <member name="F:SanJing.Const.SERIALNUM_KEY">
+            <summary>
+            唯一序列ID的KEY
+            </summary>
+        </member>
+        <member name="P:SanJing.Const.SerialNum">
+            <summary>
+            唯一序列ID
             </summary>
         </member>
         <member name="T:System.SanJingDateTime">
