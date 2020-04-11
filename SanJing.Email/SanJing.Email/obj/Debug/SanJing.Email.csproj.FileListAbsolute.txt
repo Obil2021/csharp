@@ -14,3 +14,9 @@ C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\bin\Debug\Mail.xml
 C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.csproj.CopyComplete
 C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.dll
 C:\Users\Administrator\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.pdb
+C:\Users\home\Desktop\SanJing.Email\SanJing.Email\bin\Debug\SanJing.Email.xml
+C:\Users\home\Desktop\SanJing.Email\SanJing.Email\bin\Debug\SanJing.Email.dll
+C:\Users\home\Desktop\SanJing.Email\SanJing.Email\bin\Debug\SanJing.Email.pdb
+C:\Users\home\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.csproj.CoreCompileInputs.cache
+C:\Users\home\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.dll
+C:\Users\home\Desktop\SanJing.Email\SanJing.Email\obj\Debug\SanJing.Email.pdb
