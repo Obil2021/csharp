@@ -74,6 +74,7 @@ namespace SanJing
         /// <param name="log"></param>
         public static void SaveAs(LogItem log)
         {
+            if (!isInitialization) throw new MethodAccessException("没有初始化程序，请在程序启动时执行Initialization方法！");
             //连接数据库
             using (System.Data.SQLite.SQLiteConnection conn = new System.Data.SQLite.SQLiteConnection())
             {
@@ -91,7 +92,7 @@ namespace SanJing
                     cmd.Parameters.Add("@UserId", DbType.Decimal).Value = log.UserId;
                     cmd.Parameters.Add("@Role", DbType.Decimal).Value = log.Role;
                     cmd.Parameters.Add("@Timestamp", DbType.Decimal).Value = log.Timestamp;
-                    cmd.Parameters.Add("@AbsolutePath", DbType.String).Value = log.AbsolutePath??string.Empty;
+                    cmd.Parameters.Add("@AbsolutePath", DbType.String).Value = log.AbsolutePath ?? string.Empty;
                     cmd.Parameters.Add("@IPAddress", DbType.String).Value = log.IPAddress ?? string.Empty;
                     cmd.Parameters.Add("@Description", DbType.String).Value = log.Description ?? string.Empty;
                     cmd.Parameters.Add("@Content", DbType.String).Value = log.Content ?? string.Empty;
@@ -102,9 +103,11 @@ namespace SanJing
         /// <summary>
         /// 读取所有日志记录
         /// </summary>
+        /// <param name="role">角色</param>
         /// <returns></returns>
-        public static IList<LogItem> ReadAs()
+        public static IList<LogItem> ReadAs(decimal role)
         {
+            if (!isInitialization) throw new MethodAccessException("没有初始化程序，请在程序启动时执行Initialization方法！");
             var result = new List<LogItem>();
             //连接数据库
             using (System.Data.SQLite.SQLiteConnection conn = new System.Data.SQLite.SQLiteConnection())
@@ -119,7 +122,8 @@ namespace SanJing
                 {
                     cmd.Connection = conn;
                     //查询旧数据
-                    cmd.CommandText = $"SELECT UserId,Role,Timestamp,AbsolutePath,IPAddress,Description,Content FROM {logTable} ORDER BY Timestamp DESC";
+                    cmd.CommandText = $"SELECT UserId,Role,Timestamp,AbsolutePath,IPAddress,Description,Content FROM {logTable} WHERE Role = @Role ORDER BY Timestamp DESC";
+                    cmd.Parameters.Add("@Role", DbType.Decimal).Value = role;
                     var rd = cmd.ExecuteReader();
                     while (rd.Read())
                     {

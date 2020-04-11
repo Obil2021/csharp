@@ -93,6 +93,7 @@ namespace SanJing
         /// <returns></returns>
         public static bool ReadAs(string key, string id, out string value)
         {
+            if (!isInitialization) throw new MethodAccessException("没有初始化程序，请在程序启动时执行Initialization方法！");
             value = string.Empty;
 
             if (string.IsNullOrWhiteSpace(key))
@@ -151,6 +152,8 @@ namespace SanJing
         /// <param name="id">标识(用于分组)</param>
         public static void SaveAs(string key, string value, int expireMiunte, string id)
         {
+            if (!isInitialization) throw new MethodAccessException("没有初始化程序，请在程序启动时执行Initialization方法！");
+
             if (string.IsNullOrWhiteSpace(key))
             {
                 throw new ArgumentException("IsNullOrWhiteSpace", nameof(key));
@@ -224,6 +227,8 @@ namespace SanJing
         /// <param name="value">值</param>
         public static void Clear(string id, string value)
         {
+            if (!isInitialization) throw new MethodAccessException("没有初始化程序，请在程序启动时执行Initialization方法！");
+
             if (string.IsNullOrWhiteSpace(id))
             {
                 throw new ArgumentException("IsNullOrWhiteSpace", nameof(id));

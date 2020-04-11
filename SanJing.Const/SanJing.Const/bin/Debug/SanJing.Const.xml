@@ -211,10 +211,11 @@
             </summary>
             <param name="log"></param>
         </member>
-        <member name="M:SanJing.Log.ReadAs">
+        <member name="M:SanJing.Log.ReadAs(System.Decimal)">
             <summary>
             读取所有日志记录
             </summary>
+            <param name="role">角色</param>
             <returns></returns>
         </member>
         <member name="T:SanJing.LogItem">
