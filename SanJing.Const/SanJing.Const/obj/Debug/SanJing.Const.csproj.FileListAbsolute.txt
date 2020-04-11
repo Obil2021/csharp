@@ -21,13 +21,6 @@ C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\Newtonsoft.Json.dll
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\Newtonsoft.Json.xml
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.csproj.CopyComplete
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\SanJing.Const.dll.config
-C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\EntityFramework.dll
-C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\System.Data.SQLite.dll
-C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\System.Data.SQLite.EF6.dll
-C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\System.Data.SQLite.Linq.dll
-C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\EntityFramework.xml
-C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\System.Data.SQLite.xml
 C:\Users\home\Desktop\SanJing.Const\SanJing.Const\bin\Debug\System.Data.SQLite.dll.config
-C:\Users\home\Desktop\SanJing.Const\SanJing.Const\obj\Debug\SanJing.Const.csprojAssemblyReference.cache
