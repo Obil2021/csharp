@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

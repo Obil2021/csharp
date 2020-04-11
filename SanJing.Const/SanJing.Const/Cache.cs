@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,15 +16,15 @@ namespace SanJing
         /// <summary>
         /// 缓存路径
         /// </summary>
-        private const string cachePath = "sanjing.db";
+        private const string cachePath = "sanjing.cache.db";
         /// <summary>
         /// 数据库密码
         /// </summary>
-        private const string cachePassword = "SANJING.PASSWORD";
+        private const string cachePassword = "CACHE.PASSWORD";
         /// <summary>
-        /// 表名
+        /// 缓存表名
         /// </summary>
-        private const string cacheTable = "SANJINGTABLE";
+        private const string cacheTable = "SANJINGCACHE";
         /// <summary>
         /// 数据库文件地址
         /// </summary>
@@ -40,6 +41,10 @@ namespace SanJing
         /// 凭据Id
         /// </summary>
         public const string ID_TOKEN = "SanJing.Cache.TokenId";
+        /// <summary>
+        /// 文件Id
+        /// </summary>
+        public const string ID_FILE = "SanJing.Cache.FileId";
         /// <summary>
         /// 验证码Id
         /// </summary>
@@ -114,7 +119,10 @@ namespace SanJing
                     cmd.Connection = conn;
 
                     //查询旧数据
-                    cmd.CommandText = $"SELECT Value FROM {cacheTable} WHERE Id = '{id}' AND Key = '{key}' AND Expire >= '{DateTime.Now.ToUnixTimestamp()}'";
+                    cmd.CommandText = $"SELECT Value FROM {cacheTable} WHERE Id = @Id AND Key = @Key AND Expire >= @Expire";
+                    cmd.Parameters.Add("@Id", DbType.String).Value = id ?? string.Empty;
+                    cmd.Parameters.Add("@Key", DbType.String).Value = key ?? string.Empty;
+                    cmd.Parameters.Add("@Expire", DbType.Decimal).Value = DateTime.Now.ToUnixTimestamp();
                     var obj = cmd.ExecuteScalar();
                     if (obj == null || obj == DBNull.Value) return false;
                     value = obj.ToString();
@@ -175,18 +183,22 @@ namespace SanJing
                     cmd.Connection = conn;
 
                     //查询旧数据
-                    cmd.CommandText = $"SELECT Id FROM {cacheTable} WHERE Id = '{id}' AND Key = '{key}'";
+                    cmd.CommandText = $"SELECT Id FROM {cacheTable} WHERE Id = @Id AND Key = @Key";
+                    cmd.Parameters.Add("@Id", DbType.String).Value = id ?? string.Empty;
+                    cmd.Parameters.Add("@Key", DbType.String).Value = key ?? string.Empty;
+                    cmd.Parameters.Add("@Value", DbType.String).Value = value ?? string.Empty;
+                    cmd.Parameters.Add("@Expire", DbType.Decimal).Value = DateTime.Now.AddMinutes(expireMiunte).ToUnixTimestamp();
                     var obj = cmd.ExecuteScalar();
                     if (obj == null || obj == DBNull.Value)
                     {
                         //存储新数据
-                        cmd.CommandText = $"INSERT INTO {cacheTable} (Id,Key,Value,Expire) VALUES ('{id}','{key}','{value}','{DateTime.Now.AddMinutes(expireMiunte).ToUnixTimestamp()}')"; ;
+                        cmd.CommandText = $"INSERT INTO {cacheTable} (Id,Key,Value,Expire) VALUES (@Id,@Key,@Value,@Expire)"; ;
                         cmd.ExecuteNonQuery();
                     }
                     else
                     {
                         //修改旧数据
-                        cmd.CommandText = $"UPDATE {cacheTable} SET Value = '{value}',Expire = '{DateTime.Now.AddMinutes(expireMiunte).ToUnixTimestamp()}' WHERE Id = '{id}' AND Key = '{key}'";
+                        cmd.CommandText = $"UPDATE {cacheTable} SET Value = @Value,Expire = @Expire WHERE Id = @Id AND Key = @Key";
                         cmd.ExecuteNonQuery();
                     }
                     //清除过期数据
@@ -233,7 +245,9 @@ namespace SanJing
                 {
                     cmd.Connection = conn;
                     //清除数据
-                    cmd.CommandText = $"DELETE FROM {cacheTable} WHERE Id = '{id}' AND Value = '{value}'";
+                    cmd.CommandText = $"DELETE FROM {cacheTable} WHERE Id = @Id AND Value = @Value";
+                    cmd.Parameters.Add("@Id", DbType.String).Value = id ?? string.Empty;
+                    cmd.Parameters.Add("@Value", DbType.String).Value = value ?? string.Empty;
                     cmd.ExecuteNonQuery();
                 }
             }
