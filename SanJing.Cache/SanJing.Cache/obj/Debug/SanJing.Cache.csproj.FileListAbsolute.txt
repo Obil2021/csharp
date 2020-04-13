@@ -48,3 +48,7 @@ C:\Users\home\Desktop\SanJing.Cache\SanJing.Cache\obj\Debug\SanJing.Cache.csproj
 C:\Users\home\Desktop\SanJing.Cache\SanJing.Cache\obj\Debug\SanJing.Cache.csproj.CopyComplete
 C:\Users\home\Desktop\SanJing.Cache\SanJing.Cache\obj\Debug\SanJing.Cache.dll
 C:\Users\home\Desktop\SanJing.Cache\SanJing.Cache\obj\Debug\SanJing.Cache.pdb
+C:\Users\home\Desktop\SanJing.Cache\SanJing.Cache\bin\Debug\EntityFramework.dll
+C:\Users\home\Desktop\SanJing.Cache\SanJing.Cache\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\home\Desktop\SanJing.Cache\SanJing.Cache\bin\Debug\EntityFramework.xml
+C:\Users\home\Desktop\SanJing.Cache\SanJing.Cache\bin\Debug\EntityFramework.SqlServer.xml

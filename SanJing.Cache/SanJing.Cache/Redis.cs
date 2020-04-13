@@ -15,8 +15,7 @@ namespace SanJing.Cache
         /// <summary>
         /// 初始化（请在程序启动时执行此代码）
         /// </summary>
-        /// <param name="dbFilename"></param>
-        /// <param name="dbPassword"></param>
+        /// <param name="dbConnectionString">连接字符串</param>
         public static void Initialization(string dbConnectionString)
         {
             if (string.IsNullOrWhiteSpace(dbConnectionString))
