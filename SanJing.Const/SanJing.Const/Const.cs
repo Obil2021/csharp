@@ -44,27 +44,6 @@ namespace SanJing
         /// 随机种子
         /// </summary>
         public static Random RANDOM_SEED = new Random();
-        /// <summary>
-        /// 唯一序列ID的KEY
-        /// </summary>
-        private const string SERIALNUM_KEY = "FE198AABA4A94C92B71CC1C8C9653941";
-        /// <summary>
-        /// 唯一序列ID
-        /// </summary>
-        public static decimal SerialNum
-        {
-            get
-            {
-                decimal value = 0m;
-                if (Cache.ReadAsDefault(SERIALNUM_KEY, out string num))
-                    value = Convert.ToDecimal(num) + 1;
-                else
-                    value = DateTime.Now.ToUnixTimestamp();
-
-                Cache.SaveAsDefault(SERIALNUM_KEY, value.ToString(), 60 * 24 * 365 * 20);//20年
-                return value;
-            }
-        }
     }
 }
 
