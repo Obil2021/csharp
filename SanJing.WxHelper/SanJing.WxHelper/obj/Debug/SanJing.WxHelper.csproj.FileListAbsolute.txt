@@ -20,3 +20,14 @@ C:\Users\Administrator\Desktop\SanJing.WxHelper\SanJing.WxHelper\bin\Debug\SanJi
 C:\Users\Administrator\Desktop\SanJing.WxHelper\SanJing.WxHelper\obj\Debug\SanJing.WxHelper.csproj.CopyComplete
 C:\Users\Administrator\Desktop\SanJing.WxHelper\SanJing.WxHelper\obj\Debug\SanJing.WxHelper.dll
 C:\Users\Administrator\Desktop\SanJing.WxHelper\SanJing.WxHelper\obj\Debug\SanJing.WxHelper.pdb
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\obj\Debug\SanJing.WxHelper.csproj.CoreCompileInputs.cache
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\obj\Debug\SanJing.WxHelper.dll
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\obj\Debug\SanJing.WxHelper.pdb
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\bin\Debug\SanJing.WxHelper.xml
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\bin\Debug\SanJing.WxHelper.dll
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\bin\Debug\SanJing.WxHelper.pdb
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\bin\Debug\SanJing.WxBase.dll
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\bin\Debug\SanJing.WxBase.xml
+C:\Users\sanji\Desktop\SanJing.WxHelper\SanJing.WxHelper\obj\Debug\SanJing.WxHelper.csproj.CopyComplete

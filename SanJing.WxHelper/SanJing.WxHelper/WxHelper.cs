@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace SanJing.WxHelper
@@ -350,7 +351,7 @@ namespace SanJing.WxHelper
         /// <param name="appId">APPID</param>
         /// <param name="appKey">APPKEY</param>
         /// <param name="code">小程序获取的CODE</param>
-        /// <returns>openid和unionid(关联开放平台则有)</returns>
+        /// <returns>openid</returns>
         public static IDictionary<string, object> LoginByWxAPP(string appId, string appKey, string code)
         {
             if (string.IsNullOrWhiteSpace(appId))
@@ -362,9 +363,64 @@ namespace SanJing.WxHelper
             {
                 throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(appKey));
             }
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(code));
+            }
 
             var url = string.Format(URL_LOGIN_LITE, appId, appKey, code);
             return WxBase.WxBase.ApiGetRequest(url, true);
+        }
+        /// <summary>
+        /// 微信小程序登录（获取unionId）
+        /// </summary>
+        /// <param name="appId">APPID</param>
+        /// <param name="appKey">APPKEY</param>
+        /// <param name="code">小程序获取的CODE</param>
+        /// <param name="iv"></param>
+        /// <param name="encryptedData"></param>
+        /// <returns>unionid(关联开放平台则有)</returns>
+        public static IDictionary<string, object> LoginByWxAPP(string appId, string appKey, string code, string iv, string encryptedData)
+        {
+            if (string.IsNullOrWhiteSpace(appId))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(appId));
+            }
+
+            if (string.IsNullOrWhiteSpace(appKey))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(appKey));
+            }
+
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(code));
+            }
+
+            if (string.IsNullOrWhiteSpace(iv))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(iv));
+            }
+
+            if (string.IsNullOrWhiteSpace(encryptedData))
+            {
+                throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(encryptedData));
+            }
+
+            var login = LoginByWxAPP(appId, appKey, code);
+
+            byte[] edata = Convert.FromBase64String(encryptedData);
+            using (RijndaelManaged rijndaelCipher = new RijndaelManaged())
+            {
+                rijndaelCipher.Key = Convert.FromBase64String(login["session_key"].ToString());
+                rijndaelCipher.IV = Convert.FromBase64String(iv);
+                rijndaelCipher.Mode = CipherMode.CBC;
+                rijndaelCipher.Padding = PaddingMode.PKCS7;
+                ICryptoTransform transform = rijndaelCipher.CreateDecryptor();
+                byte[] plainText = transform.TransformFinalBlock(edata, 0, edata.Length);
+                string result = Encoding.Default.GetString(plainText);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(result);
+            }
         }
     }
 }
