@@ -4,12 +4,12 @@
         <name>SanJing.WxBase</name>
     </assembly>
     <members>
-        <member name="T:SanJing.WxBase.WxBase">
+        <member name="T:SanJing.WxBase.Core">
             <summary>
             微信API开发基础类
             </summary>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.WriteCacheToken(System.String,System.String,System.DateTime)">
+        <member name="M:SanJing.WxBase.Core.WriteCacheToken(System.String,System.String,System.DateTime)">
             <summary>
             缓存TOKEN至文件
             </summary>
@@ -17,7 +17,7 @@
             <param name="token">TOKEN</param>
             <param name="expire">到期时间</param>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.WriteCacheTicket(System.String,System.String,System.DateTime)">
+        <member name="M:SanJing.WxBase.Core.WriteCacheTicket(System.String,System.String,System.DateTime)">
             <summary>
             缓存TICKET至文件
             </summary>
@@ -25,7 +25,7 @@
             <param name="ticket">TICKET</param>
             <param name="expire">到期时间</param>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.ReadCacheToken(System.String,System.String@)">
+        <member name="M:SanJing.WxBase.Core.ReadCacheToken(System.String,System.String@)">
             <summary>
             读取缓存文件中的有效TOKEN
             </summary>
@@ -33,7 +33,7 @@
             <param name="token">TOKEN</param>
             <returns>不存在货已过期则返回FALSE</returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.ReadCacheTicket(System.String,System.String@)">
+        <member name="M:SanJing.WxBase.Core.ReadCacheTicket(System.String,System.String@)">
             <summary>
             读取缓存文件中的有效TICKET
             </summary>
@@ -41,25 +41,25 @@
             <param name="ticket">TICKET</param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.TimeStamp">
+        <member name="M:SanJing.WxBase.Core.TimeStamp">
             <summary>
             时间戳
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.NonceStr">
+        <member name="M:SanJing.WxBase.Core.NonceStr">
             <summary>
             随机字符串
             </summary>
             <returns></returns>
         </member>
-        <member name="P:SanJing.WxBase.WxBase.SuccessString">
+        <member name="P:SanJing.WxBase.Core.SuccessString">
             <summary>
             返回XML|SUCCESS
             </summary>
             <returns>XML</returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.TokenValidation(System.String,System.String,System.String,System.String)">
+        <member name="M:SanJing.WxBase.Core.TokenValidation(System.String,System.String,System.String,System.String)">
             <summary>
             TOKEN验证
             </summary>
@@ -69,14 +69,14 @@
             <param name="nonce"></param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.Sha1Sign(System.Collections.Generic.IDictionary{System.String,System.Object})">
+        <member name="M:SanJing.WxBase.Core.Sha1Sign(System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
             SHA1签名
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.Md5Sign(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+        <member name="M:SanJing.WxBase.Core.Md5Sign(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
             MD5签名
             </summary>
@@ -84,14 +84,14 @@
             <param name="data"></param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.StreamToDictionary(System.IO.Stream)">
+        <member name="M:SanJing.WxBase.Core.StreamToDictionaryAsync(System.IO.Stream)">
             <summary>
             流转字典数据
             </summary>
             <param name="inputStream"></param>
             <returns>XML</returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.StreamToDictionary(System.IO.Stream,System.String)">
+        <member name="M:SanJing.WxBase.Core.StreamToDictionaryAsync(System.IO.Stream,System.String)">
             <summary>
             流转字典数据并进行验签
             </summary>
@@ -99,14 +99,14 @@
             <param name="mchKey">商户密钥</param>
             <returns></returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.ApiGetFileRequest(System.String,System.String)">
+        <member name="M:SanJing.WxBase.Core.ApiGetFileRequestAsync(System.String,System.String)">
             <summary>
             下载文件(含图片)
             </summary>
             <param name="fileName">保存文件的完整路劲</param>
             <param name="url"></param>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.ApiGetRequest(System.String,System.Boolean)">
+        <member name="M:SanJing.WxBase.Core.ApiGetRequestAsync(System.String,System.Boolean)">
             <summary>
             GET请求
             </summary>
@@ -114,7 +114,7 @@
             <param name="isSuccessVerify">判断[errcode]和[return_code],不成功抛出异常[ArgumentException];</param>
             <returns>JSON</returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.ApiPostJsonRequest(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.Boolean)">
+        <member name="M:SanJing.WxBase.Core.ApiPostJsonRequestAsync(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.Boolean)">
             <summary>
             POST请求
             </summary>
@@ -123,7 +123,7 @@
             <param name="isSuccessVerify">判断[errcode]和[return_code],不成功抛出异常[ArgumentException];</param>
             <returns>JSON</returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.ApiPostXmlRequest(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.Boolean)">
+        <member name="M:SanJing.WxBase.Core.ApiPostXmlRequestAsync(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.Boolean)">
             <summary>
             POST请求
             </summary>
@@ -132,7 +132,7 @@
             <param name="isSuccessVerify">判断[errcode]和[return_code],不成功抛出异常[ArgumentException];</param>
             <returns>XML</returns>
         </member>
-        <member name="M:SanJing.WxBase.WxBase.ApiPostXmlRequestWithCert(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.String,System.String,System.Boolean)">
+        <member name="M:SanJing.WxBase.Core.ApiPostXmlRequestWithCertAsync(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.String,System.String,System.Boolean)">
             <summary>
             POST请求
             </summary>

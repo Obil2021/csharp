@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,7 @@ using System.Net.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace SanJing.WxBase
@@ -15,7 +17,7 @@ namespace SanJing.WxBase
     /// <summary>
     /// 微信API开发基础类
     /// </summary>
-    public class WxBase
+    public class Core
     {
         private const string MSG_ISNULLORWHITESPACE = "IsNullOrWhiteSpace";
         private const string MSG_NOTCONTAINSKEY = "Not ContainsKey";
@@ -84,10 +86,10 @@ namespace SanJing.WxBase
             {
                 var json = File.ReadAllText(fileName, Encoding.UTF8);
                 var tokenObj = JsonConvert.DeserializeObject<IDictionary<string, object>>(json);
-                var tokenExpire = Convert.ToDateTime(tokenObj["expire"]);
+                var tokenExpire = Convert.ToDateTime(tokenObj["expire"], CultureInfo.CurrentCulture);
                 if (DateTime.Now < tokenExpire)
                 {
-                    token = Convert.ToString(tokenObj["token"]);
+                    token = Convert.ToString(tokenObj["token"], CultureInfo.CurrentCulture);
                     return true;
                 }
             }
@@ -111,10 +113,10 @@ namespace SanJing.WxBase
             {
                 var json = File.ReadAllText(fileName, Encoding.UTF8);
                 var tokenObj = JsonConvert.DeserializeObject<IDictionary<string, object>>(json);
-                var tokenExpire = Convert.ToDateTime(tokenObj["expire"]);
+                var tokenExpire = Convert.ToDateTime(tokenObj["expire"], CultureInfo.CurrentCulture);
                 if (DateTime.Now < tokenExpire)
                 {
-                    ticket = Convert.ToString(tokenObj["ticket"]);
+                    ticket = Convert.ToString(tokenObj["ticket"], CultureInfo.CurrentCulture);
                     return true;
                 }
             }
@@ -129,7 +131,11 @@ namespace SanJing.WxBase
         /// 随机字符串
         /// </summary>
         /// <returns></returns>
-        public static string NonceStr() => Guid.NewGuid().ToString("N").Substring(6, 22);
+        public static string NonceStr()
+        {
+            return Guid.NewGuid().ToString("N", CultureInfo.CurrentCulture).Substring(6, 22);
+        }
+
         /// <summary>
         /// 返回XML|SUCCESS
         /// </summary>
@@ -138,9 +144,11 @@ namespace SanJing.WxBase
         {
             get
             {
-                var result = new Dictionary<string, object>();
-                result.Add("return_code", VAL_SUCCESS);
-                result.Add("return_msg", "OK");
+                var result = new Dictionary<string, object>
+                {
+                    { "return_code", VAL_SUCCESS },
+                    { "return_msg", "OK" }
+                };
                 return DictionaryXml(result);
             }
         }
@@ -195,7 +203,7 @@ namespace SanJing.WxBase
                 throw new ArgumentNullException(nameof(data));
             }
 
-            var kv = new SortedDictionary<string, object>(data).Select(e => string.Format("{0}={1}", e.Key, e.Value));
+            var kv = new SortedDictionary<string, object>(data).Select(e => string.Format(CultureInfo.CurrentCulture, "{0}={1}", e.Key, e.Value));
             return Sha1Encrypt(string.Join("&", kv));
         }
         /// <summary>
@@ -216,7 +224,7 @@ namespace SanJing.WxBase
                 throw new ArgumentNullException(nameof(data));
             }
 
-            var kv = new SortedDictionary<string, object>(data).Select(e => string.Format("{0}={1}", e.Key, e.Value));
+            var kv = new SortedDictionary<string, object>(data).Select(e => string.Format(CultureInfo.CurrentCulture, "{0}={1}", e.Key, e.Value));
             var temp = string.Join("&", kv) + $"&key={mchKey}";
             return Md5Encrypt(temp);
         }
@@ -225,15 +233,17 @@ namespace SanJing.WxBase
         /// </summary>
         /// <param name="inputStream"></param>
         /// <returns>XML</returns>
-        public static IDictionary<string, object> StreamToDictionary(Stream inputStream)
+        public static async Task<IDictionary<string, object>> StreamToDictionaryAsync(Stream inputStream)
         {
             if (inputStream == null)
             {
                 throw new ArgumentNullException(nameof(inputStream));
             }
 
-            StreamReader read = new StreamReader(inputStream, Encoding.UTF8);
-            return XmlDictionary(read.ReadToEnd());
+            using (StreamReader read = new StreamReader(inputStream, Encoding.UTF8))
+            {
+                return XmlDictionary(await read.ReadToEndAsync().ConfigureAwait(true));
+            }
         }
         /// <summary>
         /// 流转字典数据并进行验签
@@ -241,7 +251,7 @@ namespace SanJing.WxBase
         /// <param name="inputStream"></param>
         /// <param name="mchKey">商户密钥</param>
         /// <returns></returns>
-        public static IDictionary<string, object> StreamToDictionary(Stream inputStream, string mchKey)
+        public static async Task<IDictionary<string, object>> StreamToDictionaryAsync(Stream inputStream, string mchKey)
         {
             if (inputStream == null)
             {
@@ -253,14 +263,14 @@ namespace SanJing.WxBase
                 throw new ArgumentException(MSG_ISNULLORWHITESPACE, nameof(mchKey));
             }
 
-            return MD5SignCheck(SuccessVerify(StreamToDictionary(inputStream)), mchKey);
+            return MD5SignCheck(SuccessVerify(await StreamToDictionaryAsync(inputStream).ConfigureAwait(true)), mchKey);
         }
         /// <summary>
         /// 下载文件(含图片)
         /// </summary>
         /// <param name="fileName">保存文件的完整路劲</param>
         /// <param name="url"></param>
-        public static void ApiGetFileRequest(string fileName, string url)
+        public static async Task ApiGetFileRequestAsync(string fileName, string url)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -275,7 +285,7 @@ namespace SanJing.WxBase
             using (var web = new WebClient())
             {
                 web.Encoding = Encoding.UTF8;
-                web.DownloadFile(url, fileName);
+                await web.DownloadFileTaskAsync(url, fileName).ConfigureAwait(true);
             }
         }
         /// <summary>
@@ -284,7 +294,7 @@ namespace SanJing.WxBase
         /// <param name="url"></param>
         /// <param name="isSuccessVerify">判断[errcode]和[return_code],不成功抛出异常[ArgumentException];</param>
         /// <returns>JSON</returns>
-        public static IDictionary<string, object> ApiGetRequest(string url, bool isSuccessVerify = false)
+        public static async Task<IDictionary<string, object>> ApiGetRequestAsync(string url, bool isSuccessVerify = false)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -292,12 +302,12 @@ namespace SanJing.WxBase
             }
 
             if (isSuccessVerify)
-                return SuccessVerify(ApiGetRequest(url, false));
+                return SuccessVerify(await ApiGetRequestAsync(url, false).ConfigureAwait(true));
             else
                 using (var web = new WebClient())
                 {
                     web.Encoding = Encoding.UTF8;
-                    return JsonConvert.DeserializeObject<IDictionary<string, object>>(web.DownloadString(url));
+                    return JsonConvert.DeserializeObject<IDictionary<string, object>>(await web.DownloadStringTaskAsync(url).ConfigureAwait(true));
                 }
         }
         /// <summary>
@@ -307,7 +317,7 @@ namespace SanJing.WxBase
         /// <param name="url"></param>
         /// <param name="isSuccessVerify">判断[errcode]和[return_code],不成功抛出异常[ArgumentException];</param>
         /// <returns>JSON</returns>
-        public static IDictionary<string, object> ApiPostJsonRequest(IDictionary<string, object> data, string url,
+        public static async Task<IDictionary<string, object>> ApiPostJsonRequestAsync(IDictionary<string, object> data, string url,
             bool isSuccessVerify = false)
         {
             if (data == null)
@@ -316,13 +326,13 @@ namespace SanJing.WxBase
             }
 
             if (isSuccessVerify)
-                return SuccessVerify(ApiPostJsonRequest(data, url, false));
+                return SuccessVerify(await ApiPostJsonRequestAsync(data, url, false).ConfigureAwait(true));
             else
                 using (var web = new WebClient())
                 {
                     web.Encoding = Encoding.UTF8;
                     web.Headers.Add("Content-Type", "text/json");
-                    var result = web.UploadString(url, "POST", JsonConvert.SerializeObject(data));
+                    var result = await web.UploadStringTaskAsync(url, "POST", JsonConvert.SerializeObject(data)).ConfigureAwait(true);
                     return JsonConvert.DeserializeObject<IDictionary<string, object>>(result);
                 }
         }
@@ -333,7 +343,7 @@ namespace SanJing.WxBase
         /// <param name="url"></param>
         /// <param name="isSuccessVerify">判断[errcode]和[return_code],不成功抛出异常[ArgumentException];</param>
         /// <returns>XML</returns>
-        public static IDictionary<string, object> ApiPostXmlRequest(
+        public static async Task<IDictionary<string, object>> ApiPostXmlRequestAsync(
             IDictionary<string, object> data, string url, bool isSuccessVerify = false)
         {
             if (data == null)
@@ -342,13 +352,13 @@ namespace SanJing.WxBase
             }
 
             if (isSuccessVerify)
-                return SuccessVerify(ApiPostXmlRequest(data, url, false));
+                return SuccessVerify(await ApiPostXmlRequestAsync(data, url, false).ConfigureAwait(true));
             else
                 using (var web = new WebClient())
                 {
                     web.Encoding = Encoding.UTF8;
                     web.Headers.Add("Content-Type", "text/xml");
-                    var result = web.UploadString(url, "POST", DictionaryXml(data));
+                    var result = await web.UploadStringTaskAsync(url, "POST", DictionaryXml(data)).ConfigureAwait(true);
                     return XmlDictionary(result);
                 }
         }
@@ -361,7 +371,7 @@ namespace SanJing.WxBase
         /// <param name="url"></param>
         /// <param name="isSuccessVerify">判断[errcode]和[return_code],不成功抛出异常[ArgumentException];</param>
         /// <returns>XML</returns>
-        public static IDictionary<string, object> ApiPostXmlRequestWithCert(IDictionary<string, object> data,
+        public static async Task<IDictionary<string, object>> ApiPostXmlRequestWithCertAsync(IDictionary<string, object> data,
             string mchId, string certPath, string url, bool isSuccessVerify = false)
         {
             if (data == null)
@@ -385,26 +395,30 @@ namespace SanJing.WxBase
             }
 
             if (isSuccessVerify)
-                return SuccessVerify(ApiPostXmlRequestWithCert(data, mchId, certPath, url, false));
+                return SuccessVerify(await ApiPostXmlRequestWithCertAsync(data, mchId, certPath, url, false).ConfigureAwait(true));
             else
             {
                 ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
                 X509Certificate2 cer = new X509Certificate2(certPath, mchId, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet);
-                HttpWebRequest webrequest = (HttpWebRequest)HttpWebRequest.Create(url);
+                HttpWebRequest webrequest = WebRequest.CreateHttp(new Uri(url));
                 webrequest.ClientCertificates.Add(cer);
                 webrequest.Method = "POST";
                 webrequest.ContentType = "text/xml";
                 var bytes = Encoding.UTF8.GetBytes(DictionaryXml(data));
                 webrequest.ContentLength = bytes.Length;
-                webrequest.GetRequestStream().Write(bytes, 0, bytes.Length);
-                HttpWebResponse webreponse = (HttpWebResponse)webrequest.GetResponse();
-                Stream stream = webreponse.GetResponseStream();
-                string result = string.Empty;
-                using (StreamReader reader = new StreamReader(stream))
+                await (await webrequest.GetRequestStreamAsync().ConfigureAwait(true)).WriteAsync(bytes, 0, bytes.Length).ConfigureAwait(true);
+                using (WebResponse webreponse = await webrequest.GetResponseAsync().ConfigureAwait(true))
                 {
-                    result = reader.ReadToEnd();
+                    using (Stream stream = webreponse.GetResponseStream())
+                    {
+                        string result = string.Empty;
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                            result = await reader.ReadToEndAsync().ConfigureAwait(true);
+                        }
+                        return XmlDictionary(result);
+                    }
                 }
-                return XmlDictionary(result);
             }
         }
         private static string DictionaryXml(IDictionary<string, object> data)
@@ -414,7 +428,7 @@ namespace SanJing.WxBase
                 throw new ArgumentNullException(nameof(data));
             }
 
-            XmlDocument doc = new XmlDocument();
+            XmlDocument doc = new XmlDocument() { XmlResolver = null };
             var root = doc.CreateElement("xml");
             doc.AppendChild(root);
             XmlItem(doc, root, data);
@@ -531,7 +545,7 @@ namespace SanJing.WxBase
             using (var sha = new MD5CryptoServiceProvider())
             {
                 var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(bytes).Replace("-", string.Empty).ToUpper();
+                return BitConverter.ToString(bytes).Replace("-", string.Empty).ToUpper(CultureInfo.CurrentCulture);
             }
         }
         private static string Sha1Encrypt(string text)
@@ -544,7 +558,7 @@ namespace SanJing.WxBase
             using (var sha = new SHA1CryptoServiceProvider())
             {
                 var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(bytes).Replace("-", string.Empty).ToLower();
+                return BitConverter.ToString(bytes).Replace("-", string.Empty).ToLower(CultureInfo.CurrentCulture);
             }
         }
     }

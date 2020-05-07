@@ -1,0 +1,22 @@
+﻿[*.cs]
+
+# CA1052: 静态容器类型应为 Static 或 NotInheritable
+dotnet_diagnostic.CA1052.severity = none
+
+# CA1303: 请不要将文本作为本地化参数传递
+dotnet_diagnostic.CA1303.severity = none
+
+# CA3075: XML 中不安全的 DTD 处理
+dotnet_diagnostic.CA3075.severity = none
+
+# CA2208: 正确实例化参数异常
+dotnet_diagnostic.CA2208.severity = none
+
+# CA5351: 不要使用损坏的加密算法
+dotnet_diagnostic.CA5351.severity = none
+
+# CA5350: 不要使用弱加密算法
+dotnet_diagnostic.CA5350.severity = none
+
+# CA1054: URI 参数不应为字符串
+dotnet_diagnostic.CA1054.severity = none
