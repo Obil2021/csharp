@@ -16,3 +16,12 @@ C:\Users\sanji\Desktop\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.cs
 C:\Users\sanji\Desktop\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.csproj.CopyComplete
 C:\Users\sanji\Desktop\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.dll
 C:\Users\sanji\Desktop\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.pdb
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\bin\Debug\SanJing.WxBase.xml
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\bin\Debug\SanJing.WxBase.dll
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\bin\Debug\SanJing.WxBase.pdb
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.csproj.CoreCompileInputs.cache
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.csproj.CopyComplete
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.dll
+C:\Users\sanji\Documents\GitHub\csharp\SanJing.WxBase\SanJing.WxBase\obj\Debug\SanJing.WxBase.pdb
